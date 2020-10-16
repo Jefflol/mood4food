@@ -1,11 +1,13 @@
-## My Web Application (Title)
+## Mood4Food
 
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Contents](#content)
 
 ## General Info
-This browser based web application to ...
+This browser based web application allows people to access COVID-19 Safety Protocols for restaurants.
+
+Created by: Jeffery C, Jeffery J, Sunmin C, Toni T.
 	
 ## Technologies
 Technologies used for this project:
