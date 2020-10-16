@@ -6,13 +6,13 @@
 * [Contents](#content)
 
 ## General Info
-This browser based web application to ...
+This browser based web application allows users to access COVID-19 Safety Protocols for restaurants.
 
 ## Contributors
-Jeffery C
-Jeffery J
-Sunmin
-Toni
+* Jeffery C
+* Jeffery J
+* Sunmin C
+* Toni T
 	
 ## Technologies
 Technologies used for this project:
@@ -44,11 +44,3 @@ It has the following subfolders and files:
 
 Firebase hosting files: 
 ├── .firebaserc...
-
-
-```
-
-Tips for file naming files and folders:
-* use lowercase with no spaces
-* use dashes (not underscore) for word separation
-
