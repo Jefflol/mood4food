@@ -1,4 +1,4 @@
-## My Web Application (Title)
+## Can you see this conflict (Title)
 
 * [General info](#general-info)
 * [Technologies](#technologies)
@@ -22,6 +22,7 @@ Content of the project folder:
 ├── .gitignore               # Git ignore file
 ├── index.html               # landing HTML file, this is what users see when you come to url
 └── README.md
+profile.html
 
 It has the following subfolders and files:
 ├── .git                     # Folder for git repo
