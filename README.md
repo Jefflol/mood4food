@@ -1,4 +1,4 @@
-## My Web Application (Title)
+## My Web Application (Mood4Food)
 
 * [General info](#general-info)
 * [Technologies](#technologies)
@@ -6,6 +6,7 @@
 
 ## General Info
 This browser based web application to ...
+Jeff
 	
 ## Technologies
 Technologies used for this project:
@@ -20,6 +21,7 @@ Content of the project folder:
 ```
  Top level of project folder: 
 ├── .gitignore               # Git ignore file
+├── main.html
 ├── index.html               # landing HTML file, this is what users see when you come to url
 └── README.md
 
