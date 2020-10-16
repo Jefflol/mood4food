@@ -8,8 +8,6 @@
 ## General Info
 This browser based web application allows people to access COVID-19 Safety Protocols for restaurants.
 
-Created by: Jeffery C, Jeffery J, Sunmin C, Toni T.
-	
 ## Collaborators
 * Jeffrey C
 * Jeffrey J
