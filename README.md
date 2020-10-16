@@ -1,11 +1,18 @@
 ## Mood4Food (Title)
 
 * [General info](#general-info)
+* [Contributors](#contributors)
 * [Technologies](#technologies)
 * [Contents](#content)
 
 ## General Info
 This browser based web application to ...
+
+## Contributors
+Jeffery C
+Jeffery J
+Sunmin
+Toni
 	
 ## Technologies
 Technologies used for this project:
