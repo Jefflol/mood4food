@@ -1,4 +1,4 @@
-## Can you see this conflict (Title)
+## Mood4Food (Title)
 
 * [General info](#general-info)
 * [Technologies](#technologies)
