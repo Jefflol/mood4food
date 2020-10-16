@@ -22,8 +22,8 @@ Content of the project folder:
 ├── .gitignore               # Git ignore file
 ├── main.html                # main html file, this is what people see when they are loggeed in
 ├── index.html               # landing HTML file, this is what users see when you come to url
+└── profile.html             # profile html file, this is what users see when they look at their profile
 └── README.md
-profile.html
 
 It has the following subfolders and files:
 ├── .git                     # Folder for git repo
