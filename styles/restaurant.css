@@ -1,0 +1,148 @@
+.restaurant-page {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 5%; 
+  /* border: 2px solid red; */
+}
+
+.item {
+  width: 100%;
+}
+
+.item__image {
+  width: 100%;
+  height: 125px;
+  overflow: hidden;
+}
+
+.item__image > img {
+  /* max-width: 100%;
+  max-height: 100%; */
+}
+
+.item__ratings {
+  margin: 10px 0;
+}
+
+.item__title {
+  font-size: 18pt;
+}
+
+.item__desc {
+  /* margin: 10px 0; */
+}
+
+.item__filter-text {
+  font-size: 14pt;
+  font-weight: 500;
+}
+
+.item__safety-protocol {
+  display: flex;
+  align-items: center;
+}
+
+
+.item__safety-protocol > svg {
+  margin-right: 10px;
+}
+
+
+/* .item__details--more {
+  margin: 0;
+} */
+
+.item__feature--safety {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.item__feature--safety > svg {
+  margin-right: 10px;
+}
+
+
+.item__feature--other {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.item__feature--other > svg {
+  margin-right: 10px;
+}
+
+.item__feature-group {
+  margin: 20px 0;
+}
+
+.item__feature-group:first-of-type {
+  margin-top: 0;
+}
+
+
+.item__action-group {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.item__action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.action__text {
+  font-size: 10pt;
+}
+
+
+/* @media only screen and (min-width: 414px) { */
+@media only screen and (min-width: 520px) {
+  .item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .item__image {
+    min-width: 150px;
+    min-height: 150px;
+    width: 25vw;
+    height: 25vw;
+    max-width: 200px;
+    max-height: 200px;
+    padding: 1.25rem 0 0 1.25rem;
+  }
+
+  .item__details--more {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .item__feature-group {
+    flex: 1;
+  }
+
+  .item__feature-group:first-of-type {
+    margin-top: 20px;
+  }
+
+  .item__action-group {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  .restaurant-page {
+    padding: 5% 20%;
+  }
+}
