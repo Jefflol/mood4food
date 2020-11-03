@@ -11,15 +11,16 @@ This browser based web application allows users to access COVID-19 Safety Protoc
 ## Collaborators
 * Jeffrey C
 * Jeffrey J
-* Sunmin
-* Toni
+* Sunmin C
+* Toni T
 
 ## Technologies
 Technologies used for this project:
-* HTML, CSS
-* JavaScript
+* HTML
+* CSS
+* JavaScript / JQuery
 * Bootstrap 
-* ...
+* Firebase
 	
 ## Content
 Content of the project folder:
@@ -36,11 +37,12 @@ Content of the project folder:
 It has the following subfolders and files:
 ├── .git                     # Folder for git repo
 ├── images                   # Folder for images
-    /blah.jpg                # 
+    /background.jpg          # Banner background image
+    /MugIcon.png             # Mug Icon for '4' in Mood'4'Food
 ├── scripts                  # Folder for scripts
     /blah.js                 # 
 ├── styles                   # Folder for styles
-    /blah.css                # 
+    /style.css               # Main stylesheet
 
 Firebase hosting files: 
 ├── .firebaserc...
