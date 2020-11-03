@@ -1,0 +1,38 @@
+.banner {
+  background-image: url('../images/background.jpg'); 
+  background-size: cover; 
+  opacity: 0.95;
+  margin-bottom: 0;
+}
+
+.titleinbanner {
+  font-weight: 500;
+  -webkit-text-stroke: 0.3px darkgrey;
+  text-shadow:
+    3px 3px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.subtitleinbanner {
+  -webkit-text-stroke: 0.2px darkgrey;
+  padding-left: 27%;
+}
+
+.mugiconcontainer {
+  position: relative;
+  text-align: center;
+}
+
+.mugicon {
+  width: 1.75em;
+}
+
+.number4inmug {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+}

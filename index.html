@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Mood4Food</title>
+    <title>Mood4Food - Index</title>
     <meta name="author" content="BCIT">
 
     <!-- Bootstrap for Mobile-first, and JQuery -->
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- Optional styles and scripts of your own -->
-    
+    <link rel="stylesheet" href="styles/style.css">
 
 </head>
 
@@ -20,27 +20,35 @@
     <!-------------------------------------->
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
-    <!-- Header Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="">myApp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">my data</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile.html">my profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">login/signup</a>
-                </li>
-            </ul>
+
+    <!-- Header jumbotron banner thingy -->
+    <div class="jumbotron jumbotron-fluid banner">
+        <div class="container">
+            <h1 class="display-4 text-light titleinbanner">
+                Mood
+                <span class="mugiconcontainer">
+                    <img src="images/MugIcon.png" alt="" class="mugicon">
+                    <span class="number4inmug">4</span>
+                </span>
+                Food
+            </h1>
+            <p class="lead text-light subtitleinbanner"><b>The grub hub? idk some catchy phrase</b></p>
         </div>
+    </div>
+
+    <!-- Header Navigation Bar -->
+    <nav class="navbar navbar-dark sticky-top bg-dark">
+        <a class="nav-link text-light" href="profile.html">Profile</a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <a class="nav-link text-light" href="settings.html">Settings</a>
     </nav>
-    <h1>Mood4Food</h1>
+
+    <!--I added these to test the nav bar sticking to the top thingy-->
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    
     <!----------------------------------------------->
     <!-- JS: Boostrap, Firebase, API related    -->
     <!----------------------------------------------->
@@ -59,4 +67,5 @@
     <!--------------------------------------------------------------------->
 
 </body>
+
 </html>
