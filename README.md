@@ -8,12 +8,12 @@
 ## General Info
 This browser based web application allows users to access COVID-19 Safety Protocols for restaurants.
 
-## Contributors
-* Jeffery C
-* Jeffery J
-* Sunmin C
-* Toni T
-	
+## Collaborators
+* Jeffrey C
+* Jeffrey J
+* Sunmin
+* Toni
+
 ## Technologies
 Technologies used for this project:
 * HTML, CSS
