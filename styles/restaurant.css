@@ -9,6 +9,7 @@
   /* border: 2px solid red; */
 }
 
+/* SORT/FILTER OPTIONS */
 .restaurant-page > .item-layout {
   display: flex;
   justify-content: space-between;
@@ -16,7 +17,42 @@
   margin: 20px;
 }
 
+/* MODAL - Ratings */
+.ratings-group {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
 
+.ratings-group > input {
+  display: none;
+}
+
+.ratings-group > label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 2em;
+}
+
+.ratings-group > label:hover,
+.ratings-group > label:hover ~ label {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.ratings-group > input:checked ~ label {
+  background-color: aqua;
+}
+
+.star-hide {
+  display: none;
+}
+
+/* RESTAURANT ITEM */
 .item {
   width: 100%;
 }
