@@ -41,7 +41,8 @@ It has the following subfolders and files:
     /background.jpg          # Banner background image
     /MugIcon.png             # Mug Icon for '4' in Mood'4'Food
 ├── scripts                  # Folder for scripts
-    /blah.js                 # 
+    /login.js                # Login javascript
+    /firebase_api_mood       # Firebase database javascript
 ├── styles                   # Folder for styles
     /style.css               # Main stylesheet
     /restaurant.css          # Restaurant Page stylesheet
