@@ -1,11 +1,21 @@
 .restaurant-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
   width: 100%;
   height: 100%;
   padding: 5%; 
   /* border: 2px solid red; */
 }
+
+.restaurant-page > .item-layout {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px;
+}
+
 
 .item {
   width: 100%;
