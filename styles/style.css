@@ -1,3 +1,6 @@
+/*******************************/
+/******FOR NAVBAR/HEADER********/
+/*******************************/
 .banner {
   background-image: url('../images/background.jpg'); 
   background-size: cover; 
@@ -35,4 +38,44 @@
   top: 50%;
   left: 40%;
   transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 550px){
+  .titleinbanner {
+    font-size: 32pt;
+  }
+
+  .subtitleinbanner {
+    font-size: 12pt;
+  }
+
+  .menuCanHide {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .titleinbanner {
+    font-size: 24pt;
+  }
+
+  .subtitleinbanner {
+    font-size: 10pt;
+  }
+
+  .menuCanHide {
+    display: none;
+  }
+
+  .nav-link {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+
+  .navbar {
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-left: 0pt;
+    margin-right: 0pt;
+  }
 }
