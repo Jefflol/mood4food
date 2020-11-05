@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Settings</title>
-    <meta charset="utf-8"/>
-  </head>
-  <body>
-    <h1>This is the settings page</h1>
-  </body>
-</html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Mood4Food - Settings</title>
+    <meta name="author" content="BCIT">
+
+    <!-- Bootstrap for Mobile-first, and JQuery -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Optional styles and scripts of your own -->
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/restaurant.css">
+    <link rel="stylesheet" href="styles/settings.css">
+</head>
+
+<body>
+
+    <!-------------------------------------->
+    <!-- The following is HTML for layout -->
+    <!-------------------------------------->
+
+    <!-- Header jumbotron banner thingy -->
+    <div class="jumbotron jumbotron-fluid banner">
+        <div class="container">
+            <h1 class="display-4 text-light titleinbanner">
+                Mood
+                <span class="mugiconcontainer">
+                    <img src="images/MugIcon.png" alt="" class="mugicon">
+                    <span class="number4inmug">4</span>
+                </span>
+                Food
+            </h1>
+            <p class="lead text-light subtitleinbanner"><b>The grub hub? idk some catchy phrase</b></p>
+        </div>
+    </div>
+
+    <!--Settings div section-->
+    <div class="settingsSection">
+      <h1 class="settingsTitle">Settings</h1>
+      <div class="group">
+        <div class="singleSize">
+          <h5>Location</h5>
+          <!--Text box-->
+          <div  class="location"><form>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Area" aria-label="Search">
+          </form></div>
+          <!--Button pepe-->
+          <div  class="locationSumbit">
+            <svg width="2em" height="2em" type="button" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        
+  <script src="scripts/settings.js"></script>
+</body>

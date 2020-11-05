@@ -1,14 +1,61 @@
 .restaurant-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
   width: 100%;
   height: 100%;
   padding: 5%; 
   /* border: 2px solid red; */
 }
 
+/* SORT/FILTER OPTIONS */
+.restaurant-page > .item-layout {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px;
+}
+
+/* MODAL - Ratings */
+.ratings-group {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.ratings-group > input {
+  display: none;
+}
+
+.ratings-group > label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 2em;
+}
+
+.ratings-group > label:hover,
+.ratings-group > label:hover ~ label {
+  background-color: aqua;
+  cursor: pointer;
+}
+
+.ratings-group > input:checked ~ label {
+  background-color: aqua;
+}
+
+.star-hide {
+  display: none;
+}
+
+/* RESTAURANT ITEM */
 .item {
   width: 100%;
+  margin: 10px 0;
 }
 
 .item__image {
