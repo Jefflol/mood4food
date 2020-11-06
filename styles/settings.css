@@ -1,37 +1,75 @@
 .settingsTitle {
     text-align: center;
     margin: auto;
-    margin-top: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .singleSize {
     display: grid;
-    grid-template-columns: 25vw 25vw 10vw;
+    grid-template-columns: 25vw 25vw;
     width: 50vw;
     height: 70px;
     margin: auto;
-    margin-top: 5%;
-    border-top: 2px solid grey;
-    border-bottom: 2px solid grey;
+    border-top: 1px solid lightgray;
 }
 
 .singleSize > h5 {
     line-height: 70px;
 }
 
-.location {
+/*Location*/
+.form-control {
     margin-top: 15px;
     float: right;
 }
 
-.locationSumbit {
-    height: inherit;
-    margin-left: 10px;
-    margin-top: 18px;
+#btnGroupAddon {
+    height: 38px;
+    margin-top: 15px;
 }
 
-@media only screen and (max-width: 600px) {
-    .singleSize {
+/*Distance*/
+.btn {
+    margin-top: 15px;
+    height: 40px;
+}
+
+/*Search History*/
+.toggle {
+    float: right;
+}
+
+/*Notifications*/
+.notifications {
+    width: 50vw;
+    height: 70px;
+    margin: auto;
+}
+
+.bi-arrow-left-square-fill {
+    height: 30px;
+    margin-left: -20px;
+}
+
+.bi {
+    width: inherit;
+}
+
+.item__details--more > h6 {
+    float: left;
+}
+
+.item__details--more > .toggle {
+    width: 90px;
+}
+@media only screen and (max-width: 1000px) {
+    .singleSize:nth-child(2) {
+        display: block;
+        height: 120px;
+    }
+
+    .singleSize:nth-child(3) {
         display: block;
         height: 120px;
     }
@@ -39,30 +77,28 @@
     .singleSize > h5 {
         text-align: center;
         margin-top: 20px;
-        line-height: 10px;
+        line-height: 20px;
     }
 
-    .location {
-        display: inline-block;
-        width: 40vw;
-        margin-top: 15px;
-        float: left;
+    .singleSize:nth-child(4) > h5 {
+        text-align: left;
     }
 
-    .locationSumbit {
-        display: inline-block;
-        margin-top: 18px;
+    .btn-group {
+        margin: auto;
+        width: 50vw;
     }
 }
 
+
 /*
 other parts
-*/
+
 .board {
     margin: auto;
     width: 50vw;
     height: 70px;
-    border-bottom: 2px solid grey;
+    border-bottom: 1px solid grey;
 }
 
 .board > h5 {
@@ -73,3 +109,4 @@ other parts
     float: right;
     margin-top: 15px;
 }
+*/
