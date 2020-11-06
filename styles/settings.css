@@ -74,13 +74,18 @@
         height: 120px;
     }
 
+    .singleSize:nth-child(4) {
+        display: block;
+        height: 120px;
+    }
+
     .singleSize > h5 {
         text-align: center;
         margin-top: 20px;
         line-height: 20px;
     }
 
-    .singleSize:nth-child(4) > h5 {
+    .singleSize:nth-child(5) > h5 {
         text-align: left;
     }
 
