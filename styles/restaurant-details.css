@@ -170,7 +170,6 @@
 
 .reviews__other {
   margin: 20px 0;
-
 }
 
 .reviews__other-header {
@@ -183,6 +182,13 @@
 
 .reviews__other-body {
   margin: 10px 0;
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+}
+
+.modal-body .reviews__other-body {
+  height: 100%;
 }
 
 
