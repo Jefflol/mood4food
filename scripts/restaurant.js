@@ -1,16 +1,54 @@
-/* ADD TO DATABASE - INCOMPLETE */
-// function addListener() {
-//   document.getElementById("addToFirebase").addEventListener("click", function (e) {
-//       // write the values into new database document
-//       db.collection("restaurants")
-//           .add({      //using the add() function, auto-generated doc ID
-//               "name": "test",
-//           })
+/**
+ * Add restaurant information to database.
+ * @param {Event} e invokes this method 
+ */
+const addRestaurant = (e) => {
+  e.preventDefault();
 
-//       console.log("added");
-//   })
-// }
-// addListener();
+  let name = $("#nameInput").val();
+  let description = $("#descriptionTextArea").val();
+  let address = $("#addressInput").val();
+  let city = $("#cityInput").val();
+  // var province = $("#provinceInput").val();
+  let postalCode = $("#postalCodeInput").val();
+  let phoneNumber = $("#phoneInput").val();
+  let website = $("#websiteInput").val();
+
+  let isDineInAvailable = $("#dineinCheckbox").is(":checked");
+  let isTakeoutAvailable = $("#takeoutCheckbox").is(":checked");
+  let isDeliveryAvailable = $("#deliveryCheckbox").is(":checked");
+
+  let isMaskRequired = $("#maskRequiredCheckbox").is(":checked");
+  let isReducedSeatings = $("#reducedSeatingsCheckbox").is(":checked");
+  let isDistancedTables = $("#distancedTablesCheckbox").is(":checked");
+  let isSanitizingAvailable = $("#sanitizationCheckbox").is(":checked");
+
+  // console.log(name);
+  // console.log(description);
+  // console.log(phoneNumber);
+  // console.log(website);
+  // console.log(isDineInAvailable);
+
+  // write the values into new database document
+  db.collection("restaurants")
+    .add({
+      "name": name,
+      "description": description,
+      "phone_number": phoneNumber,
+      "website_url": website,
+      "features": [isDineInAvailable, isTakeoutAvailable, isDeliveryAvailable],
+      "safety_protocols": [isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable],
+    });
+
+  console.log("Added " + name);
+}
+/**
+ * Attach addRestaurant method to button.
+ */
+const attachAddRestaurant = () => {
+  $("#addRestaurant").on("click", addRestaurant);
+}
+// $(document).ready(attachAddRestaurant);
 
 /**
  * Retrieves restaurants from database and displays onto restaurant page.
@@ -21,26 +59,26 @@ const getRestaurants = () => {
     .get()
     .then (function(snap){
       snap.forEach(function(doc){
-          let restaurantId = doc.id;
-          let restaurantName = doc.data().name;
-          let restaurantAvgRating = doc.data().average_rating;
-          let restaurantDescription = doc.data().description;
-          let restaurantSafetyProtocol = doc.data().safety_protocols;
-          let restaurantFeatures = doc.data().features;
-          let restaturantWebsite = doc.data().website_url;
+        let restaurantId = doc.id;
+        let restaurantName = doc.data().name;
+        let restaurantAvgRating = doc.data().average_rating;
+        let restaurantDescription = doc.data().description;
+        let restaurantSafetyProtocol = doc.data().safety_protocols;
+        let restaurantFeatures = doc.data().features;
+        let restaturantWebsite = doc.data().website_url;
 
-          let restaurantObj = {
-            restaurantId,
-            restaurantName,
-            restaurantAvgRating,
-            restaurantDescription,
-            restaurantSafetyProtocol,
-            restaurantFeatures,
-            restaturantWebsite
-          };
+        let restaurantObj = {
+          restaurantId,
+          restaurantName,
+          restaurantAvgRating,
+          restaurantDescription,
+          restaurantSafetyProtocol,
+          restaurantFeatures,
+          restaturantWebsite
+        };
 
-          // Attach a restaurant card.
-          displayRestaurants(restaurantObj); 
+        // Attach a restaurant card.
+        displayRestaurants(restaurantObj); 
       });
     });
 };
