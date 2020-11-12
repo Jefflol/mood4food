@@ -23,7 +23,7 @@
 }
 
 /*Location*/
-.textbox {
+.settingsSection .form-control {
     margin-top: 15px;
     float: right;
 }
@@ -96,6 +96,7 @@
     margin-bottom: 30px;
 }
 
+/*Payment Method*/
 .card {
     border: 1px solid darkgray;
     width: 50vw;
@@ -117,6 +118,11 @@
     border: none;
 }
 
+#addRestaurantModal {
+    margin-top: 90px;
+}
+
+/*Media Queries*/
 @media only screen and (max-width: 1000px) {
     .singleSize {
         display: block;
@@ -131,6 +137,9 @@
 
     .singleSize:nth-child(4) > h5 {
         padding-top: 5px;
+    }
+    .singleSize:nth-child(5) > h5,
+    .singleSize:nth-child(6) > h5 {
         text-align: left;
         display: inline-block;
     }
@@ -141,6 +150,9 @@
 
     /*Button Toggle*/
     .btn-group-toggle {
+    }
+
+    .settingsSection .btn-group {
         margin: auto;
         width: 50vw;
     }

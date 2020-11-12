@@ -211,6 +211,12 @@
             <input type="radio" name="options" id="option3" autocomplete="off"> Miles
           </label>
         </div>
+
+        <!-- Add a Restaurant -->
+        <div class="singleSize">
+          <h5>New Restaurant</h5>
+          <button id="openModal" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addRestaurantModal">Add a Restaurant</button>
+        </div>
       </div>
       <!--Recent Search-->
       <div class="singleSize">
@@ -226,6 +232,104 @@
     </div>
     <!-- TEST - END -->
 
+    <!-- Add a Restaurant Modal -->
+    <div class="modal fade" id="addRestaurantModal" tabindex="-1" role="dialog" aria-labelledby="addRestaurantModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addRestaurantModalLabel">Add Your Restaurant</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="nameInput">Restaurant Name</label>
+                <input type="text" class="form-control" id="nameInput" placeholder="Name" required>
+              </div>
+              <div class="form-group">
+                <label for="descriptionTextArea">Description</label>
+                <textarea class="form-control" id="descriptionTextArea" rows="3" placeholder="Enter description" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="addressInput">Address</label>
+                <input type="text" class="form-control" id="addressInput" placeholder="Address">
+              </div>
+              <div class="form-group">
+                <label for="cityInput">City</label>
+                <input type="text" class="form-control" id="cityInput" placeholder="City">
+              </div>
+              <div class="form-group">
+                <label for="provinceInput">Province</label>
+                <select class="custom-select" id="provinceInput">
+                  <option selected>Select your province</option>
+                  <option value="1">British Columbia</option>
+                  <option value="2">Alberta</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="postalCodeInput">Postal Code</label>
+                <input type="text" class="form-control" id="postalCodeInput" placeholder="Postal Code">
+              </div>
+              <div class="form-group">
+                <label for="phoneInput">Phone Number</label>
+                <input type="tel" class="form-control" id="phoneInput" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="604-123-1234">
+              </div>
+              <div class="form-group">
+                <label for="websiteInput">Website URL</label>
+                <input type="url" class="form-control" id="websiteInput" placeholder="www.example.com">
+              </div>
+
+              <div class="form-group">
+                <label>Restaurant Features</label>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="dineinCheckbox">
+                  <label class="form-check-label" for="dineinCheckbox">Dine-in Available</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="takeoutCheckbox">
+                  <label class="form-check-label" for="takeoutCheckbox">Takeout Available</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="deliveryCheckbox">
+                  <label class="form-check-label" for="deliveryCheckbox">Delivery Available</label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Safety Protocols</label>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="maskRequiredCheckbox">
+                  <label class="form-check-label" for="maskRequiredCheckbox">Mask Required</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="reducedSeatingsCheckbox">
+                  <label class="form-check-label" for="reducedSeatingsCheckbox">Reduced Seatings</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="distancedTablesCheckbox">
+                  <label class="form-check-label" for="distancedTablesCheckbox">Distanced Tables</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="sanitizationCheckbox">
+                  <label class="form-check-label" for="sanitizationCheckbox">Sanitzation Stations Available</label>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="addRestaurant" type="submit" class="btn btn-primary" data-dismiss="modal">Add Restaurant</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+  
   <!----------------------------------------------->
   <!-- JS: Boostrap, Firebase, API related       -->
   <!----------------------------------------------->
@@ -250,4 +354,18 @@
 
   <!--FontAwesome-->
   <script src="https://use.fontawesome.com/e8f490496a.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <!-- Firebase libraries from CDN -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+  <!-- Your own Firebase API key information -->
+  <script src="scripts/firebase_api_mood.js"> </script>
+  
+  <!--------------------------------------------------------------------->
+  <!-- JS files: Your own JavaScript functions included here    -->
+  <!--------------------------------------------------------------------->
+  <script src="scripts/settings.js"></script>
+  <script src="scripts/restaurant.js"></script>
 </body>
