@@ -40,6 +40,8 @@ const addRestaurant = (e) => {
       "safety_protocols": [isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable],
     });
 
+  // Reset values after successful database add
+  $("#nameInput").val("");
   console.log("Added " + name);
 }
 /**
@@ -48,7 +50,7 @@ const addRestaurant = (e) => {
 const attachAddRestaurant = () => {
   $("#addRestaurant").on("click", addRestaurant);
 }
-// $(document).ready(attachAddRestaurant);
+$(document).ready(attachAddRestaurant);
 
 /**
  * Retrieves restaurants from database and displays onto restaurant page.

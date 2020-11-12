@@ -19,7 +19,7 @@
 }
 
 /*Location*/
-.form-control {
+.settingsSection .form-control {
     margin-top: 15px;
     float: right;
 }
@@ -85,11 +85,12 @@
         line-height: 20px;
     }
 
-    .singleSize:nth-child(5) > h5 {
+    .singleSize:nth-child(5) > h5,
+    .singleSize:nth-child(6) > h5 {
         text-align: left;
     }
 
-    .btn-group {
+    .settingsSection .btn-group {
         margin: auto;
         width: 50vw;
     }
