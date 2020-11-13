@@ -55,6 +55,7 @@
     
     <!--Account-->
     <div class="accountProfile">
+      <!--Account Details-->
         <div class="d-flex flex-column align-items-center text-center p-3 py-5">
           <img class="rounded-circle mt-5 pic" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" width="90">
           <span class="font-weight-bold">First Last</span>
@@ -80,8 +81,9 @@
                 <div class="input"><input type="text" class="form-control" value="" placeholder="Current Password"></div>
                 <div class="input"><input type="text" class="form-control" value="" placeholder="New Password"></div>
               </div>
+            </div>
           </div>
-          </div>
+          <!--Payment-->
           <div class="card">
             <div class="card-header" id="headingTwo">
               <h2 class="mb-0">
@@ -101,7 +103,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-user"></i></span>
                           </div>
-                        <input type="text" class="form-control" name="username">
+                          <input type="text" class="form-control" name="username">
                         </div>
                       </div>
                   
@@ -122,15 +124,28 @@
                             <div class="form-inline">
                               <select class="form-control" style="width:45%">
                                 <option>MM</option>
-                                <option>01 - Janiary</option>
+                                <option>01 - January</option>
                                 <option>02 - February</option>
-                                <option>03 - February</option>
+                                <option>03 - March</option>
+                                <option>04 - April</option>
+                                <option>05 - May</option>
+                                <option>06 - June</option>
+                                <option>07 - July</option>
+                                <option>08 - August</option>
+                                <option>09 - September</option>
+                                <option>10 - October</option>
+                                <option>11 - November</option>
+                                <option>12 - December</option>
                               </select>
                               <span style="width:10%; text-align: center"> / </span>
                               <select class="form-control" style="width:45%">
                                 <option>YY</option>
-                                <option>2018</option>
-                                <option>2019</option>
+                                <option>2020</option>
+                                <option>2021</option>
+                                <option>2022</option>
+                                <option>2023</option>
+                                <option>2024</option>
+                                <option>2025</option>
                               </select>
                             </div>
                           </div>
@@ -141,8 +156,8 @@
                             <input class="form-control" required="" type="text">
                           </div>
                         </div>
-                    </div>
-                    <button class="btn btn-primary btn-block" type="button"> Save Details </button>
+                      </div>
+                      <button class="btn btn-primary btn-block" type="button"> Save Details </button>
                     </form>
                   </div>
                 </article>
@@ -164,7 +179,6 @@
               </div>
             </div>
           </div>-->
-        </div>
       </div>
     </div>
     <!--Settings div section-->
@@ -211,24 +225,25 @@
             <input type="radio" name="options" id="option3" autocomplete="off"> Miles
           </label>
         </div>
-
-        <!-- Add a Restaurant -->
-        <div class="singleSize">
-          <h5>New Restaurant</h5>
-          <button id="openModal" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addRestaurantModal">Add a Restaurant</button>
-        </div>
+      </div>
+      <!-- Add a Restaurant -->
+      <div class="singleSize">
+        <h5>New Restaurant</h5>
+        <button id="openModal" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addRestaurantModal">Add a Restaurant</button>
       </div>
       <!--Recent Search-->
       <div class="singleSize">
         <h5>Save Search History</h5>
         <div class="toggle"><input type="checkbox" checked data-toggle="toggle" data-onstyle="secondary"></div>
       </div>
+      
       <!--Logout-->
       <div class="singleSize logout">
         <a href="#" class="btn btn-info btn-lg">
           <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
         </a>
       </div>
+      <div class="mt-5 save"><button class="btn btn-primary profile-button savebtn" type="button">Save Profile</button></div>
     </div>
     <!-- TEST - END -->
 
@@ -326,8 +341,6 @@
         </div>
       </div>
     </div>
-
-  </div>
   
   
   <!----------------------------------------------->
