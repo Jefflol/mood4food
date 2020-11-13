@@ -53,11 +53,62 @@ const attachAddRestaurant = () => {
 $(document).ready(attachAddRestaurant);
 
 /**
+ * Retrieves restaurants from database and displays either in descending or ascending order onto restaurant page.
+ * @param {bool} desc The condition whether to display descending or not
+ */
+const getRestaurantsByDescendingRating = (desc = true) => {
+  db.collection("restaurants")
+    .orderBy("average_rating", desc ? "desc" : "asc")
+    .limit(2)
+    .get()
+    .then (function(snap){
+      snap.forEach(function(doc){
+        let restaurantId = doc.id;
+        let restaurantName = doc.data().name;
+        let restaurantAvgRating = doc.data().average_rating;
+        let restaurantDescription = doc.data().description;
+        let restaurantSafetyProtocol = doc.data().safety_protocols;
+        let restaurantFeatures = doc.data().features;
+        let restaturantWebsite = doc.data().website_url;
+
+        let restaurantObj = {
+          restaurantId,
+          restaurantName,
+          restaurantAvgRating,
+          restaurantDescription,
+          restaurantSafetyProtocol,
+          restaurantFeatures,
+          restaturantWebsite
+        };
+
+        // Attach a restaurant card.
+        displayRestaurants(restaurantObj);
+      });
+    });
+};
+
+/**
+ * Attach attachGetRestaurantsByDescendingRating method to sort by select.
+ */
+const attachGetRestaurantsByDescendingRating = () => {
+  let sortOption = $("#sortOptions").val();
+
+  if(sortOption == 3) {
+    $("#restaurantCards").empty();
+    getRestaurantsByDescendingRating(true);
+  } else if (sortOption == 4) {
+    $("#restaurantCards").empty();
+    getRestaurantsByDescendingRating(false);
+  }
+}
+$("#sortOptions").on("change", attachGetRestaurantsByDescendingRating);
+
+/**
  * Retrieves restaurants from database and displays onto restaurant page.
  */
 const getRestaurants = () => {
   db.collection("restaurants")
-    .limit(1)
+    .limit(2)
     .get()
     .then (function(snap){
       snap.forEach(function(doc){
@@ -157,7 +208,7 @@ const displayRestaurants = (restaurantObj) => {
   `);
 
   // Append a custom restaurant card to restaurant page
-  $("#restaurantPage").append(restaurantCard);
+  $("#restaurantCards").append(restaurantCard);
 
   console.log(`${restaurantName} was read from database`);
 };
