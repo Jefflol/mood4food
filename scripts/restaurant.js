@@ -93,10 +93,10 @@ const getRestaurantsByDescendingRating = (desc = true) => {
 const attachGetRestaurantsByDescendingRating = () => {
   let sortOption = $("#sortOptions").val();
 
-  if(sortOption == 3) {
+  if(sortOption == 1) {
     $("#restaurantCards").empty();
     getRestaurantsByDescendingRating(true);
-  } else if (sortOption == 4) {
+  } else if (sortOption == 2) {
     $("#restaurantCards").empty();
     getRestaurantsByDescendingRating(false);
   }
