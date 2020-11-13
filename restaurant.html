@@ -74,7 +74,7 @@
     <div id="restaurantPage" class="restaurant-page">
       <!-- Restaurant Item Layout -->
       <div class="item-layout">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <div class="item-layout__display-btn btn-group btn-group-toggle" data-toggle="buttons">
           <label class="btn btn-secondary active">
             <input type="radio" name="options" id="option1" autocomplete="off" checked>
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -90,12 +90,12 @@
         </div>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#filterModal">
+        <button type="button" class="item-layout__filter-btn btn btn-secondary" data-toggle="modal" data-target="#filterModal">
           Filter
         </button>
   
         <!-- Button sorting select -->
-        <select class="btn btn-secondary" id="inputGroupSelect01">
+        <select class="item-layout__sort-btn btn btn-secondary" id="inputGroupSelect01">
           <option selected>Sort By</option>
           <option value="1">Price: High to Low</option>
           <option value="2">Price: Low to High</option>

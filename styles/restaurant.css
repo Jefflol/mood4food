@@ -12,9 +12,22 @@
 /* SORT/FILTER OPTIONS */
 .restaurant-page > .item-layout {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  margin: 20px;
+  margin: 10px;
+  padding: 10px 0;
+}
+
+.item-layout__display-btn,
+.item-layout__filter-btn,
+.item-layout__sort-btn {
+  margin: 10px 0;
+}
+
+
+.item-layout__sort-btn {
+  flex: 1;
 }
 
 /* MODAL - Ratings */
@@ -185,6 +198,12 @@
 
   .item__action-group {
     width: 100%;
+  }
+}
+
+@media only screen and (min-width: 450px) {
+  .item-layout__sort-btn {
+    flex: 0;
   }
 }
 
