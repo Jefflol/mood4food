@@ -61,6 +61,7 @@
 .btn-lg {
     padding-bottom: 40px;
     width: inherit;
+    margin-bottom: 0;
 }
 
 /*Account Settings*/
@@ -118,8 +119,22 @@
     border: none;
 }
 
+/*Restaurant*/
 #addRestaurantModal {
     margin-top: 90px;
+}
+
+/*Save Button*/
+.save {
+    margin-top: -0px;
+    margin-bottom: 30px;
+}
+
+.savebtn {
+    display: block;
+    width: 50vw;
+    text-align: center;
+    margin: auto;
 }
 
 /*Media Queries*/
@@ -138,18 +153,22 @@
     .singleSize:nth-child(4) > h5 {
         padding-top: 5px;
     }
-    .singleSize:nth-child(5) > h5,
-    .singleSize:nth-child(6) > h5 {
+    .singleSize:nth-child(4) > h5,
+    .singleSize:nth-child(5) > h5 {
         text-align: left;
         display: inline-block;
     }
 
-    .singleSize:nth-child(4) {
+    .singleSize:nth-child(5) {
         height: 70px;
     }
 
-    /*Button Toggle*/
-    .btn-group-toggle {
+    #openModal{
+        float: right;
+    }
+
+    .singleSize:nth-child(4) {
+        height: 70px;
     }
 
     .settingsSection .btn-group {
@@ -161,6 +180,25 @@
 @media only screen and (max-width: 550px) {
     .settingsTitle {
         margin-left: 30px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .singleSize:nth-child(4) {
+        height: 120px;
+    }
+    .singleSize:nth-child(4) > h5 {
+        padding-top: 20px;
+        text-align: center;
+        margin: auto;
+        display: block;
+    }
+
+    #openModal{
+        display: block;
+        float: none;
+        margin: auto;
+        margin-top: 20px;
     }
 }
 
