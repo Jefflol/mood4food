@@ -57,7 +57,8 @@
 
 .restaurant__favourite {}
 
-.restaurant__ratings>svg {
+/* Reuse existing rating css */
+.restaurant__ratings > .other-header__ratings > svg {
   width: 1.25em;
   height: 1.25em;
   margin: 5px;
@@ -234,6 +235,11 @@
   font-style: italic;
 }
 
+
+/* OTHERS */
+.isDisabled {
+  opacity: 0.5;
+}
 
 @media only screen and (min-width: 450px) {
   .restaurant__header {

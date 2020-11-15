@@ -1,9 +1,13 @@
+var RESTAURANT_ID;
+
 /**
  * Compiles restaurant data from firestore into a suitable object.
  * @param {Object} doc 
  * @returns parsable restaurant object
  */
 const compileRestaurantData = (doc) => {
+  RESTAURANT_ID = doc.id;
+
   let id = doc.id;
   let name = doc.data().name;
   let description = doc.data().description;
@@ -168,7 +172,7 @@ const displayRestaurants = (restaurantObj) => {
             <p class="card-text action__text">Directions</p>
           </div>
           ${displayWebsite(url)}
-          <a class="item__action" href="restaurant-details.html">
+          <a class="item__action" href="restaurant-details.html?${RESTAURANT_ID}">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-emoji-smile" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
               <path fill-rule="evenodd" d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683z"/>
