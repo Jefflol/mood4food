@@ -52,6 +52,7 @@ const getRestaurantId = () =>{
   let queryString = decodeURIComponent(window.location.search);
   let queries = queryString.split("?");   //delimiter
   let id = queries[1];                 //get what's after '?'
+  // console.log("Restaurant ID: " + id);
   return id;
 }
 
@@ -63,7 +64,7 @@ const getRestaurantDetails = (id) => {
     .get()
     .then((doc) => {
       let restaurantObj = compileRestaurantData(doc);
-      console.log(restaurantObj);
+      // console.log(restaurantObj);
 
       // Attach a restaurant card.
       displayRestaurantDetails(restaurantObj); 
@@ -104,8 +105,6 @@ const displayRestaurantDetails = (restaurantObj) => {
     isDistancedTables,
     isSanitizingAvailable
   } = restaurantObj;
-
-  console.log(restaurantObj);
 
   let restaurantDetails = $(`
     <!-- Back Button -->

@@ -134,7 +134,7 @@ const displayRestaurants = (restaurantObj) => {
     isSanitizingAvailable
   } = restaurantObj;
 
-  console.log(restaurantObj);
+  // console.log(restaurantObj);
 
   let restaurantCard = $(`
     <div id="${id}" class="item card" data-toggle="collapse" href="#item__details--more-${id}" role="button" aria-expanded="false" aria-controls="collapseExample">
