@@ -230,7 +230,10 @@ const displayRatings = (rating) => {
   return ratings[0].outerHTML;
 }
 
-
+/**
+ * Adds restaurant URL as an action if URL is available, else make it disabled
+ * @param {String} url 
+ */
 const displayWebsite = (url) => {
   if(!url) {
     return `
@@ -251,7 +254,6 @@ const displayWebsite = (url) => {
     </a>
   `;
   }
-
 }
 
 
