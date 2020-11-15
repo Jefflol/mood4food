@@ -28,6 +28,7 @@ const addRestaurant = (e) => {
     .add({
       "name": name,
       "description": description,
+      "average_rating": 0,
       "address": address,
       "postal_code": postalCode,
       "city": city,
