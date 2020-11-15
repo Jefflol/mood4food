@@ -1,4 +1,51 @@
 /**
+ * Compiles restaurant data from firestore into a suitable object.
+ * @param {Object} doc 
+ * @returns parsable restaurant object
+ */
+const compileRestaurantData = (doc) => {
+  let id = doc.id;
+  let name = doc.data().name;
+  let description = doc.data().description;
+  let avgRating = doc.data().average_rating;
+  let address = doc.data().address;
+  let postal_code = doc.data().postal_code;
+  let city = doc.data().city;
+  let province = doc.data().province;
+  let phone_number = doc.data().phone_number;
+  let url = doc.data().website_url;
+
+  let isDineInAvailable = doc.data().isDineInAvailable;
+  let isTakeoutAvailable = doc.data().isTakeoutAvailable;
+  let isDeliveryAvailable = doc.data().isDeliveryAvailable;
+
+  let isMaskRequired = doc.data().isMaskRequired;
+  let isReducedSeatings = doc.data().isReducedSeatings;
+  let isDistancedTables = doc.data().isDistancedTables;
+  let isSanitizingAvailable = doc.data().isSanitizingAvailable;
+
+  return {
+    id,
+    name,
+    description,
+    avgRating,
+    address,
+    postal_code,
+    city,
+    province,
+    phone_number,
+    url,
+    isDineInAvailable,
+    isTakeoutAvailable,
+    isDeliveryAvailable,
+    isMaskRequired,
+    isReducedSeatings,
+    isDistancedTables,
+    isSanitizingAvailable
+  };
+}
+
+/**
  * Retrieves restaurants from database and displays either in descending or ascending order onto restaurant page.
  * @param {bool} desc The condition whether to display descending or not
  */
@@ -9,26 +56,10 @@ const getRestaurantsByDescendingRating = (desc = true) => {
     .get()
     .then (function(snap){
       snap.forEach(function(doc){
-        let restaurantId = doc.id;
-        let restaurantName = doc.data().name;
-        let restaurantAvgRating = doc.data().average_rating;
-        let restaurantDescription = doc.data().description;
-        let restaurantSafetyProtocol = doc.data().safety_protocols;
-        let restaurantFeatures = doc.data().features;
-        let restaturantWebsite = doc.data().website_url;
-
-        let restaurantObj = {
-          restaurantId,
-          restaurantName,
-          restaurantAvgRating,
-          restaurantDescription,
-          restaurantSafetyProtocol,
-          restaurantFeatures,
-          restaturantWebsite
-        };
+        let restaurantObj = compileRestaurantData(doc);
 
         // Attach a restaurant card.
-        displayRestaurants(restaurantObj);
+        displayRestaurants(restaurantObj); 
       });
     });
 };
@@ -58,23 +89,7 @@ const getRestaurants = () => {
     .get()
     .then (function(snap){
       snap.forEach(function(doc){
-        let restaurantId = doc.id;
-        let restaurantName = doc.data().name;
-        let restaurantAvgRating = doc.data().average_rating;
-        let restaurantDescription = doc.data().description;
-        let restaurantSafetyProtocol = doc.data().safety_protocols;
-        let restaurantFeatures = doc.data().features;
-        let restaturantWebsite = doc.data().website_url;
-
-        let restaurantObj = {
-          restaurantId,
-          restaurantName,
-          restaurantAvgRating,
-          restaurantDescription,
-          restaurantSafetyProtocol,
-          restaurantFeatures,
-          restaturantWebsite
-        };
+        let restaurantObj = compileRestaurantData(doc);
 
         // Attach a restaurant card.
         displayRestaurants(restaurantObj); 
@@ -95,30 +110,48 @@ getRestaurantsOnLoad();
  * @param {Object} restaurantObj The restaurant object that contains its restaurant data
  */
 const displayRestaurants = (restaurantObj) => {
-  let { restaurantId, restaurantName, restaurantAvgRating, restaurantDescription, restaurantSafetyProtocol, restaurantFeatures, restaurantWebsite } = restaurantObj;
+  let {
+    id,
+    name,
+    avgRating,
+    description,
+    address,
+    postal_code,
+    city,
+    province,
+    phone_number,
+    url,
+    isDineInAvailable,
+    isTakeoutAvailable,
+    isDeliveryAvailable,
+    isMaskRequired,
+    isReducedSeatings,
+    isDistancedTables,
+    isSanitizingAvailable
+  } = restaurantObj;
 
   console.log(restaurantObj);
 
   let restaurantCard = $(`
-    <div id="${restaurantId}" class="item card" data-toggle="collapse" href="#item__details--more-${restaurantId}" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <div id="${id}" class="item card" data-toggle="collapse" href="#item__details--more-${id}" role="button" aria-expanded="false" aria-controls="collapseExample">
       <div class="item__image">
         <img class="card-img-top" src="https://dummyimage.com/400x400/000/fff" alt="Starbo Image">
       </div>
       <div class="item__details card-body">
-        <h5 class="item__title card-title">${restaurantName}</h5>
-        ${displayRatings(restaurantAvgRating)}
-        <p class="item__desc card-text">${restaurantDescription}</p>
+        <h5 class="item__title card-title">${name}</h5>
+        ${displayRatings(avgRating)}
+        <p class="item__desc card-text">${description}</p>
         <p class="item__filter-text card-text">42.6 km</p>
-        ${displaySafetyProtocols(restaurantSafetyProtocol)}
+        ${displaySafetyProtocols({isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable})}
       </div>
                 
       <!-- More Details - Collapse -->
-      <div class="item__details--more card-body collapse" id="item__details--more-${restaurantId}">
+      <div class="item__details--more card-body collapse" id="item__details--more-${id}">
         <!-- Item Features - Safety -->
-        ${displaySafetyProtocolsAsList(restaurantSafetyProtocol)}
+        ${displaySafetyProtocolsAsList({isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable})}
         
         <!-- Item Features - Others-->
-        ${displayFeaturesAsList(restaurantFeatures)}
+        ${displayFeaturesAsList({isDineInAvailable, isTakeoutAvailable, isDeliveryAvailable})}
 
         <!-- Item Actions -->
         <div class="item__action-group">
@@ -134,7 +167,7 @@ const displayRestaurants = (restaurantObj) => {
             </svg>
             <p class="card-text action__text">Directions</p>
           </div>
-          <a class="item__action item__website" href="${restaurantWebsite}">
+          <a class="item__action item__website" href="${url}">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-globe2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539a8.372 8.372 0 0 1-1.198-.49 7.01 7.01 0 0 1 2.276-1.52 6.7 6.7 0 0 0-.597.932 8.854 8.854 0 0 0-.48 1.079zM3.509 7.5H1.017A6.964 6.964 0 0 1 2.38 3.825c.47.258.995.482 1.565.667A13.4 13.4 0 0 0 3.508 7.5zm1.4-2.741c.808.187 1.681.301 2.591.332V7.5H4.51c.035-.987.176-1.914.399-2.741zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5H7.5v2.409c-.91.03-1.783.145-2.591.332a12.343 12.343 0 0 1-.4-2.741zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696A12.63 12.63 0 0 1 7.5 11.91v3.014c-.67-.204-1.335-.82-1.887-1.855a7.776 7.776 0 0 1-.395-.872zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964a9.083 9.083 0 0 0-1.565.667A6.963 6.963 0 0 1 1.018 8.5h2.49a13.36 13.36 0 0 0 .437 3.008zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909c.81.03 1.577.13 2.282.287-.12.312-.252.604-.395.872-.552 1.035-1.218 1.65-1.887 1.855V11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5h-2.49a13.361 13.361 0 0 0-.437-3.008 9.123 9.123 0 0 0 1.565-.667A6.963 6.963 0 0 1 14.982 7.5zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343c-.705.157-1.473.257-2.282.287V1.077c.67.204 1.335.82 1.887 1.855.143.268.276.56.395.872z"/>
             </svg>
@@ -156,7 +189,7 @@ const displayRestaurants = (restaurantObj) => {
   // Append a custom restaurant card to restaurant page
   $("#restaurantCards").append(restaurantCard);
 
-  console.log(`${restaurantName} was read from database`);
+  console.log(`${name} was read from database`);
 };
 
 /**
@@ -208,7 +241,7 @@ const displayRatings = (rating) => {
  * @return  {HTMLElement}              The HTML element of the verification of safety protocol availability (or return empty string)
  */
 const displaySafetyProtocols = (safetyProtocolList) => {
-  if(!safetyProtocolList.includes(true)) {
+  if(!Object.values(safetyProtocolList).includes(true)) {
     return "";
   }
 
@@ -228,10 +261,10 @@ const displaySafetyProtocols = (safetyProtocolList) => {
  * @return  {HTMLElement}              The HTML element of the lists of safety protocols (or return empty string)
  */
 const displaySafetyProtocolsAsList = (safetyProtocolList) => {
-  let [isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable] = safetyProtocolList;
+  let {isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable} = safetyProtocolList;
   let safetyProtocols = $("<div class='item__feature-group'></div>");
 
-  if(!safetyProtocolList.includes(true)) {
+  if(!Object.values(safetyProtocolList).includes(true)) {
     return "";
   }
 
@@ -288,10 +321,10 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
  * @return  {HTMLElement}       The HTML element of the lists of features (or return empty string)
  */
 const displayFeaturesAsList = (featureList) => {
-  let [isDineInAvailable, isTakeoutAvailable, isDeliveryAvailable] = featureList;
+  let {isDineInAvailable, isTakeoutAvailable, isDeliveryAvailable} = featureList;
   let features = $("<div class='item__feature-group'></div>");
 
-  if(!featureList.includes(true)) {
+  if(!Object.values(featureList).includes(true)) {
     return "";
   }
 
