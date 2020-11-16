@@ -1,8 +1,25 @@
 /** Constant for the number of restaurants to display on restaurant page. */
-const NUM_REST_DISPLAY = 2;
+const NUM_REST_DISPLAY = 10;
+
+/** Constant for filter names for filter modal display. */
+const FILTER_NAMES = {
+  isMaskRequired: "Mask Required",
+  isReducedSeatings: "Reduced Seatings",
+  isDistancedTables: "Distanced Tables",
+  isSanitizingAvailable: "Sanitizing Station Available"
+};
 
 /** Holds the restaurant ID. */
 var RESTAURANT_ID;
+
+/** Holds filters that user chooses to apply. */
+var filters = {
+  isMaskRequired: false,
+  isReducedSeatings: false,
+  isDistancedTables: false,
+  isSanitizingAvailable: false
+};
+
 
 /**
  * Compiles restaurant data from firestore into a suitable object.
@@ -54,39 +71,22 @@ const compileRestaurantData = (doc) => {
 }
 
 /**
- * Retrieves restaurants from database and displays either in descending or ascending order onto restaurant page.
- * @param {bool} desc The condition whether to display descending or not
+ * Attach attachSortingMethods method to sort by select.
  */
-const getRestaurantsByDescendingRating = (desc = true) => {
-  db.collection("restaurants")
-    .orderBy("average_rating", desc ? "desc" : "asc")
-    .limit(NUM_REST_DISPLAY)
-    .get()
-    .then (function(snap){
-      snap.forEach(function(doc){
-        let restaurantObj = compileRestaurantData(doc);
-
-        // Attach a restaurant card.
-        displayRestaurants(restaurantObj); 
-      });
-    });
-};
-
-/**
- * Attach attachGetRestaurantsByDescendingRating method to sort by select.
- */
-const attachGetRestaurantsByDescendingRating = () => {
+const attachSortingMethods = () => {
   let sortOption = $("#sortOptions").val();
 
   if(sortOption == 1) {
     $("#restaurantCards").empty();
-    getRestaurantsByDescendingRating(true);
+    // getRestaurantsByDescendingRating(true);
+    getRestaurantsByFilters(filters, "average_rating", true);
   } else if (sortOption == 2) {
     $("#restaurantCards").empty();
-    getRestaurantsByDescendingRating(false);
+    // getRestaurantsByDescendingRating(false);
+    getRestaurantsByFilters(filters, "average_rating", false);
   }
 }
-$("#sortOptions").on("change", attachGetRestaurantsByDescendingRating);
+$("#sortOptions").on("change", attachSortingMethods);
 
 /**
  * Retrieves restaurants from database and displays onto restaurant page.
@@ -394,6 +394,141 @@ const displayFeaturesAsList = (featureList) => {
   return features[0].outerHTML;
 }
 
+
+/** FILTER METHODS **/
+
+/**
+ * Add filter to fitler modal and updates filters.
+ * @param {String} filterBy filter key 
+ */
+const addFilter = (filterBy) => {
+  // Update filters for getRestaurants methods
+  filters[filterBy] = true;
+
+  // Add filter if it has not already been added
+  if ($(`#${filterBy}FilterItem`).length == 0) {
+    $("#appliedFilters").append(`
+      <div id="${filterBy}FilterItem" class="filter-item">
+        ${FILTER_NAMES[filterBy]}
+        <span>&times;</span>
+      </div>
+    `);
+
+    // Attach functionality to remove filter
+    $(`#${filterBy}FilterItem`).on("click", () => removeFilter(filterBy));
+
+    console.log("Added " + filterBy);
+  }
+}
+
+/**
+ * Remove filter from filter modal and updates filters.
+ * @param {String} filterBy filter key
+ */
+const removeFilter = (filterBy) => {
+  // Update filters for getRestaurants methods
+  filters[filterBy] = false;
+
+  // Remove filter if it has not already been removed
+  if ($(`#${filterBy}FilterItem`).length == 1) {
+    $(`#${filterBy}FilterItem`).remove();
+
+    console.log("Removed " + filterBy);
+  }
+}
+
+/**
+ * Clears all filters from fitler modal and updates filters.
+ */
+const clearFilters = () => {
+  for(let property in filters) {
+    filters[property] = false;
+  }
+
+  $("#appliedFilters").empty();
+}
+
+/**
+ * Gets restaurants given filters and sorting option.
+ * @param {Object} filterOptions  An object of filter options
+ * @param {String} sortByOption   Sorting option
+ * @param {boolean} desc          Boolean value to sort by descending or ascending
+ */
+const getRestaurantsByFilters = (filterOptions, sortByOption, desc = true) => {
+  db.collection("restaurants")
+    .orderBy(sortByOption, desc ? "desc" : "asc")
+    // .limit(NUM_REST_DISPLAY)
+    .get()
+    .then (function(snap){
+      // Empty cards
+      $("#restaurantCards").empty();
+
+      let cardCount = 0;
+      snap.forEach(function(doc) {
+        // Acts as .limit() after filters have been applied
+        if (cardCount <= NUM_REST_DISPLAY) {
+          let restaurantObj = compileRestaurantData(doc);
+          let hasFilters = true;
+
+          // Check if restaurant meets filter requirements
+          for(const property in filterOptions) {
+            if (filterOptions[property] == true && restaurantObj[property] == false) {
+              // console.log(restaurantObj.name + "||" + filterOptions[property] + ", " + restaurantObj[property]);
+              hasFilters = false;
+              break;
+            }
+          }
+
+          // Display restaurant only if it met filter requirements
+          if (hasFilters) {
+            console.log("display: " + restaurantObj.name);
+            // Attach a restaurant card.
+            displayRestaurants(restaurantObj); 
+            cardCount++;
+          }
+        }
+      });
+    });
+};
+
+/**
+ * Attaches event handlers within filter modal.
+ */
+const attachEventHandlers = () => {
+  $("#maskRequiredFilter").on("click", () => addFilter("isMaskRequired"));
+  $("#reducedSeatingsFilter").on("click", () => addFilter("isReducedSeatings"));
+  $("#distancedTablesFilter").on("click", () => addFilter("isDistancedTables"));
+  $("#sanitizingAvailableFilter").on("click", () => addFilter("isSanitizingAvailable"));
+
+  $("#clearFiltersBtn").on("click", clearFilters);
+  $("#applyFilterBtn").on("click", () => getRestaurantsByFilters(filters, "average_rating"));
+}
+attachEventHandlers();
+
+
+
+
+
+/** OLD **/
+
+/**
+ * Retrieves restaurants from database and displays either in descending or ascending order onto restaurant page.
+ * @param {bool} desc The condition whether to display descending or not
+ */
+const getRestaurantsByDescendingRating = (desc = true) => {
+  db.collection("restaurants")
+    .orderBy("average_rating", desc ? "desc" : "asc")
+    .limit(NUM_REST_DISPLAY)
+    .get()
+    .then (function(snap){
+      snap.forEach(function(doc){
+        let restaurantObj = compileRestaurantData(doc);
+
+        // Attach a restaurant card.
+        displayRestaurants(restaurantObj); 
+      });
+    });
+};
 
 
 // For Testing Purposes
