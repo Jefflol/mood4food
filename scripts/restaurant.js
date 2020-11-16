@@ -1,3 +1,7 @@
+/** Constant for the number of restaurants to display on restaurant page. */
+const NUM_REST_DISPLAY = 2;
+
+/** Holds the restaurant ID. */
 var RESTAURANT_ID;
 
 /**
@@ -56,7 +60,7 @@ const compileRestaurantData = (doc) => {
 const getRestaurantsByDescendingRating = (desc = true) => {
   db.collection("restaurants")
     .orderBy("average_rating", desc ? "desc" : "asc")
-    .limit(2)
+    .limit(NUM_REST_DISPLAY)
     .get()
     .then (function(snap){
       snap.forEach(function(doc){
@@ -89,7 +93,7 @@ $("#sortOptions").on("change", attachGetRestaurantsByDescendingRating);
  */
 const getRestaurants = () => {
   db.collection("restaurants")
-    .limit(2)
+    .limit(NUM_REST_DISPLAY)
     .get()
     .then (function(snap){
       snap.forEach(function(doc){
