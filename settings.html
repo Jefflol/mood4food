@@ -62,8 +62,8 @@
           <span class="text-black-50">user@gmail.com</span>
           <span>Canada</span>
         </div>
-        <div class="input"><input type="text" class="form-control" value="" placeholder="First Name"></div>
-        <div class="input"><input type="text" class="form-control" value="" placeholder="Last Name"></div>
+        <div class="input"><input id = "first" type="text" class="form-control" value="" placeholder="First Name"></div>
+        <div class="input"><input id = "last" type="text" class="form-control" value="" placeholder="Last Name"></div>
         <div class="input"><input type="text" class="form-control" value="" placeholder="Username"></div>
         <div class="input"><input type="text" class="form-control" value="" placeholder="Email"></div>
         <div class="accordion" id="accordionExample">
@@ -243,7 +243,7 @@
           <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
         </a>
       </div>
-      <div class="mt-5 save"><button class="btn btn-primary profile-button savebtn" type="button">Save Profile</button></div>
+      <div class="mt-5 save"><button id = "submitChanges" class="btn btn-primary profile-button savebtn" type="button">Save Profile</button></div>
     </div>
     <!-- TEST - END -->
 
@@ -370,8 +370,11 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
   <!-- Firebase libraries from CDN -->
-  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-firestore.js"></script>
+
 
   <!-- Your own Firebase API key information -->
   <script src="scripts/firebase_api_mood.js"> </script>

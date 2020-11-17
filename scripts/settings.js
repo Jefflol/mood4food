@@ -1,5 +1,5 @@
 /*<![CDATA[*/
-    $(document).ready(function() {
+    // $(document).ready(function() {
 
     //     var settings = ["Distance Units", "Map History", "setting 3?", "setting 4?", "idk"];
 
@@ -25,5 +25,19 @@
                     
     //         );
     //     }
+    // });
+var firstV, lastV;
+
+function Ready(){
+    firstV = document.getElementById('first').value;
+    lastV = document.getElementById('last').value;
+}
+
+document.getElementById('submitChanges').onclick = function() {
+    Ready();
+    firebase.database().ref('user/'+firstV).set({
+        FirstName: firstV,
+        LastName: lastV
+
     });
- 
+}
