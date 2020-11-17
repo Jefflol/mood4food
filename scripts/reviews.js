@@ -2,7 +2,8 @@ var currentrestaurantid;
 
 $(document).ready(function () {
   //Getting the current restaurant from html class name element. Could change later if we find a better way.
-  db.collection("restaurants").where("name", "==", $(".restaurant__name").text())
+  // db.collection("restaurants").where("name", "==", $(".restaurant__name").text())
+  db.collection("restaurants").where("name", "==", "Swizz Chalet")
     .get()
     .then(function (snap) {
       snap.forEach(function (doc) {

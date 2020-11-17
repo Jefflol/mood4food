@@ -1,134 +1,111 @@
-/**
- * Add restaurant information to database.
- * @param {Event} e invokes this method 
- */
-const addRestaurant = (e) => {
-  e.preventDefault();
+/** Constant for the number of restaurants to display on restaurant page. */
+const NUM_REST_DISPLAY = 10;
 
-  let name = $("#nameInput").val();
-  let description = $("#descriptionTextArea").val();
-  let address = $("#addressInput").val();
-  let city = $("#cityInput").val();
-  // var province = $("#provinceInput").val();
-  let postalCode = $("#postalCodeInput").val();
-  let phoneNumber = $("#phoneInput").val();
-  let website = $("#websiteInput").val();
-
-  let isDineInAvailable = $("#dineinCheckbox").is(":checked");
-  let isTakeoutAvailable = $("#takeoutCheckbox").is(":checked");
-  let isDeliveryAvailable = $("#deliveryCheckbox").is(":checked");
-
-  let isMaskRequired = $("#maskRequiredCheckbox").is(":checked");
-  let isReducedSeatings = $("#reducedSeatingsCheckbox").is(":checked");
-  let isDistancedTables = $("#distancedTablesCheckbox").is(":checked");
-  let isSanitizingAvailable = $("#sanitizationCheckbox").is(":checked");
-
-  // console.log(name);
-  // console.log(description);
-  // console.log(phoneNumber);
-  // console.log(website);
-  // console.log(isDineInAvailable);
-
-  // write the values into new database document
-  db.collection("restaurants")
-    .add({
-      "name": name,
-      "description": description,
-      "phone_number": phoneNumber,
-      "website_url": website,
-      "features": [isDineInAvailable, isTakeoutAvailable, isDeliveryAvailable],
-      "safety_protocols": [isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable],
-    });
-
-  // Reset values after successful database add
-  $("#nameInput").val("");
-  console.log("Added " + name);
-}
-/**
- * Attach addRestaurant method to button.
- */
-const attachAddRestaurant = () => {
-  $("#addRestaurant").on("click", addRestaurant);
-}
-$(document).ready(attachAddRestaurant);
-
-/**
- * Retrieves restaurants from database and displays either in descending or ascending order onto restaurant page.
- * @param {bool} desc The condition whether to display descending or not
- */
-const getRestaurantsByDescendingRating = (desc = true) => {
-  db.collection("restaurants")
-    .orderBy("average_rating", desc ? "desc" : "asc")
-    .limit(2)
-    .get()
-    .then (function(snap){
-      snap.forEach(function(doc){
-        let restaurantId = doc.id;
-        let restaurantName = doc.data().name;
-        let restaurantAvgRating = doc.data().average_rating;
-        let restaurantDescription = doc.data().description;
-        let restaurantSafetyProtocol = doc.data().safety_protocols;
-        let restaurantFeatures = doc.data().features;
-        let restaturantWebsite = doc.data().website_url;
-
-        let restaurantObj = {
-          restaurantId,
-          restaurantName,
-          restaurantAvgRating,
-          restaurantDescription,
-          restaurantSafetyProtocol,
-          restaurantFeatures,
-          restaturantWebsite
-        };
-
-        // Attach a restaurant card.
-        displayRestaurants(restaurantObj);
-      });
-    });
+/** Constant for filter names for filter modal display. */
+const FILTER_NAMES = {
+  isMaskRequired: "Mask Required",
+  isReducedSeatings: "Reduced Seatings",
+  isDistancedTables: "Distanced Tables",
+  isSanitizingAvailable: "Sanitizing Station Available"
 };
 
+/** Holds the restaurant ID. */
+var RESTAURANT_ID;
+
+/** Holds filters that user chooses to apply. */
+var filters = {
+  isMaskRequired: false,
+  isReducedSeatings: false,
+  isDistancedTables: false,
+  isSanitizingAvailable: false
+};
+
+
 /**
- * Attach attachGetRestaurantsByDescendingRating method to sort by select.
+ * Compiles restaurant data from firestore into a suitable object.
+ * @param {Object} doc 
+ * @returns parsable restaurant object
  */
-const attachGetRestaurantsByDescendingRating = () => {
+const compileRestaurantData = (doc) => {
+  RESTAURANT_ID = doc.id;
+
+  let id = doc.id;
+  let name = doc.data().name;
+  let description = doc.data().description;
+  let avgRating = doc.data().average_rating;
+  let address = doc.data().address;
+  let postal_code = doc.data().postal_code;
+  let city = doc.data().city;
+  let province = doc.data().province;
+  let phone_number = doc.data().phone_number;
+  let url = doc.data().website_url;
+
+  let isDineInAvailable = doc.data().isDineInAvailable;
+  let isTakeoutAvailable = doc.data().isTakeoutAvailable;
+  let isDeliveryAvailable = doc.data().isDeliveryAvailable;
+
+  let isMaskRequired = doc.data().isMaskRequired;
+  let isReducedSeatings = doc.data().isReducedSeatings;
+  let isDistancedTables = doc.data().isDistancedTables;
+  let isSanitizingAvailable = doc.data().isSanitizingAvailable;
+
+  let image = doc.data().image;
+
+  // Replace restaurant placeholder image once actual image has been downloaded
+  let pathReference = firebase.storage().ref(image);
+  pathReference.getDownloadURL().then(function(url) {
+    $(`#${id}-restImage`).attr("src", url);
+  })
+
+  return {
+    id,
+    name,
+    description,
+    avgRating,
+    address,
+    postal_code,
+    city,
+    province,
+    phone_number,
+    url,
+    isDineInAvailable,
+    isTakeoutAvailable,
+    isDeliveryAvailable,
+    isMaskRequired,
+    isReducedSeatings,
+    isDistancedTables,
+    isSanitizingAvailable
+  };
+}
+
+/**
+ * Attach attachSortingMethods method to sort by select.
+ */
+const attachSortingMethods = () => {
   let sortOption = $("#sortOptions").val();
 
-  if(sortOption == 3) {
+  if(sortOption == 1) {
     $("#restaurantCards").empty();
-    getRestaurantsByDescendingRating(true);
-  } else if (sortOption == 4) {
+    // getRestaurantsByDescendingRating(true);
+    getRestaurantsByFilters(filters, "average_rating", true);
+  } else if (sortOption == 2) {
     $("#restaurantCards").empty();
-    getRestaurantsByDescendingRating(false);
+    // getRestaurantsByDescendingRating(false);
+    getRestaurantsByFilters(filters, "average_rating", false);
   }
 }
-$("#sortOptions").on("change", attachGetRestaurantsByDescendingRating);
+$("#sortOptions").on("change", attachSortingMethods);
 
 /**
  * Retrieves restaurants from database and displays onto restaurant page.
  */
 const getRestaurants = () => {
   db.collection("restaurants")
-    .limit(2)
+    .limit(NUM_REST_DISPLAY)
     .get()
     .then (function(snap){
       snap.forEach(function(doc){
-        let restaurantId = doc.id;
-        let restaurantName = doc.data().name;
-        let restaurantAvgRating = doc.data().average_rating;
-        let restaurantDescription = doc.data().description;
-        let restaurantSafetyProtocol = doc.data().safety_protocols;
-        let restaurantFeatures = doc.data().features;
-        let restaturantWebsite = doc.data().website_url;
-
-        let restaurantObj = {
-          restaurantId,
-          restaurantName,
-          restaurantAvgRating,
-          restaurantDescription,
-          restaurantSafetyProtocol,
-          restaurantFeatures,
-          restaturantWebsite
-        };
+        let restaurantObj = compileRestaurantData(doc);
 
         // Attach a restaurant card.
         displayRestaurants(restaurantObj); 
@@ -149,52 +126,63 @@ getRestaurantsOnLoad();
  * @param {Object} restaurantObj The restaurant object that contains its restaurant data
  */
 const displayRestaurants = (restaurantObj) => {
-  let { restaurantId, restaurantName, restaurantAvgRating, restaurantDescription, restaurantSafetyProtocol, restaurantFeatures, restaurantWebsite } = restaurantObj;
-
-  console.log(restaurantObj);
+  let {
+    id,
+    name,
+    avgRating,
+    description,
+    address,
+    postal_code,
+    city,
+    province,
+    phone_number,
+    url,
+    isDineInAvailable,
+    isTakeoutAvailable,
+    isDeliveryAvailable,
+    isMaskRequired,
+    isReducedSeatings,
+    isDistancedTables,
+    isSanitizingAvailable
+  } = restaurantObj;
 
   let restaurantCard = $(`
-    <div id="${restaurantId}" class="item card" data-toggle="collapse" href="#item__details--more-${restaurantId}" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <div id="${id}" class="item card" data-toggle="collapse" href="#item__details--more-${id}" role="button" aria-expanded="false" aria-controls="collapseExample">
       <div class="item__image">
-        <img class="card-img-top" src="https://dummyimage.com/400x400/000/fff" alt="Starbo Image">
+        <img id="${id}-restImage" class="card-img-top" src="https://dummyimage.com/400x400/000/fff" alt="${name} Image">
       </div>
       <div class="item__details card-body">
-        <h5 class="item__title card-title">${restaurantName}</h5>
-        ${displayRatings(restaurantAvgRating)}
-        <p class="item__desc card-text">${restaurantDescription}</p>
+        <h5 class="item__title card-title">${name}</h5>
+        ${displayRatings(avgRating)}
+        <p class="item__desc card-text">${description}</p>
         <p class="item__filter-text card-text">42.6 km</p>
-        ${displaySafetyProtocols(restaurantSafetyProtocol)}
+        ${displaySafetyProtocols({isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable})}
       </div>
                 
       <!-- More Details - Collapse -->
-      <div class="item__details--more card-body collapse" id="item__details--more-${restaurantId}">
+      <div class="item__details--more card-body collapse" id="item__details--more-${id}">
         <!-- Item Features - Safety -->
-        ${displaySafetyProtocolsAsList(restaurantSafetyProtocol)}
+        ${displaySafetyProtocolsAsList({isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable})}
         
         <!-- Item Features - Others-->
-        ${displayFeaturesAsList(restaurantFeatures)}
+        ${displayFeaturesAsList({isDineInAvailable, isTakeoutAvailable, isDeliveryAvailable})}
 
         <!-- Item Actions -->
         <div class="item__action-group">
-          <div class="item__action">
+          <div class="item__action isDisabled">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-telephone" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
             </svg>
             <p class="card-text action__text">Call</p>
           </div>
-          <div class="item__action">
+          <div class="item__action isDisabled">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-map" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98l4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/>
             </svg>
             <p class="card-text action__text">Directions</p>
           </div>
-          <a class="item__action item__website" href="${restaurantWebsite}">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-globe2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539a8.372 8.372 0 0 1-1.198-.49 7.01 7.01 0 0 1 2.276-1.52 6.7 6.7 0 0 0-.597.932 8.854 8.854 0 0 0-.48 1.079zM3.509 7.5H1.017A6.964 6.964 0 0 1 2.38 3.825c.47.258.995.482 1.565.667A13.4 13.4 0 0 0 3.508 7.5zm1.4-2.741c.808.187 1.681.301 2.591.332V7.5H4.51c.035-.987.176-1.914.399-2.741zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5H7.5v2.409c-.91.03-1.783.145-2.591.332a12.343 12.343 0 0 1-.4-2.741zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696A12.63 12.63 0 0 1 7.5 11.91v3.014c-.67-.204-1.335-.82-1.887-1.855a7.776 7.776 0 0 1-.395-.872zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964a9.083 9.083 0 0 0-1.565.667A6.963 6.963 0 0 1 1.018 8.5h2.49a13.36 13.36 0 0 0 .437 3.008zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909c.81.03 1.577.13 2.282.287-.12.312-.252.604-.395.872-.552 1.035-1.218 1.65-1.887 1.855V11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5h-2.49a13.361 13.361 0 0 0-.437-3.008 9.123 9.123 0 0 0 1.565-.667A6.963 6.963 0 0 1 14.982 7.5zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343c-.705.157-1.473.257-2.282.287V1.077c.67.204 1.335.82 1.887 1.855.143.268.276.56.395.872z"/>
-            </svg>
-            <p class="card-text action__text">Website</p>
-          </a>
-          <a class="item__action" href="restaurant-details.html">
+          ${displayWebsite(url)}
+          <a class="item__action" href="restaurant-details.html?${RESTAURANT_ID}">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-emoji-smile" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
               <path fill-rule="evenodd" d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683z"/>
@@ -210,7 +198,7 @@ const displayRestaurants = (restaurantObj) => {
   // Append a custom restaurant card to restaurant page
   $("#restaurantCards").append(restaurantCard);
 
-  console.log(`${restaurantName} was read from database`);
+  console.log(`${name} was read from database`);
 };
 
 /**
@@ -257,12 +245,39 @@ const displayRatings = (rating) => {
 }
 
 /**
+ * Adds restaurant URL as an action if URL is available, else make it disabled
+ * @param {String} url 
+ */
+const displayWebsite = (url) => {
+  if(!url) {
+    return `
+    <a class="item__action item__website isDisabled">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-globe2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539a8.372 8.372 0 0 1-1.198-.49 7.01 7.01 0 0 1 2.276-1.52 6.7 6.7 0 0 0-.597.932 8.854 8.854 0 0 0-.48 1.079zM3.509 7.5H1.017A6.964 6.964 0 0 1 2.38 3.825c.47.258.995.482 1.565.667A13.4 13.4 0 0 0 3.508 7.5zm1.4-2.741c.808.187 1.681.301 2.591.332V7.5H4.51c.035-.987.176-1.914.399-2.741zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5H7.5v2.409c-.91.03-1.783.145-2.591.332a12.343 12.343 0 0 1-.4-2.741zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696A12.63 12.63 0 0 1 7.5 11.91v3.014c-.67-.204-1.335-.82-1.887-1.855a7.776 7.776 0 0 1-.395-.872zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964a9.083 9.083 0 0 0-1.565.667A6.963 6.963 0 0 1 1.018 8.5h2.49a13.36 13.36 0 0 0 .437 3.008zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909c.81.03 1.577.13 2.282.287-.12.312-.252.604-.395.872-.552 1.035-1.218 1.65-1.887 1.855V11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5h-2.49a13.361 13.361 0 0 0-.437-3.008 9.123 9.123 0 0 0 1.565-.667A6.963 6.963 0 0 1 14.982 7.5zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343c-.705.157-1.473.257-2.282.287V1.077c.67.204 1.335.82 1.887 1.855.143.268.276.56.395.872z"/>
+      </svg>
+      <p class="card-text action__text">Website</p>
+    </a>
+  `;
+  } else {
+    return `
+    <a class="item__action item__website" href="${url}">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-globe2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539a8.372 8.372 0 0 1-1.198-.49 7.01 7.01 0 0 1 2.276-1.52 6.7 6.7 0 0 0-.597.932 8.854 8.854 0 0 0-.48 1.079zM3.509 7.5H1.017A6.964 6.964 0 0 1 2.38 3.825c.47.258.995.482 1.565.667A13.4 13.4 0 0 0 3.508 7.5zm1.4-2.741c.808.187 1.681.301 2.591.332V7.5H4.51c.035-.987.176-1.914.399-2.741zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5H7.5v2.409c-.91.03-1.783.145-2.591.332a12.343 12.343 0 0 1-.4-2.741zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696A12.63 12.63 0 0 1 7.5 11.91v3.014c-.67-.204-1.335-.82-1.887-1.855a7.776 7.776 0 0 1-.395-.872zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964a9.083 9.083 0 0 0-1.565.667A6.963 6.963 0 0 1 1.018 8.5h2.49a13.36 13.36 0 0 0 .437 3.008zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909c.81.03 1.577.13 2.282.287-.12.312-.252.604-.395.872-.552 1.035-1.218 1.65-1.887 1.855V11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5h-2.49a13.361 13.361 0 0 0-.437-3.008 9.123 9.123 0 0 0 1.565-.667A6.963 6.963 0 0 1 14.982 7.5zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343c-.705.157-1.473.257-2.282.287V1.077c.67.204 1.335.82 1.887 1.855.143.268.276.56.395.872z"/>
+      </svg>
+      <p class="card-text action__text">Website</p>
+    </a>
+  `;
+  }
+}
+
+
+/**
  * Displays whether safety protocols exists for a restaurant.
  * @param   {Array} safetyProtocolList The boolean array of safety protocols
  * @return  {HTMLElement}              The HTML element of the verification of safety protocol availability (or return empty string)
  */
 const displaySafetyProtocols = (safetyProtocolList) => {
-  if(!safetyProtocolList.includes(true)) {
+  if(!Object.values(safetyProtocolList).includes(true)) {
     return "";
   }
 
@@ -282,10 +297,10 @@ const displaySafetyProtocols = (safetyProtocolList) => {
  * @return  {HTMLElement}              The HTML element of the lists of safety protocols (or return empty string)
  */
 const displaySafetyProtocolsAsList = (safetyProtocolList) => {
-  let [isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable] = safetyProtocolList;
+  let {isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable} = safetyProtocolList;
   let safetyProtocols = $("<div class='item__feature-group'></div>");
 
-  if(!safetyProtocolList.includes(true)) {
+  if(!Object.values(safetyProtocolList).includes(true)) {
     return "";
   }
 
@@ -342,10 +357,10 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
  * @return  {HTMLElement}       The HTML element of the lists of features (or return empty string)
  */
 const displayFeaturesAsList = (featureList) => {
-  let [isDineInAvailable, isTakeoutAvailable, isDeliveryAvailable] = featureList;
+  let {isDineInAvailable, isTakeoutAvailable, isDeliveryAvailable} = featureList;
   let features = $("<div class='item__feature-group'></div>");
 
-  if(!featureList.includes(true)) {
+  if(!Object.values(featureList).includes(true)) {
     return "";
   }
 
@@ -385,6 +400,141 @@ const displayFeaturesAsList = (featureList) => {
   return features[0].outerHTML;
 }
 
+
+/** FILTER METHODS **/
+
+/**
+ * Add filter to fitler modal and updates filters.
+ * @param {String} filterBy filter key 
+ */
+const addFilter = (filterBy) => {
+  // Update filters for getRestaurants methods
+  filters[filterBy] = true;
+
+  // Add filter if it has not already been added
+  if ($(`#${filterBy}FilterItem`).length == 0) {
+    $("#appliedFilters").append(`
+      <div id="${filterBy}FilterItem" class="filter-item">
+        ${FILTER_NAMES[filterBy]}
+        <span>&times;</span>
+      </div>
+    `);
+
+    // Attach functionality to remove filter
+    $(`#${filterBy}FilterItem`).on("click", () => removeFilter(filterBy));
+
+    console.log("Added " + filterBy);
+  }
+}
+
+/**
+ * Remove filter from filter modal and updates filters.
+ * @param {String} filterBy filter key
+ */
+const removeFilter = (filterBy) => {
+  // Update filters for getRestaurants methods
+  filters[filterBy] = false;
+
+  // Remove filter if it has not already been removed
+  if ($(`#${filterBy}FilterItem`).length == 1) {
+    $(`#${filterBy}FilterItem`).remove();
+
+    console.log("Removed " + filterBy);
+  }
+}
+
+/**
+ * Clears all filters from fitler modal and updates filters.
+ */
+const clearFilters = () => {
+  for(let property in filters) {
+    filters[property] = false;
+  }
+
+  $("#appliedFilters").empty();
+}
+
+/**
+ * Gets restaurants given filters and sorting option.
+ * @param {Object} filterOptions  An object of filter options
+ * @param {String} sortByOption   Sorting option
+ * @param {boolean} desc          Boolean value to sort by descending or ascending
+ */
+const getRestaurantsByFilters = (filterOptions, sortByOption, desc = true) => {
+  db.collection("restaurants")
+    .orderBy(sortByOption, desc ? "desc" : "asc")
+    // .limit(NUM_REST_DISPLAY)
+    .get()
+    .then (function(snap){
+      // Empty cards
+      $("#restaurantCards").empty();
+
+      let cardCount = 0;
+      snap.forEach(function(doc) {
+        // Acts as .limit() after filters have been applied
+        if (cardCount <= NUM_REST_DISPLAY) {
+          let restaurantObj = compileRestaurantData(doc);
+          let hasFilters = true;
+
+          // Check if restaurant meets filter requirements
+          for(const property in filterOptions) {
+            if (filterOptions[property] == true && restaurantObj[property] == false) {
+              // console.log(restaurantObj.name + "||" + filterOptions[property] + ", " + restaurantObj[property]);
+              hasFilters = false;
+              break;
+            }
+          }
+
+          // Display restaurant only if it met filter requirements
+          if (hasFilters) {
+            console.log("display: " + restaurantObj.name);
+            // Attach a restaurant card.
+            displayRestaurants(restaurantObj); 
+            cardCount++;
+          }
+        }
+      });
+    });
+};
+
+/**
+ * Attaches event handlers within filter modal.
+ */
+const attachEventHandlers = () => {
+  $("#maskRequiredFilter").on("click", () => addFilter("isMaskRequired"));
+  $("#reducedSeatingsFilter").on("click", () => addFilter("isReducedSeatings"));
+  $("#distancedTablesFilter").on("click", () => addFilter("isDistancedTables"));
+  $("#sanitizingAvailableFilter").on("click", () => addFilter("isSanitizingAvailable"));
+
+  $("#clearFiltersBtn").on("click", clearFilters);
+  $("#applyFilterBtn").on("click", () => getRestaurantsByFilters(filters, "average_rating"));
+}
+attachEventHandlers();
+
+
+
+
+
+/** OLD **/
+
+/**
+ * Retrieves restaurants from database and displays either in descending or ascending order onto restaurant page.
+ * @param {bool} desc The condition whether to display descending or not
+ */
+const getRestaurantsByDescendingRating = (desc = true) => {
+  db.collection("restaurants")
+    .orderBy("average_rating", desc ? "desc" : "asc")
+    .limit(NUM_REST_DISPLAY)
+    .get()
+    .then (function(snap){
+      snap.forEach(function(doc){
+        let restaurantObj = compileRestaurantData(doc);
+
+        // Attach a restaurant card.
+        displayRestaurants(restaurantObj); 
+      });
+    });
+};
 
 
 // For Testing Purposes
