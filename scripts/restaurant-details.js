@@ -24,6 +24,14 @@ const compileRestaurantData = (doc) => {
   let isDistancedTables = doc.data().isDistancedTables;
   let isSanitizingAvailable = doc.data().isSanitizingAvailable;
 
+  let image = doc.data().image;
+
+  // Replace restaurant placeholder image once actual image has been downloaded
+  let pathReference = firebase.storage().ref(image);
+  pathReference.getDownloadURL().then(function(url) {
+    $(`#${id}-restImage`).attr("src", url);
+  })
+  
   return {
     id,
     name,
@@ -122,7 +130,7 @@ const displayRestaurantDetails = (restaurantObj) => {
     <!-- Restaurant Header - Img + Brief Details -->
     <div class="restaurant__header">
       <div class="restaurant__img">
-        <img src="https://dummyimage.com/400x400/000/fff" alt="restaurant-img" />
+        <img id="${id}-restImage" src="https://dummyimage.com/400x400/000/fff" alt="${name} Image">
       </div>
 
       <div class="restaurant__brief-details">
