@@ -49,6 +49,14 @@ const compileRestaurantData = (doc) => {
   let isDistancedTables = doc.data().isDistancedTables;
   let isSanitizingAvailable = doc.data().isSanitizingAvailable;
 
+  let image = doc.data().image;
+
+  // Replace restaurant placeholder image once actual image has been downloaded
+  let pathReference = firebase.storage().ref(image);
+  pathReference.getDownloadURL().then(function(url) {
+    $(`#${id}-restImage`).attr("src", url);
+  })
+
   return {
     id,
     name,
@@ -138,12 +146,10 @@ const displayRestaurants = (restaurantObj) => {
     isSanitizingAvailable
   } = restaurantObj;
 
-  // console.log(restaurantObj);
-
   let restaurantCard = $(`
     <div id="${id}" class="item card" data-toggle="collapse" href="#item__details--more-${id}" role="button" aria-expanded="false" aria-controls="collapseExample">
       <div class="item__image">
-        <img class="card-img-top" src="https://dummyimage.com/400x400/000/fff" alt="Starbo Image">
+        <img id="${id}-restImage" class="card-img-top" src="https://dummyimage.com/400x400/000/fff" alt="${name} Image">
       </div>
       <div class="item__details card-body">
         <h5 class="item__title card-title">${name}</h5>
