@@ -102,6 +102,9 @@
 }
 
 .item__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 125px;
   overflow: hidden;
@@ -192,7 +195,7 @@
 
 /* OTHERS */
 .isDisabled {
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 @media only screen and (min-width: 450px) {
@@ -211,13 +214,13 @@
     }
   
     .item__image {
-      min-width: 150px;
-      min-height: 150px;
       width: 25vw;
       height: 25vw;
+      min-width: 150px;
+      min-height: 150px;
       max-width: 200px;
       max-height: 200px;
-      padding: 1.25rem 0 0 1.25rem;
+      margin: 1.25rem 0 1.25rem 1.25rem;
     }
   
     .item__details--more {
