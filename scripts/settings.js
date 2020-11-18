@@ -33,7 +33,7 @@ function Ready(){
     lastV = document.getElementById('last').value;
 }
 
-document.getElementById('submitChanges').onclick = function() {
+document.getElementById('submit-changes').onclick = function() {
     Ready();
     firebase.database().ref('user/'+firstV).set({
         FirstName: firstV,

@@ -120,16 +120,17 @@
 }
 
 /*Save Button*/
-.save {
-    margin-top: -0px;
-    margin-bottom: 30px;
-}
-
-.savebtn {
+#submit-changes {
     display: block;
     width: 50vw;
-    text-align: center;
+    height: 45px;
+    padding: 10px;
     margin: auto;
+    margin-top: 20px;
+}
+
+.logout {
+    border: none;
 }
 
 /*Media Queries*/
@@ -162,6 +163,10 @@
         float: right;
     }
 
+    .addRest {
+        float: right;
+    }
+
     .singleSize:nth-child(4) {
         height: 70px;
     }
@@ -169,6 +174,10 @@
     .settingsSection .btn-group {
         margin: auto;
         width: 50vw;
+    }
+
+    .logout {
+        height: 50px;
     }
 }
 
@@ -179,6 +188,10 @@
 }
 
 @media only screen and (max-width: 650px) {
+    .singleSize {
+        width: 75vw;
+    }
+
     .singleSize:nth-child(4) {
         height: 120px;
     }
@@ -194,6 +207,42 @@
         float: none;
         margin: auto;
         margin-top: 20px;
+    }
+
+    .addRest {
+        float: none;
+        display: block;
+        margin: auto;
+        margin-top: 20px;
+    }
+
+    .settingsSection .btn-group {
+        margin: auto;
+        width: inherit;
+    }
+
+    .accountProfile > .input {
+        float: none;
+        display: block;
+        width: 75vw;
+        margin: auto;
+    }
+
+    .card {
+        float: none;
+        display: block;
+        width: 75vw;
+        margin: auto;
+        margin-left: -12.5vw;
+    }
+
+    .credit {
+        margin: auto;
+        margin-left: -20px;
+    }
+
+    #submit-changes {
+        width: 75vw;
     }
 }
 
