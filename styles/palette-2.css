@@ -16,17 +16,18 @@ body {
 }
 
 /* BOOTSTRAP */
-.text-light {
-  color: #fff !important;
-  text-shadow:
-    -1px -1px 0 #2B7A78,  
-    1px -1px 0 #2B7A78,
-    -1px 1px 0 #2B7A78,
-    1px 1px 0 #2B7A78;
-}
-
 .bg-dark {
   background-color: #17252A !important;
+}
+
+.btn-primary {
+  background-color: #17252A;
+  border: #17252A;
+}
+
+.btn-primary:hover {
+  background-color: #2B7A78;
+
 }
 
 .btn-secondary {
@@ -48,6 +49,34 @@ body {
 .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active,
 .show > .btn-secondary.dropdown-toggle {
   color: #fff;
+  background-color: #2B7A78;
+  border-color: #2B7A78;
+}
+
+.btn-info {
+  background-color: #17252A;
+  border: #17252A;
+}
+
+.btn-info:hover {
+  background-color: #2B7A78;
+  border: #2B7A78;
+}
+
+.btn-link {
+  color: #3AAFA9;
+}
+
+.btn-link:hover {
+  color: #2B7A78;
+}
+
+.btn-outline-secondary {
+  color: #3AAFA9;
+  border-color: #3AAFA9;
+}
+
+.btn-outline-secondary:hover {
   background-color: #2B7A78;
   border-color: #2B7A78;
 }
