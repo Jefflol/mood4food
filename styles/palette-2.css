@@ -1,0 +1,58 @@
+/* Primary - #3AAFA9 */
+/* Secondary - #2B7A78 */
+/* Background - #17252A */
+
+/* HTML */
+a {
+  color: #3AAFA9;
+}
+
+a:hover {
+  color: #2B7A78;
+}
+
+body {
+  background-color: rgba(222,242,241, 0.2) !important;
+}
+
+/* BOOTSTRAP */
+.text-light {
+  color: #fff !important;
+  text-shadow:
+    -1px -1px 0 #2B7A78,  
+    1px -1px 0 #2B7A78,
+    -1px 1px 0 #2B7A78,
+    1px 1px 0 #2B7A78;
+}
+
+.bg-dark {
+  background-color: #17252A !important;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #3AAFA9;
+  border-color: #3AAFA9;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #2B7A78;
+  border-color: #2B7A78;
+}
+
+.btn-secondary:focus, .btn-secondary.focus {
+  box-shadow: 0 0 0 0.2rem #2B7A78;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #2B7A78;
+  border-color: #2B7A78;
+}
+
+/* MOOD4FOOD */
+.card {
+  border: 1px solid #2B7A78;
+}
