@@ -1,3 +1,7 @@
+p {
+  margin: 5px;
+}
+
 .restaurant-details-page {
   display: flex;
   flex-direction: column;
@@ -58,7 +62,9 @@
   margin: 5px 0;
 }
 
-.restaurant__favourite {}
+.restaurant__favourite {
+  
+}
 
 /* Reuse existing rating css */
 .restaurant__ratings > .other-header__ratings > svg {
@@ -176,6 +182,8 @@
 }
 
 .reviews__other-body {
+  background-color: #81C3D7;
+  border-radius: 5px;
   margin: 10px 0;
   width: 100%;
   height: 50px;
@@ -186,6 +194,7 @@
   height: 100%;
 }
 
+/*Star rating*/
 .rating {
   display: flex;
   flex-direction: row-reverse;
