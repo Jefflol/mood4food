@@ -116,16 +116,22 @@
   object-fit: cover;
 }
 
-.item__ratings {
-  margin: 10px 0;
-}
-
 .item__title {
   font-size: 18pt;
 }
 
 .item__desc {
   /* margin: 10px 0; */
+}
+
+.item__ratings {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.item__rating {
+  margin: 0 20px 0 0;
 }
 
 .item__filter-text {
