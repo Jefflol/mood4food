@@ -432,21 +432,28 @@ const displayWebsite = (url) => {
 /**
  * Displays whether safety protocols exists for a restaurant.
  * @param   {Array} safetyProtocolList The boolean array of safety protocols
- * @return  {HTMLElement}              The HTML element of the verification of safety protocol availability (or return empty string)
+ * @return  {HTMLElement}              The HTML element of the verification of safety protocol availability
  */
 const displaySafetyProtocols = (safetyProtocolList) => {
-  if(!Object.values(safetyProtocolList).includes(true)) {
-    return "";
+  if(Object.values(safetyProtocolList).includes(true)) {
+    return `
+      <div class="item__safety-protocol">
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-check" fill="rgb(103, 196, 75)" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+        </svg>
+        <p class="card-text" style="color: rgb(103, 196, 75)">Safety Protocol Available</p>
+      </div>
+    `;
+  } else {
+    return `
+      <div class="item__safety-protocol">
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="rgb(244, 13, 26)" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+        <p class="card-text" style="color: rgb(244, 13, 26)">Safety Protocol Unavailable</p>
+      </div>
+    `;
   }
-
-  return `
-    <div class="item__safety-protocol">
-      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
-      </svg>
-      <p class="card-text">Safety Protocol Available</p>
-    </div>
-  `;
 }
 
 /**
@@ -465,10 +472,10 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
   if(isMaskRequired) {
     safetyProtocols.append(`
       <div class="item__feature--safety">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="#3AAFA9" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
         </svg>
-        <p class="card-text">Mask Required</p>
+        <p class="card-text" style="color: #3AAFA9">Mask Required</p>
       </div>
     `);
   }
@@ -476,10 +483,10 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
   if(isReducedSeatings) {
     safetyProtocols.append(`
       <div class="item__feature--safety">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="#3AAFA9" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
         </svg>
-        <p class="card-text">Reduced Seatings</p>
+        <p class="card-text" style="color: #3AAFA9">Reduced Seatings</p>
       </div>
     `);
   }
@@ -487,10 +494,10 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
   if(isDistancedTables) {
     safetyProtocols.append(`
       <div class="item__feature--safety">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="#3AAFA9" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
         </svg>
-        <p class="card-text">Distanced Tables</p>
+        <p class="card-text" style="color: #3AAFA9">Distanced Tables</p>
       </div>
     `);
   }
@@ -498,10 +505,10 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
   if(isSanitizingAvailable) {
     safetyProtocols.append(`
       <div class="item__feature--safety">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="#3AAFA9" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
         </svg>
-        <p class="card-text">Sanitizing Stations Available</p>
+        <p class="card-text" style="color: #3AAFA9">Sanitizing Stations Available</p>
       </div>
     `);
   }
@@ -669,8 +676,30 @@ const attachEventHandlers = () => {
 }
 attachEventHandlers();
 
+/**
+ * Shows filter popover.
+ */
+const showFilterPopover = () => {
+  $("#openFilterModal").popover('show');
+}
 
+/**
+ * Hides filter popover.
+ */
+const hideFilterPopover = () => {{
+  $("#openFilterModal").on('click', () => {
+    $('#openFilterModal').popover('hide');
+  });
+}}
 
+/**
+ * Attaches event handlers on load.
+ */
+const attachEventHandlersOnLoad = () => {
+  showFilterPopover();
+  hideFilterPopover();
+}
+attachEventHandlersOnLoad();
 
 
 /** OLD **/

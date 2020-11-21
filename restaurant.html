@@ -85,10 +85,13 @@
         </label>
       </div>
 
-      <!-- Button trigger modal -->
-      <button type="button" class="item-layout__filter-btn btn btn-secondary" data-toggle="modal" data-target="#filterModal">
-        Filter
-      </button>
+      <!-- Button trigger filter modal -->
+      <span id="openFilterModal" tabIndex="0" data-container="body" data-toggle="popover" data-placement="left" data-content="Let's filter for restaurants that meet your safety protocols needs!">
+        <button type="button" class="item-layout__filter-btn btn btn-secondary" data-toggle="modal" data-target="#filterModal">
+          Filter
+        </button>  
+      </span>
+
 
       <!-- Button sorting select -->
       <select class="item-layout__sort-btn btn btn-secondary" id="sortOptions">
