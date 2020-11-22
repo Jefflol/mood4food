@@ -55,3 +55,12 @@ a:hover {
   /* box-shadow: 1px 1px 3px 1px rgba(47, 102, 144, 0.5); */
   /* background-color: rgba(129, 195, 215, 0.1); */
 }
+
+.filter-item {
+  border: 1px solid rgba(47, 102, 144, 1);
+  color: rgba(47, 102, 144, 1);
+}
+
+.filter-item:hover {
+  background-color: rgba(47, 102, 144, 0.25);
+}

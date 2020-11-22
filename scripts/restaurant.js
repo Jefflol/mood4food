@@ -671,10 +671,40 @@ const attachEventHandlers = () => {
   $("#distancedTablesFilter").on("click", () => addFilter("isDistancedTables"));
   $("#sanitizingAvailableFilter").on("click", () => addFilter("isSanitizingAvailable"));
 
-  $("#clearFiltersBtn").on("click", clearFilters);
-  $("#applyFilterBtn").on("click", () => getRestaurantsByFilters(filters, "average_rating"));
+  // $("#clearFiltersBtn").on("click", clearFilters);
+  // $("#applyFilterBtn").on("click", () => getRestaurantsByFilters(filters, "average_rating"));
+  
+  $("#clearFiltersBtn").on("click", () => clearFilters());
+  $("#applyFilterBtn").on("click", () => {
+    // Apply filters
+    getRestaurantsByFilters(filters, "average_rating");
+
+    // Update filter button html text
+    if (isFilterSelected()) {
+      $("#openFilterModalBtn").html("Filter (Applied)");
+    } else {
+      $("#openFilterModalBtn").html("Filter");
+    }
+
+    // Hide filter modal
+    $("#filterModal").modal('hide');
+  });
 }
 attachEventHandlers();
+
+/**
+ * Checks if filters have been selected or not
+ * @returns true if filters have been selected, else false
+ */
+const isFilterSelected = () => {
+  for(let property in filters) {
+    if(filters[property]) {
+      return true;
+    }
+  }
+
+  return false;
+}
 
 /**
  * Shows filter popover.

@@ -215,7 +215,7 @@ p {
 .rating>label {
   position: relative;
   width: 1.5em;
-  color: #f5ff98;
+  color: rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
