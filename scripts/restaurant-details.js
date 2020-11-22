@@ -8,6 +8,7 @@ const compileRestaurantData = (doc) => {
   let name = doc.data().name;
   let description = doc.data().description;
   let avgRating = doc.data().average_rating;
+  let avgCost = doc.data().average_cost;
   let address = doc.data().address;
   let postal_code = doc.data().postal_code;
   let city = doc.data().city;
@@ -37,6 +38,7 @@ const compileRestaurantData = (doc) => {
     name,
     description,
     avgRating,
+    avgCost,
     address,
     postal_code,
     city,
@@ -98,6 +100,7 @@ const displayRestaurantDetails = (restaurantObj) => {
     id,
     name,
     avgRating,
+    avgCost,
     description,
     address,
     postal_code,
@@ -145,8 +148,9 @@ const displayRestaurantDetails = (restaurantObj) => {
           </div>
         </div>
 
-        <div class="restaurant__ratings d-flex w-100 justify-content-start">
+        <div class="restaurant__ratings">
           ${displayRatings(avgRating)}
+          ${displayRatingsCost(avgCost)}
         </div>
 
         <div class="restaurant__desc">${description}</div>

@@ -128,6 +128,9 @@ $(document).ready(function () {
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });
+
+      // Update review data in restaurant documents
+      updateReviews(userStarRating, userCostRating);
   }
 
 });
@@ -316,4 +319,49 @@ c0-7.152,5.232-12.657,18.71-13.755v29.719C90.856,81.439,86.999,77.305,86.999,70.
   }
 
   return ratings[0].outerHTML;
+}
+
+/**
+ * Updates review data of a restaurant document, in particular, star and price rating.
+ * @param {Number} userStarRating 
+ * @param {Number} userCostRating 
+ */
+const updateReviews = (userStarRating, userCostRating) => {
+  let docRef = db.collection("restaurants").doc(currentrestaurantid);
+
+  return db.runTransaction(transaction => {
+      return transaction.get(docRef).then(doc => {
+        if (!doc.exists) {
+          throw "Document does not exist!";
+        }
+
+        // Holds review count
+        let newReviewCount = doc.data().review_count + 1;
+
+        // Holds total star reviews
+        let newTotalStarReview = doc.data().total_star_review + userStarRating;
+
+        // Holds total cost reviews
+        let newTotalCostReview = doc.data().total_cost_review + userCostRating;
+
+        // Calculate to update restaurant average star and cost rating
+        let newAverageStarRating = newTotalStarReview / newReviewCount;
+        let newAverageCostRating = newTotalCostReview / newReviewCount;
+
+        // console.log(newReviewC÷åount, newTotalCostReview, newAverageStarRating);
+
+        // Update firestore
+        transaction.update(docRef, {
+          "review_count": newReviewCount,
+          "total_star_review": newTotalStarReview,
+          "total_cost_review": newTotalCostReview,
+          "average_rating": newAverageStarRating,
+          "average_cost": newAverageCostRating
+        });
+      });
+  }).then(() => {
+    console.log("Successfully updated reviews");
+  }).catch(error => {
+    console.log("Unsuccessful review update: " + error);
+  });
 }
