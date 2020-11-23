@@ -25,9 +25,13 @@
   margin: 10px 0;
 }
 
-
 .item-layout__sort-btn {
   flex: 1;
+}
+
+.navbar-form > .input-group {
+  /* margin: auto; */
+  padding-left: 35pt;
 }
 
 /* MODAL - Filter */

@@ -1,43 +1,42 @@
-/*<![CDATA[*/
-    // $(document).ready(function() {
+function addVerification() {
+    //Get user ID
+    var user = firebase.auth().currentUser;
+    var uid, verified;
 
-    //     var settings = ["Distance Units", "Map History", "setting 3?", "setting 4?", "idk"];
+    if (user != null) {
+        user.providerData.forEach(function (profile) {
+            console.log("  Provider-specific UID: " + profile.uid);
+            console.log("  Name: " + profile.displayName);
+            console.log("  Email: " + profile.email);
+          });
+        uid = user.uid;  //user ID unique to the firebase project
+        verified = user.verified;
+        console.log("User is Verified.");
+    }
 
-    //     for (var i = 4; i >= 0; i--) {
-            
-    //         let section = "<h5 class=\"section\">" + settings[i] + "</h5>";
-            
-    //         let toggle = 
-    //             "<div class=\"btn-group btn-group-toggle\" data-toggle=\"buttons\">" +
-    //                 "<label class=\"btn btn-secondary active\">" +
-    //                 //on
-    //                 "<input type=\"radio\" name=\"options\" id=\"option1\" checked> On </label>" + 
-    //                 "<label class=\"btn btn-secondary\">" + 
-    //                 //off
-    //                 "<input type=\"radio\" name=\"options\" id=\"option2\"> Off </label>" + 
-    //             "</div>";
-    //         $(".settingsSection")
-    //         .after(
-    //             $('<div class="board"></div>')
-    //                 .append('<link rel="stylesheet" href="settings.css" type="text/css" />')
-    //                 .append(section)
-    //                 .prepend(toggle)
-                    
-    //         );
-    //     }
-    // });
-var firstV, lastV;
+    let verification = "<div id =\"verification\">Verified</div>";
 
-function Ready(){
-    firstV = document.getElementById('first').value;
-    lastV = document.getElementById('last').value;
+    if (verified) {
+        console.log("User is Verified.");
+        $(".user_name").append(verification);
+    }
 }
 
-document.getElementById('submit-changes').onclick = function() {
-    Ready();
-    firebase.database().ref('user/'+firstV).set({
-        FirstName: firstV,
-        LastName: lastV
+$(document).ready(addVerification);
 
-    });
-}
+//test firebase database
+// var firstV, lastV;
+
+// function Ready(){
+//     firstV = document.getElementById('first').value;
+//     lastV = document.getElementById('last').value;
+// }
+
+// document.getElementById('submit-changes').onclick = function() {
+//     Ready();
+//     firebase.database().ref('user/'+firstV).set({
+//         FirstName: firstV,
+//         LastName: lastV
+
+//     });
+// }
