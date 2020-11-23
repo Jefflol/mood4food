@@ -71,7 +71,7 @@ const addRestaurant = (e) => {
     })
     .then(() => {
       console.log("Added " + name + " to database");
-      window.location.assign("restaurant.html");
+      window.location.assign("verification.html");
     })
     .catch(error =>  {
       console.log("Error adding to firestore: ", error);

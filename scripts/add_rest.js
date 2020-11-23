@@ -78,7 +78,7 @@ const updateVerifcationImage = event => {
  */
 const attachEventHandlers = () => {
     // Add verification when submitting form
-    $("#restaurantForm").on("submit", addVerification);
+    $("#verificationForm").on("submit", addVerification);
 
     // Cancel restaurant form and return to restaurant page
     $("#cancelVerification").on("click", returnToSettingsPage);

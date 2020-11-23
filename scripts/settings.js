@@ -4,11 +4,6 @@ function addVerification() {
     var uid, verified;
 
     if (user != null) {
-        user.providerData.forEach(function (profile) {
-            console.log("  Provider-specific UID: " + profile.uid);
-            console.log("  Name: " + profile.displayName);
-            console.log("  Email: " + profile.email);
-          });
         uid = user.uid;  //user ID unique to the firebase project
         verified = user.verified;
         console.log("User is Verified.");
