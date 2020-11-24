@@ -1,95 +1,108 @@
 /* BANNER */
 .banner {
-  background-image: url('../images/background.jpg');
-  background-size: cover;
-  opacity: 0.95;
-  margin-bottom: 0;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    opacity: 0.95;
+    margin-bottom: 0;
 }
 
 .titleinbanner {
-  font-weight: 500;
-  -webkit-text-stroke: 0.3px darkgrey;
-  text-shadow:
-    3px 3px 0 #000,
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
+    font-weight: 500;
+    -webkit-text-stroke: 0.3px darkgrey;
+    text-shadow:
+        3px 3px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
 }
 
 .subtitleinbanner {
-  -webkit-text-stroke: 0.2px darkgrey;
-  padding-left: 27%;
+    -webkit-text-stroke: 0.2px darkgrey;
+    padding-left: 27%;
 }
 
 .mugiconcontainer {
-  position: relative;
-  text-align: center;
+    position: relative;
+    text-align: center;
 }
 
 .mugicon {
-  width: 1.75em;
+    width: 1.75em;
 }
 
 .number4inmug {
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
 }
 
 /* NAVBAR */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar>.format {
+    display: block;
 }
 
 .bi-arrow-left-square-fill {
-  margin: 0;
-  height: 30px;
-  width: 30px;
-  margin-left: -15px;
+    margin: 0;
+    height: 30px;
+    width: 30px;
+    margin-left: -15px;
 }
 
 .bi-house-door-fill {
-  height: 30px;
-  width: 30px;
-  margin: 0;
-  margin-left: 5px;
-  margin-right: -15px;
+    height: 30px;
+    width: 30px;
+    margin: 0;
+    margin-left: 5px;
+    margin-right: -15px;
 }
 
 .add-title {
-  font-size: 24px;
-  font-weight: 500;
-  color: white;
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
 }
 
 @media only screen and (max-width: 550px) {
-  .titleinbanner {
-    font-size: 32pt;
-  }
+    .titleinbanner {
+        font-size: 32pt;
+    }
 
-  .subtitleinbanner {
-    font-size: 12pt;
-  }
+    .subtitleinbanner {
+        font-size: 12pt;
+    }
 
-  .menuCanHide {
-    display: none;
-  }
+    .menuCanHide {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 400px) {
-  .titleinbanner {
-    font-size: 24pt;
-  }
+    .titleinbanner {
+        font-size: 24pt;
+    }
 
-  .subtitleinbanner {
-    font-size: 10pt;
-  }
+    .subtitleinbanner {
+        font-size: 10pt;
+    }
 
-  .menuCanHide {
-    display: none;
-  }
+    .menuCanHide {
+        display: none;
+    }
+
+    .navbar>.format {
+        display: none;
+    }
+
+    .nav-link {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
 }
