@@ -1,9 +1,7 @@
-/*******************************/
-/******FOR NAVBAR/HEADER********/
-/*******************************/
+/* BANNER */
 .banner {
-  background-image: url('../images/background.jpg'); 
-  background-size: cover; 
+  background-image: url('../images/background.jpg');
+  background-size: cover;
   opacity: 0.95;
   margin-bottom: 0;
 }
@@ -40,7 +38,35 @@
   transform: translate(-50%, -50%);
 }
 
-@media only screen and (max-width: 550px){
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bi-arrow-left-square-fill {
+  margin: 0;
+  height: 30px;
+  width: 30px;
+  margin-left: -15px;
+}
+
+.bi-house-door-fill {
+  height: 30px;
+  width: 30px;
+  margin: 0;
+  margin-left: 5px;
+  margin-right: -15px;
+}
+
+.add-title {
+  font-size: 24px;
+  font-weight: 500;
+  color: white;
+}
+
+@media only screen and (max-width: 550px) {
   .titleinbanner {
     font-size: 32pt;
   }
@@ -65,17 +91,5 @@
 
   .menuCanHide {
     display: none;
-  }
-
-  .nav-link {
-    padding-left: 3px;
-    padding-right: 3px;
-  }
-
-  .navbar {
-    padding-left: 3px;
-    padding-right: 3px;
-    margin-left: 0pt;
-    margin-right: 0pt;
   }
 }
