@@ -34,12 +34,12 @@ var uiConfig = {
         uiShown: function () {
             // The widget is rendered.
             // Hide the loader.
-            document.getElementById('loader').style.display = 'none';
+            // document.getElementById('loader').style.display = 'none';
         }
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: 'index.html',
+    signInSuccessUrl: 'restaurant.html',
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -53,7 +53,7 @@ var uiConfig = {
     tosUrl: 'main.html',
     // Privacy policy url.
     privacyPolicyUrl: 'main.html',
-    accountChooserEnabled: false
+    // accountChooserEnabled: false
 };
 // The start method will wait until the DOM is loaded.
 // Inject the login interface into the HTML
