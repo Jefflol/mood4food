@@ -21,7 +21,7 @@ var uiConfig = {
                         email: user.email
                     }).then(function () {
                         console.log("New user added to firestore");
-                        window.location.assign("index.html");
+                        window.location.assign("restaurant.html");
                     })
                     .catch(function (error) {
                         console.log("Error adding new user: " + error);
@@ -58,13 +58,3 @@ var uiConfig = {
 // The start method will wait until the DOM is loaded.
 // Inject the login interface into the HTML
 ui.start('#firebaseui-auth-container', uiConfig);
-
-// let userloggedin;
-//     firebase.auth().onAuthStateChanged(function(user) {
-//       if (user) {
-//         userloggedin = true;
-//       } else {
-//         userloggedin = false;
-//       }
-//     });
-//     console.log(userloggedin);
