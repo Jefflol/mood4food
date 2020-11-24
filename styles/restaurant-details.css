@@ -1,320 +1,301 @@
 p {
-  margin: 5px;
+    margin: 5px;
 }
 
 .restaurant-details-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
 }
 
 .back-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 0;
-  margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    margin-right: auto;
 }
 
 /* RESTAURANT HEADER */
 .restaurant__header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px;
 }
 
 .restaurant__img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 250px;
-  height: 250px;
-  overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
 }
 
-.restaurant__img > img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
+.restaurant__img>img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 }
 
 .restaurant__brief-details {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px 0;
 }
 
 .brief-details__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .restaurant__name {
-  margin: 5px 0;
-}
-
-.restaurant__favourite {
-  
+    margin: 5px 0;
 }
 
 /* Reuse existing rating css */
 .restaurant__ratings {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px 0;
 }
 
-.restaurant__ratings > .other-header__ratings > svg {
-  width: 1.25em;
-  height: 1.25em;
-  margin: 5px;
+.restaurant__ratings>.other-header__ratings>svg {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 5px;
 }
 
 .restaurant__desc {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
 }
 
 /* RESTAURANT HEADER -- SAFETY PROTOCOLS, FEATURES, ACTIOSN */
 .restaurant__feature-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  width: 100%;
-  margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 10px 0;
 }
 
 .restaurant__feature--safety,
 .restaurant__feature--other {
-  display: flex;
-  align-items: center;
-  margin: 5px 5px 5px 0;
+    display: flex;
+    align-items: center;
+    margin: 5px 5px 5px 0;
 }
 
 .restaurant__feature--safety>svg {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .restaurant__feature--other>svg {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .restaurant__action-group {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
-  margin: 10px 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
 }
 
 .restaurant__action {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-}
-
-/* RESTAURANT GALLERY*/
-.restaurant__gallery {
-  width: 100%;
-  margin: 20px 0;
-}
-
-.gallery__carousel>.carousel-inner>.carousel-item {
-  height: 200px;
-  overflow: hidden;
-}
-
-.carousel-item>img {
-  height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
 }
 
 /* RESTAURANT REVIEWS */
 .restaurant__reviews {
-  width: 100%;
-  margin: 20px 0;
+    width: 100%;
+    margin: 20px 0;
 }
+
 .reviews__personal {
-  margin: 20px 0;
+    margin: 20px 0;
 }
 
 .reviews__personal>textarea {
-  min-height: 50px;
+    min-height: 50px;
 }
 
 .reviews__personal-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
 }
 
 .reviews__personal-options-name {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .reviews__personal-options-actions>button {
-  float: right;
-  margin: 0 5px;
+    float: right;
+    margin: 0 5px;
 }
 
 .reviews__personal-options-actions>button:last-of-type {
-  margin: 0 0 0 5px;
+    margin: 0 0 0 5px;
 }
 
 .reviews__other {
-  margin: 20px 0;
+    margin: 20px 0;
 }
 
 .reviews__other-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
 }
 
 .reviews__other-body {
-  background-color: #81C3D7;
-  border-radius: 5px;
-  margin: 10px 0;
-  width: 100%;
-  height: 50px;
-  overflow: hidden;
+    background-color: #81C3D7;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
 }
 
 .modal-body .reviews__other-body {
-  height: 100%;
+    height: 100%;
 }
 
 /*Star rating*/
 .rating {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
 }
 
 .rating>input {
-  display: none
+    display: none
 }
 
 .rating>label {
-  position: relative;
-  width: 1.5em;
-  color: rgba(0, 0, 0, 0.2);
-  cursor: pointer;
+    position: relative;
+    width: 1.5em;
+    color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
 .rating>label::before {
-  content: url(../images/star_filled.svg);
-  position: absolute;
-  opacity: 0;
+    content: url(../images/star_filled.svg);
+    position: absolute;
+    opacity: 0;
 }
 
 .rating>label:hover:before,
 .rating>label:hover~label:before {
-  opacity: 1;
+    opacity: 1;
 }
 
 .rating>input:checked~label:before {
-  opacity: 1;
+    opacity: 1;
 }
 
 .rating:hover>input:checked~label:before {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 /*Cost rating*/
 
 .ratingcost {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
 }
 
 .ratingcost>input {
-  display: none
+    display: none
 }
 
 .ratingcost>label {
-  position: relative;
-  width: 1.5em;
-  color: #86cf5b;
-  cursor: pointer;
+    position: relative;
+    width: 1.5em;
+    color: #86cf5b;
+    cursor: pointer;
 }
 
 .ratingcost>label::before {
-  content: url(../images/dollar_filled.svg);
-  position: absolute;
-  opacity: 0;
+    content: url(../images/dollar_filled.svg);
+    position: absolute;
+    opacity: 0;
 }
 
 .ratingcost>label:hover:before,
 .ratingcost>label:hover~label:before {
-  opacity: 1;
+    opacity: 1;
 }
 
 .ratingcost>input:checked~label:before {
-  opacity: 1;
+    opacity: 1;
 }
 
 .ratingcost:hover>input:checked~label:before {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 
 
 .other-header__name {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .other-header__date {
-  font-style: italic;
+    font-style: italic;
 }
 
 /* OTHERS */
 .isDisabled {
-  opacity: 0.5;
+    opacity: 0.5;
 }
 
 @media only screen and (min-width: 450px) {
-  .restaurant__header {
-    flex-direction: row;
-  }
+    .restaurant__header {
+        flex-direction: row;
+    }
 
-  .restaurant__img {
-    width: 40%;
-    /* height: 40%; */
-    height: 200px;
-    overflow: hidden;
-  }
+    .restaurant__img {
+        width: 40%;
+        height: 200px;
+        overflow: hidden;
+    }
 
-  .restaurant__img > img {
-    max-width: 100%;
-    max-height: 100%;
-  }
+    .restaurant__img>img {
+        max-width: 100%;
+        max-height: 100%;
+    }
 
-  .restaurant__brief-details {
-    margin-left: 20px;
-  }
+    .restaurant__brief-details {
+        margin-left: 20px;
+    }
 }
 
 @media only screen and (min-width: 850px) {
-  .restaurant-details-page {
-    padding: 5% 20%;
-  }
+    .restaurant-details-page {
+        padding: 5% 20%;
+    }
 }
