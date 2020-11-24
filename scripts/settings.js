@@ -19,6 +19,22 @@ function addVerification() {
 
 $(document).ready(addVerification);
 
+function logoutUser() {
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        console.log("Sign out successful!");
+        window.location.assign("restaurant.html");
+    }).catch(function(error) {
+        // An error happened.
+        console.log("Unsuccessful sign out: " + error);
+        window.location.assign("settings.html");
+    });
+}
+
+$("#logoutBtn").on("click", () => logoutUser());
+
+
+
 //test firebase database
 // var firstV, lastV;
 
