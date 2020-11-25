@@ -1,0 +1,24 @@
+.add-title {
+    display: inline-block;
+    margin: auto;
+    text-align: center;
+    color: white;
+    padding-left: 0;
+    margin-bottom: 5px;
+}
+
+/*Back Arrow Button*/
+.bi-arrow-left-square-fill {
+    height: 30px;
+    width: 30px;
+    margin-left: -15px;
+}
+
+/* Restuarant page icon */
+.bi-house-door-fill {
+    height: 30px;
+    width: 30px;
+    margin: 0;
+    margin-left: 5px;
+    margin-right: -15px;
+  }

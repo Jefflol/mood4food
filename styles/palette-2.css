@@ -85,3 +85,12 @@ body {
 .card {
   border: 1px solid #2B7A78;
 }
+
+.filter-item {
+  border: 1px solid rgba(43, 122, 120, 1);
+  color: rgb(43,122,120);
+}
+
+.filter-item:hover {
+  background-color: rgba(43, 122, 120, 0.25);
+}

@@ -1,43 +1,64 @@
-/*<![CDATA[*/
-    // $(document).ready(function() {
+$(document).ready(function() {
+  //Get user ID
+  var usercurrent, uid, verified;
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      console.log("User logged on = true");
+      uid = user.uid;
+      verified = user.data("verified");
+      usercurrent = user;
+      
+      async function getMarker() {
+        const snapshot = await firebase.firestore().collection('users').get();
+        return snapshot.docs.map(doc => doc.data());
+      }
 
-    //     var settings = ["Distance Units", "Map History", "setting 3?", "setting 4?", "idk"];
+      getMarker();
 
-    //     for (var i = 4; i >= 0; i--) {
-            
-    //         let section = "<h5 class=\"section\">" + settings[i] + "</h5>";
-            
-    //         let toggle = 
-    //             "<div class=\"btn-group btn-group-toggle\" data-toggle=\"buttons\">" +
-    //                 "<label class=\"btn btn-secondary active\">" +
-    //                 //on
-    //                 "<input type=\"radio\" name=\"options\" id=\"option1\" checked> On </label>" + 
-    //                 "<label class=\"btn btn-secondary\">" + 
-    //                 //off
-    //                 "<input type=\"radio\" name=\"options\" id=\"option2\"> Off </label>" + 
-    //             "</div>";
-    //         $(".settingsSection")
-    //         .after(
-    //             $('<div class="board"></div>')
-    //                 .append('<link rel="stylesheet" href="settings.css" type="text/css" />')
-    //                 .append(section)
-    //                 .prepend(toggle)
-                    
-    //         );
-    //     }
-    // });
-var firstV, lastV;
+    } else {
+      console.log("User logged on = false");
+    }
+  });
 
-function Ready(){
-    firstV = document.getElementById('first').value;
-    lastV = document.getElementById('last').value;
-}
+  let verification = "<div id =\"verification\">Verified</div>";
 
-document.getElementById('submit-changes').onclick = function() {
-    Ready();
-    firebase.database().ref('user/'+firstV).set({
-        FirstName: firstV,
-        LastName: lastV
+  if (verified) {
+      console.log("User is Verified.");
+      $(".user_name").append(verification);
+  }
+});
 
+
+
+function logoutUser() {
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        console.log("Sign out successful!");
+        window.location.assign("restaurant.html");
+    }).catch(function(error) {
+        // An error happened.
+        console.log("Unsuccessful sign out: " + error);
+        window.location.assign("settings.html");
     });
 }
+
+$("#logoutBtn").on("click", () => logoutUser());
+
+
+
+//test firebase database
+// var firstV, lastV;
+
+// function Ready(){
+//     firstV = document.getElementById('first').value;
+//     lastV = document.getElementById('last').value;
+// }
+
+// document.getElementById('submit-changes').onclick = function() {
+//     Ready();
+//     firebase.database().ref('user/'+firstV).set({
+//         FirstName: firstV,
+//         LastName: lastV
+
+//     });
+// }

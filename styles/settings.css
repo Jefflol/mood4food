@@ -1,10 +1,10 @@
 .settingsTitle {
+    display: inline-block;
     margin: auto;
     text-align: center;
     color: white;
-    margin-top: 20px;
-    padding-left: 60px;
-    margin-bottom: 20px;
+    padding-left: 0;
+    margin-bottom: 5px;
 }
 
 /*Size of each section in settings*/
@@ -49,7 +49,7 @@
 .bi-arrow-left-square-fill {
     height: 30px;
     width: 30px;
-    margin-left: 0px;
+    margin-left: -15px;
 }
 
 /*Profile Button*/

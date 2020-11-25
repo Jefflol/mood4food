@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="styles/settings.css">
     <!-- <link rel="stylesheet" href="styles/palette-1.css"> -->
     <link rel="stylesheet" href="styles/palette-2.css">
-
-    <script src="scripts/settings.js"></script>
 </head>
 
 <body>
@@ -27,6 +25,7 @@
 
     <!-- Header jumbotron banner thingy -->
     <div class="jumbotron jumbotron-fluid banner">
+      <a href="./restaurant.html">
         <div class="container">
             <h1 class="display-4 text-light titleinbanner">
                 Mood
@@ -38,6 +37,7 @@
             </h1>
             <p class="lead text-light subtitleinbanner"><b>The grub hub? idk some catchy phrase</b></p>
         </div>
+      </a>
     </div>
 
     <!-- Header Navigation Bar -->
@@ -48,11 +48,7 @@
         </svg>
       </a>
       <h1 class="settingsTitle">Settings</h1>
-      <a class="nav-link text-light mouse-over-username" href="profile.html">
-          <span class="menuCanHide"><b>Profile</b></span>
-          <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          </svg>
+      <a class="nav-link placeholder">
       </a>
     </nav>
     
@@ -242,7 +238,7 @@
       </div>
       
       <!--Logout-->
-      <div class="singleSize logout">
+      <div id="logoutBtn" class="singleSize logout">
         <a href="#" class="btn btn-info btn-lg">
           <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
         </a>

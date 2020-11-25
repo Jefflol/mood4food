@@ -3,89 +3,81 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Mood4Food - Restaurant</title>
-    <meta name="author" content="BCIT">
+    <title>Login - Mood4Food</title>
+    <meta name="author" content="BCIT" />
 
     <!-- Bootstrap for Mobile-first, and JQuery -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
     <!-- Firebase CSS for Authentication UI -->
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
 
-    <!-- Optional styles and scripts of your own -->
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/restaurant.css">
+    <!-- Mood4Food Stylesheets -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/palette-2.css" />
 </head>
 
 <body>
-
     <!-------------------------------------->
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
-
-    <!-- Header jumbotron banner thingy -->
+    <!-- Header Jumbotron Banner  -->
     <div class="jumbotron jumbotron-fluid banner">
-        <div class="container">
-            <h1 class="display-4 text-light titleinbanner">
-                Mood
-                <span class="mugiconcontainer">
-                    <img src="images/MugIcon.png" alt="" class="mugicon">
-                    <span class="number4inmug">4</span>
-                </span>
-                Food
-            </h1>
-            <p class="lead text-light subtitleinbanner"><b>The grub hub? idk some catchy phrase</b></p>
-        </div>
+        <a href="./restaurant.html">
+            <div class="container">
+                <h1 class="display-4 text-light titleinbanner">
+                    Mood
+                    <span class="mugiconcontainer">
+                        <img src="./images/MugIcon.png" alt="" class="mugicon">
+                        <span class="number4inmug">4</span>
+                    </span>
+                    Food
+                </h1>
+                <p class="lead text-light subtitleinbanner"><b>The grub hub? idk some catchy phrase</b></p>
+            </div>
+        </a>
     </div>
 
     <!-- Header Navigation Bar -->
     <nav class="navbar navbar-dark sticky-top bg-dark">
-        <a class="nav-link text-light" href="profile.html">
-            <span class="menuCanHide"><b>Profile</b></span>
-            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        <a class="nav-link text-light" href="./settings.html">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-square-fill" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm9.5 8.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z" />
             </svg>
         </a>
-        <form class="navbar-form" action="/search" accept-charset="UTF-8" method="get" role="search">
-            <div class="input-group">
-                <input class="form-control mr-1 mx-auto" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-secondary" type="search" data-disable-with="Search">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </form>
-        <a class="nav-link text-light" href="settings.html">
-            <span class="menuCanHide"><b>Settings</b></span>
-            <svg width="1.8em" height="1.8em" viewBox="0 0 16 16" class="bi bi-gear-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"/>
+        <div class="add-title">Login</div>
+        <a class="nav-link text-light" href="./restaurant.html">
+            <span class="menuCanHide"><b>Main Page</b></span>
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door-fill" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z" />
+                <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
             </svg>
         </a>
     </nav>
 
-    </br></br>
+    </br></br></br></br></br></br>
 
-    <!-- This is where the Login Widget will go -->
+    <!-- Login Widget -->
     <h1 id="firebaseui-auth-container"></h1>
 
-    <!-------------------------------------------->
-    <!-- The following is JS for functionality  -->
-    <!-------------------------------------------->
+    <!------------------------------------------>
+    <!-- JS: Boostrap, Firebase, API related  -->
+    <!------------------------------------------>
     <!-- Bootstrap libraries from CDN -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+        </script>
 
     <!-- Firebase libraries from CDN -->
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
@@ -94,29 +86,13 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
 
     <!-- Your own Firebase API key information -->
-    <script src="scripts/firebase_api_mood.js"> </script>
-
-    <!-- Your own JavaScript functions included here    -->
-    <script src="scripts/login.js"></script>
-    
-    
-    <!----------------------------------------------->
-    <!-- JS: Boostrap, Firebase, API related    -->
-    <!----------------------------------------------->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+    <script src="./scripts/firebase_api_mood.js"> </script>
 
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
-
+    <!-- Mood4Food scripts -->
+    <script src="./scripts/login.js"></script>
 </body>
 
 </html>
