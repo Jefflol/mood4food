@@ -102,6 +102,35 @@ const attachSortingMethods = () => {
 $("#sortOptions").on("change", attachSortingMethods);
 
 /**
+ * Search Bar to find restaurants.
+ */
+var button;
+button = document.getElementById("search-button");
+button.addEventListener("click", function (event) {
+    event.preventDefault();
+    $("#restaurantCards").empty();
+    var value = document.getElementById("search-bar").value;
+    console.log(value);
+    db.collection("restaurants")
+        .where("name", "==", value)
+        .limit(NUM_REST_DISPLAY)
+        .get()
+        .then(function (snap) {
+            if (!(value == "")) {
+                snap.forEach(function (doc) {
+                    let restaurantObj = compileRestaurantData(doc);
+                    // Attach a restaurant card.
+                    displayRestaurants(restaurantObj);
+                });
+            }
+            // If user searches for nothing then display every restaurants.
+            else {
+                getRestaurants();
+            }
+        });
+});
+
+/**
  * Retrieves restaurants from database and displays onto restaurant page.
  */
 const getRestaurants = () => {
