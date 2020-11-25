@@ -2,8 +2,6 @@ var currentrestaurantid;
 var reviewnum = 1;
 
 $(document).ready(function () {
-  //Getting the current restaurant from html class name element. Could change later if we find a better way.
-  // db.collection("restaurants").where("name", "==", $(".restaurant__name").text())
   currentrestaurantid = window.location.href.slice(-20)
   db.collection("restaurants").doc(currentrestaurantid)
     .get()

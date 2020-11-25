@@ -136,12 +136,21 @@ const displayRestaurantDetails = (restaurantObj) => {
       <div class="restaurant__brief-details">
         <div class="brief-details__header">
           <h1 class="restaurant__name">${name}</h1>
-          <div class="restaurant__favourite">
-            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-            </svg>
+          <div id="restaurant__favourite">
+            <span class="fav_false">
+              <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+              </svg>
+            </span>
+            <span class="fav_true">
+              <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="#FF0000"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+              </svg>
+            </span>
           </div>
         </div>
 
@@ -185,6 +194,8 @@ const displayRestaurantDetails = (restaurantObj) => {
   $("#restaurantDetailsPage").prepend(restaurantDetails);
 
   console.log(`${name} was read from database`);
+
+  //favourites();
 };
 
 /**
@@ -245,7 +256,44 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
   }
 
   return safetyProtocols[0].outerHTML;
+
 }
+
+// function favourites() {
+//   $('.fav_true').toggle();
+//   db.collection("users").doc(userName).data("favs")
+//     .get()
+//     .then(function (snap) {
+//       var array = snap.val();
+//       for (var i in array) {
+//         var value = array[i]
+//         console.log(value);
+//         if (value == getRestaurantId) { 
+//           $('.fav_true').toggle();
+//           $('.fav_false').toggle();
+//         }
+//       }
+//     });
+//   document.getElementById("restaurant__favourite").addEventListener("click", function () {
+//     db.collection("users").doc(userName).data("favs")
+//       .get()
+//       .then(function (snap) {
+//         var value = array[i]
+//         console.log(value);
+//         if (value == getRestaurantId) { 
+//           favs: firebase.firestore.FieldValue.arrayRemove(getRestaurantId);
+//         } else {
+//           favs: firebase.firestore.FieldValue.arrayUnion(getRestaurantId);
+//         }
+//         $('.fav_true').toggle();
+//         $('.fav_false').toggle();
+//     });
+//     $('.fav_true').toggle();
+//     $('.fav_false').toggle();
+//   })
+// };
+
+
 
 /**
  * Displays the lists of features of a restaurant if it exists.
