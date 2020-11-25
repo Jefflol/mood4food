@@ -5,7 +5,10 @@ $(document).ready(function() {
     if (user) {
       console.log("User logged on = true");
       uid = user.uid;
-      verified = user.data("verified");
+      var ref = db.collection("users").doc(uid);
+      ref.get().then(function(doc){
+        console.log(doc.data().verified);
+      });
       usercurrent = user;
       
       async function getMarker() {
