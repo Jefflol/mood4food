@@ -134,11 +134,23 @@
 }
 
 /* Verification */
-.verification{
-    display: inline-block;
-    padding: 1%;
-    margin: 0;
-    color: #2B7A78;
+.verification {
+    position: absolute;
+    margin-top: 18em;
+    margin-left: 13em;
+    font-size: 12px;
+    color: white;
+    height: 27px;
+    padding-left: 10px;
+    padding-right: 3px;
+    background-color: #2B7A78;
+    border-radius: 10px;
+}
+
+.bi-check {
+    /* position: relative; */
+    margin: auto;
+    margin-bottom: 5px;
 }
 
 /*Media Queries*/
