@@ -1,23 +1,34 @@
-function addVerification() {
-    //Get user ID
-    var user = firebase.auth().currentUser;
-    var uid, verified;
+$(document).ready(function() {
+  //Get user ID
+  var usercurrent, uid, verified;
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      console.log("User logged on = true");
+      uid = user.uid;
+      verified = user.data("verified");
+      usercurrent = user;
+      
+      async function getMarker() {
+        const snapshot = await firebase.firestore().collection('users').get();
+        return snapshot.docs.map(doc => doc.data());
+      }
 
-    if (user != null) {
-        uid = user.uid;  //user ID unique to the firebase project
-        verified = user.verified;
-        console.log("User is Verified.");
+      getMarker();
+
+    } else {
+      console.log("User logged on = false");
     }
+  });
 
-    let verification = "<div id =\"verification\">Verified</div>";
+  let verification = "<div id =\"verification\">Verified</div>";
 
-    if (verified) {
-        console.log("User is Verified.");
-        $(".user_name").append(verification);
-    }
-}
+  if (verified) {
+      console.log("User is Verified.");
+      $(".user_name").append(verification);
+  }
+});
 
-$(document).ready(addVerification);
+
 
 //test firebase database
 // var firstV, lastV;
