@@ -1,34 +1,32 @@
 $(document).ready(function() {
   //Get user ID
-  var usercurrent, uid, verified;
+  var uid, verified;
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log("User logged on = true");
       uid = user.uid;
+
       var ref = db.collection("users").doc(uid);
       ref.get().then(function(doc){
-        console.log(doc.data().verified);
+        verified = doc.data().verified;
+        console.log("Verification: " + verified);
+
+        let verification = "<div id =\"verification\">Verified Owner <svg width=\"2em\" height=\"2em\" viewBox=\"0 0 16 16\" class=\"bi bi-check\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">"
+          +"<path fill-rule=\"evenodd\" d=\"M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z\"/>"
+          "</svg></div>";
+
+        if (verified) {
+          console.log("User is Verified.");
+          $(".p-3").append(
+            $(verification).addClass("verification")
+          );
+        }
       });
-      usercurrent = user;
-      
-      async function getMarker() {
-        const snapshot = await firebase.firestore().collection('users').get();
-        return snapshot.docs.map(doc => doc.data());
-      }
-
-      getMarker();
-
     } else {
       console.log("User logged on = false");
     }
   });
-
-  let verification = "<div id =\"verification\">Verified</div>";
-
-  if (verified) {
-      console.log("User is Verified.");
-      $(".user_name").append(verification);
-  }
 });
 
 

@@ -133,6 +133,14 @@
     border: none;
 }
 
+/* Verification */
+.verification{
+    display: inline-block;
+    padding: 1%;
+    margin: 0;
+    color: #2B7A78;
+}
+
 /*Media Queries*/
 @media only screen and (max-width: 1000px) {
     .singleSize {
