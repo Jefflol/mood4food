@@ -71,11 +71,24 @@
 
 /*Profile Picture*/
 .pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 150px;
     height: 150px;
     margin-top: 0;
     margin-bottom: 20px;
     border: 5px solid darkgray;
+    overflow: hidden;
+}
+
+.pic > img {
+    background-image: url('../images/avatar.jpg');
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /*Account Text Boxes*/

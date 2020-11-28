@@ -108,8 +108,20 @@
 }
 
 .item {
+    position: relative;
     width: 100%;
     margin: 10px 0;
+}
+
+.item__verified-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
 }
 
 .item__image {
