@@ -258,7 +258,10 @@ p {
     opacity: 0.7;
 }
 
-
+.heart {
+    font-size: 25px;
+    color:rgb(245, 106, 106);
+}
 
 .other-header__name {
     font-weight: bold;

@@ -4,90 +4,90 @@
  * @returns parsable restaurant object
  */
 const compileRestaurantData = (doc) => {
-    let id = doc.id;
-    let name = doc.data().name;
-    let description = doc.data().description;
-    let avgRating = doc.data().average_rating;
-    let avgCost = doc.data().average_cost;
-    let address = doc.data().address;
-    let postal_code = doc.data().postal_code;
-    let city = doc.data().city;
-    let province = doc.data().province;
-    let phone_number = doc.data().phone_number;
-    let url = doc.data().website_url;
+  let id = doc.id;
+  let name = doc.data().name;
+  let description = doc.data().description;
+  let avgRating = doc.data().average_rating;
+  let avgCost = doc.data().average_cost;
+  let address = doc.data().address;
+  let postal_code = doc.data().postal_code;
+  let city = doc.data().city;
+  let province = doc.data().province;
+  let phone_number = doc.data().phone_number;
+  let url = doc.data().website_url;
 
-    let isDineInAvailable = doc.data().isDineInAvailable;
-    let isTakeoutAvailable = doc.data().isTakeoutAvailable;
-    let isDeliveryAvailable = doc.data().isDeliveryAvailable;
+  let isDineInAvailable = doc.data().isDineInAvailable;
+  let isTakeoutAvailable = doc.data().isTakeoutAvailable;
+  let isDeliveryAvailable = doc.data().isDeliveryAvailable;
 
-    let isMaskRequired = doc.data().isMaskRequired;
-    let isReducedSeatings = doc.data().isReducedSeatings;
-    let isDistancedTables = doc.data().isDistancedTables;
-    let isSanitizingAvailable = doc.data().isSanitizingAvailable;
+  let isMaskRequired = doc.data().isMaskRequired;
+  let isReducedSeatings = doc.data().isReducedSeatings;
+  let isDistancedTables = doc.data().isDistancedTables;
+  let isSanitizingAvailable = doc.data().isSanitizingAvailable;
 
-    let image = doc.data().image;
+  let image = doc.data().image;
 
-    // Replace restaurant placeholder image once actual image has been downloaded
-    let pathReference = firebase.storage().ref(image);
-    pathReference.getDownloadURL().then(function (url) {
-        $(`#${id}-restImage`).attr("src", url);
-    })
+  // Replace restaurant placeholder image once actual image has been downloaded
+  let pathReference = firebase.storage().ref(image);
+  pathReference.getDownloadURL().then(function (url) {
+    $(`#${id}-restImage`).attr("src", url);
+  })
 
-    return {
-        id,
-        name,
-        description,
-        avgRating,
-        avgCost,
-        address,
-        postal_code,
-        city,
-        province,
-        phone_number,
-        url,
-        isDineInAvailable,
-        isTakeoutAvailable,
-        isDeliveryAvailable,
-        isMaskRequired,
-        isReducedSeatings,
-        isDistancedTables,
-        isSanitizingAvailable
-    };
+  return {
+    id,
+    name,
+    description,
+    avgRating,
+    avgCost,
+    address,
+    postal_code,
+    city,
+    province,
+    phone_number,
+    url,
+    isDineInAvailable,
+    isTakeoutAvailable,
+    isDeliveryAvailable,
+    isMaskRequired,
+    isReducedSeatings,
+    isDistancedTables,
+    isSanitizingAvailable
+  };
 }
 
 /**
  * Gets restaurant ID from query string.
  */
 const getRestaurantId = () => {
-    let queryString = decodeURIComponent(window.location.search);
-    let queries = queryString.split("?"); //delimiter
-    let id = queries[1]; //get what's after '?'
-    // console.log("Restaurant ID: " + id);
-    return id;
+  let queryString = decodeURIComponent(window.location.search);
+  let queries = queryString.split("?"); //delimiter
+  let id = queries[1]; //get what's after '?'
+  // console.log("Restaurant ID: " + id);
+  return id;
 }
 
 /**
  * Retrieves restaurants from database and displays onto restaurant page.
  */
 const getRestaurantDetails = (id) => {
-    db.collection("restaurants").doc(id)
-        .get()
-        .then((doc) => {
-            let restaurantObj = compileRestaurantData(doc);
-            // console.log(restaurantObj);
+  db.collection("restaurants").doc(id)
+    .get()
+    .then((doc) => {
+      let restaurantObj = compileRestaurantData(doc);
+      // console.log(restaurantObj);
 
-            // Attach a restaurant card.
-            displayRestaurantDetails(restaurantObj);
-        })
+      // Attach a restaurant card.
+      displayRestaurantDetails(restaurantObj);
+    })
 };
 
 /**
  * Automatically loads restaurants onto restaurant page from database.
  */
 const getRestaurantDetailOnLoad = () => {
-    // $(document).ready(getRestaurantDetails);
-    let id = getRestaurantId();
-    $(document).ready(getRestaurantDetails(id));
+  // $(document).ready(getRestaurantDetails);
+  let id = getRestaurantId();
+  $(document).ready(getRestaurantDetails(id));
 }
 getRestaurantDetailOnLoad();
 
@@ -96,28 +96,28 @@ getRestaurantDetailOnLoad();
  * @param {Object} restaurantObj The restaurant object that contains its restaurant data
  */
 const displayRestaurantDetails = (restaurantObj) => {
-    let {
-        id,
-        name,
-        avgRating,
-        avgCost,
-        description,
-        address,
-        postal_code,
-        city,
-        province,
-        phone_number,
-        url,
-        isDineInAvailable,
-        isTakeoutAvailable,
-        isDeliveryAvailable,
-        isMaskRequired,
-        isReducedSeatings,
-        isDistancedTables,
-        isSanitizingAvailable
-    } = restaurantObj;
+  let {
+    id,
+    name,
+    avgRating,
+    avgCost,
+    description,
+    address,
+    postal_code,
+    city,
+    province,
+    phone_number,
+    url,
+    isDineInAvailable,
+    isTakeoutAvailable,
+    isDeliveryAvailable,
+    isMaskRequired,
+    isReducedSeatings,
+    isDistancedTables,
+    isSanitizingAvailable
+  } = restaurantObj;
 
-    let restaurantDetails = $(`
+  let restaurantDetails = $(`
     <!-- Back Button -->
     <a id="restaurantDetailsBackBtn" type="button" class="back-btn btn btn-light" href="restaurant.html">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left mx-1" fill="currentColor"
@@ -139,43 +139,17 @@ const displayRestaurantDetails = (restaurantObj) => {
       <div class="restaurant__brief-details">
         <div class="brief-details__header">
           <h1 class="restaurant__name">${name}</h1>
-          <div id="restaurant__favourite">
-            <span class="fav_false">
-              <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-              </svg>
-            </span>
-            <span class="fav_true">
-              <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="#FF0000"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-              </svg>
-            </span>
-          </div>
-        </div>
-
-        <div class="restaurant__brief-details">
-            <div class="brief-details__header">
-            <h1 class="restaurant__name">${name}</h1>
             <div class="restaurant__favourite">
-                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                </svg>
             </div>
-            </div>
-
-            <div class="restaurant__ratings">
-            ${displayRatings(avgRating)}
-            ${displayRatingsCost(avgCost)}
-            </div>
-
-            <div class="restaurant__desc">${description}</div>
         </div>
+
+        <div class="restaurant__ratings">
+          ${displayRatings(avgRating)}
+          ${displayRatingsCost(avgCost)}
+        </div>
+
+        <div class="restaurant__desc">${description}</div>
+      </div>
     </div>
 
     <!-- Restaurant Feature - Safety Protocols -->
@@ -206,8 +180,8 @@ const displayRestaurantDetails = (restaurantObj) => {
         </div>
     `);
 
-    // Append a custom restaurant card to restaurant page
-    $("#restaurantDetailsPage").prepend(restaurantDetails);
+  // Append a custom restaurant card to restaurant page
+  $("#restaurantDetailsPage").prepend(restaurantDetails);
 
   console.log(`${name} was read from database`);
 
@@ -220,14 +194,19 @@ const displayRestaurantDetails = (restaurantObj) => {
  * @return  {HTMLElement}              The HTML element of the lists of safety protocols (or return empty string)
  */
 const displaySafetyProtocolsAsList = (safetyProtocolList) => {
-  let {isMaskRequired, isReducedSeatings, isDistancedTables, isSanitizingAvailable} = safetyProtocolList;
+  let {
+    isMaskRequired,
+    isReducedSeatings,
+    isDistancedTables,
+    isSanitizingAvailable
+  } = safetyProtocolList;
   let safetyProtocols = $("<div class='restaurant__feature-group'></div>");
 
-  if(!Object.values(safetyProtocolList).includes(true)) {
+  if (!Object.values(safetyProtocolList).includes(true)) {
     return "";
   }
 
-  if(isMaskRequired) {
+  if (isMaskRequired) {
     safetyProtocols.append(`
       <div class="restaurant__feature--safety">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -238,7 +217,7 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
     `);
   }
 
-  if(isReducedSeatings) {
+  if (isReducedSeatings) {
     safetyProtocols.append(`
       <div class="restaurant__feature--safety">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -249,7 +228,7 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
     `);
   }
 
-  if(isDistancedTables) {
+  if (isDistancedTables) {
     safetyProtocols.append(`
       <div class="restaurant__feature--safety">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -260,7 +239,7 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
     `);
   }
 
-  if(isSanitizingAvailable) {
+  if (isSanitizingAvailable) {
     safetyProtocols.append(`
       <div class="restaurant__feature--safety">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -270,46 +249,78 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
       </div>
     `);
   }
-
+  
   return safetyProtocols[0].outerHTML;
+  
+}
+//--------------------------------------------------------------------------------
+//  This function read the collection of restaurants,
+//  Dynamically create a place to display each restaurant,
+//  Put a "heart" (font-awesome icon) beside the name with "id" (document id of the restaurant)
+//  Then, add a listener to the heart.
+//  In the handler:  
+//      - toggle between the solid heart, and the outline heart
+//      - if the full heart is chosen, then add to faves array
+//      - otherwise, remove from faves array
+//-------------------------------------------------------------------------------
+function displayRestaurantsWithHeart() {
+  db.collection("restaurants")
+      .get()
+      .then(function (snap) {
+          snap.forEach(function (doc) {
+              var name = doc.data().name;
+              var id = doc.id;
+              if ($(".restaurant__name").text() == name){
+                //Display restaurant name, followed by a heart fontawesome icon
+                $(".restaurant__favourite")
+                    .append("<i id='" + id + "' class='fa heart fa-heart-o'> </i>"); //add heart class from fontawesome
+                
+                firebase.auth().onAuthStateChanged(function (user) {
+                  if (user) {
+                    var ref = db.collection("users").doc(user.uid);
+                    ref.get().then(function(doc){
+                      favesArray = doc.data().faves;
+                      for (x = 0; x < favesArray.length; x++){
+                        if(favesArray[x] == id){
+                          $("#" + id).toggleClass("fa-heart fa-heart-o");
+                        }
+                      }
+                    });
+                  }
+                });
 
+                // When the Heart is clicked
+                $("#" + id).click(function () { //add listener 
+
+                    // Toggle between the full-heart ("fa-heart"), and the empty-heart ("fa-heart-o", outline heart)
+                    $(this).toggleClass("fa-heart fa-heart-o");
+
+                    // If the "fa-heart" class is here, then add to faves, else remove from faves
+                    if ($("#" + id).hasClass('fa-heart')) {
+                        console.log("ON");
+                        // Save to database
+                        firebase.auth().onAuthStateChanged(function (user) {
+                            db.collection("users").doc(user.uid).update({
+                                faves: firebase.firestore.FieldValue.arrayUnion(id)
+                            })
+                        })
+                    } else {
+                        console.log("OFF");
+                        // Remove from database
+                        firebase.auth().onAuthStateChanged(function (user) {
+                            db.collection("users").doc(user.uid).update({
+                                faves: firebase.firestore.FieldValue.arrayRemove(id)
+                            })
+                        })
+                    }
+                });
+              };
+          })
+      })
 }
 
-// function favourites() {
-//   $('.fav_true').toggle();
-//   db.collection("users").doc(userName).data("favs")
-//     .get()
-//     .then(function (snap) {
-//       var array = snap.val();
-//       for (var i in array) {
-//         var value = array[i]
-//         console.log(value);
-//         if (value == getRestaurantId) { 
-//           $('.fav_true').toggle();
-//           $('.fav_false').toggle();
-//         }
-//       }
-//     });
-//   document.getElementById("restaurant__favourite").addEventListener("click", function () {
-//     db.collection("users").doc(userName).data("favs")
-//       .get()
-//       .then(function (snap) {
-//         var value = array[i]
-//         console.log(value);
-//         if (value == getRestaurantId) { 
-//           favs: firebase.firestore.FieldValue.arrayRemove(getRestaurantId);
-//         } else {
-//           favs: firebase.firestore.FieldValue.arrayUnion(getRestaurantId);
-//         }
-//         $('.fav_true').toggle();
-//         $('.fav_false').toggle();
-//     });
-//     $('.fav_true').toggle();
-//     $('.fav_false').toggle();
-//   })
-// };
 
-
+displayRestaurantsWithHeart();
 
 /**
  * Displays the lists of features of a restaurant if it exists.
@@ -317,19 +328,19 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
  * @return  {HTMLElement}       The HTML element of the lists of features (or return empty string)
  */
 const displayFeaturesAsList = (featureList) => {
-    let {
-        isDineInAvailable,
-        isTakeoutAvailable,
-        isDeliveryAvailable
-    } = featureList;
-    let features = $("<div class='restaurant__feature-group'></div>");
+  let {
+    isDineInAvailable,
+    isTakeoutAvailable,
+    isDeliveryAvailable
+  } = featureList;
+  let features = $("<div class='restaurant__feature-group'></div>");
 
-    if (!Object.values(featureList).includes(true)) {
-        return "";
-    }
+  if (!Object.values(featureList).includes(true)) {
+    return "";
+  }
 
-    if (isDineInAvailable) {
-        features.append(`
+  if (isDineInAvailable) {
+    features.append(`
             <div class="restaurant__feature--other">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
@@ -337,10 +348,10 @@ const displayFeaturesAsList = (featureList) => {
                 <p class="card-text">Dine-in Available</p>
             </div>
         `);
-    }
+  }
 
-    if (isTakeoutAvailable) {
-        features.append(`
+  if (isTakeoutAvailable) {
+    features.append(`
             <div class="restaurant__feature--other">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
@@ -348,10 +359,10 @@ const displayFeaturesAsList = (featureList) => {
                 <p class="card-text">Takeout Available</p>
             </div>
         `);
-    }
+  }
 
-    if (isDeliveryAvailable) {
-        features.append(`
+  if (isDeliveryAvailable) {
+    features.append(`
             <div class="restaurant__feature--other">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
@@ -359,9 +370,9 @@ const displayFeaturesAsList = (featureList) => {
                 <p class="card-text">Delivery Available</p>
             </div>
         `);
-    }
+  }
 
-    return features[0].outerHTML;
+  return features[0].outerHTML;
 }
 
 /**
@@ -369,8 +380,8 @@ const displayFeaturesAsList = (featureList) => {
  * @param {String} url 
  */
 const displayWebsite = (url) => {
-    if (!url) {
-        return `
+  if (!url) {
+    return `
         <a class="restaurant__action restaurant__website isDisabled">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-globe2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539a8.372 8.372 0 0 1-1.198-.49 7.01 7.01 0 0 1 2.276-1.52 6.7 6.7 0 0 0-.597.932 8.854 8.854 0 0 0-.48 1.079zM3.509 7.5H1.017A6.964 6.964 0 0 1 2.38 3.825c.47.258.995.482 1.565.667A13.4 13.4 0 0 0 3.508 7.5zm1.4-2.741c.808.187 1.681.301 2.591.332V7.5H4.51c.035-.987.176-1.914.399-2.741zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5H7.5v2.409c-.91.03-1.783.145-2.591.332a12.343 12.343 0 0 1-.4-2.741zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696A12.63 12.63 0 0 1 7.5 11.91v3.014c-.67-.204-1.335-.82-1.887-1.855a7.776 7.776 0 0 1-.395-.872zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964a9.083 9.083 0 0 0-1.565.667A6.963 6.963 0 0 1 1.018 8.5h2.49a13.36 13.36 0 0 0 .437 3.008zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909c.81.03 1.577.13 2.282.287-.12.312-.252.604-.395.872-.552 1.035-1.218 1.65-1.887 1.855V11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5h-2.49a13.361 13.361 0 0 0-.437-3.008 9.123 9.123 0 0 0 1.565-.667A6.963 6.963 0 0 1 14.982 7.5zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343c-.705.157-1.473.257-2.282.287V1.077c.67.204 1.335.82 1.887 1.855.143.268.276.56.395.872z"/>
@@ -378,8 +389,8 @@ const displayWebsite = (url) => {
             <p class="card-text action__text">Website</p>
         </a>
     `;
-    } else {
-        return `
+  } else {
+    return `
         <a class="restaurant__action restaurant__website" href="${url}">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-globe2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539a8.372 8.372 0 0 1-1.198-.49 7.01 7.01 0 0 1 2.276-1.52 6.7 6.7 0 0 0-.597.932 8.854 8.854 0 0 0-.48 1.079zM3.509 7.5H1.017A6.964 6.964 0 0 1 2.38 3.825c.47.258.995.482 1.565.667A13.4 13.4 0 0 0 3.508 7.5zm1.4-2.741c.808.187 1.681.301 2.591.332V7.5H4.51c.035-.987.176-1.914.399-2.741zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5H7.5v2.409c-.91.03-1.783.145-2.591.332a12.343 12.343 0 0 1-.4-2.741zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696A12.63 12.63 0 0 1 7.5 11.91v3.014c-.67-.204-1.335-.82-1.887-1.855a7.776 7.776 0 0 1-.395-.872zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964a9.083 9.083 0 0 0-1.565.667A6.963 6.963 0 0 1 1.018 8.5h2.49a13.36 13.36 0 0 0 .437 3.008zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909c.81.03 1.577.13 2.282.287-.12.312-.252.604-.395.872-.552 1.035-1.218 1.65-1.887 1.855V11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5h-2.49a13.361 13.361 0 0 0-.437-3.008 9.123 9.123 0 0 0 1.565-.667A6.963 6.963 0 0 1 14.982 7.5zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343c-.705.157-1.473.257-2.282.287V1.077c.67.204 1.335.82 1.887 1.855.143.268.276.56.395.872z"/>
@@ -387,5 +398,5 @@ const displayWebsite = (url) => {
             <p class="card-text action__text">Website</p>
         </a>
     `;
-    }
+  }
 }
