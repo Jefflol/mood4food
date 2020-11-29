@@ -1,3 +1,19 @@
+a:link {
+    color: white;
+  }
+
+a:visited {
+    color: white;
+  }
+
+a:hover {
+    color: white;
+}
+  
+a:active {
+    color: white;
+}
+
 .settingsTitle {
     display: inline-block;
     margin: auto;
@@ -166,6 +182,15 @@
     margin-bottom: 5px;
 }
 
+#favouritesbutton {
+    display: block;
+    width: 50vw;
+    height: 45px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 20px;
+}
+
 /*Media Queries*/
 @media only screen and (max-width: 1000px) {
     .singleSize {
@@ -269,6 +294,10 @@
     }
 
     #submit-changes {
+        width: 75vw;
+    }
+
+    #favouritesbutton{
         width: 75vw;
     }
 }
