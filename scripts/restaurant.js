@@ -49,6 +49,9 @@ const compileRestaurantData = (doc) => {
     let isDistancedTables = doc.data().isDistancedTables;
     let isSanitizingAvailable = doc.data().isSanitizingAvailable;
 
+    let avgThumbs = doc.data().average_thumbs;
+    avgThumbs = avgThumbs * 100;
+
     let image = doc.data().image;
 
     // Replace restaurant placeholder image once actual image has been downloaded
@@ -75,7 +78,8 @@ const compileRestaurantData = (doc) => {
         isMaskRequired,
         isReducedSeatings,
         isDistancedTables,
-        isSanitizingAvailable
+        isSanitizingAvailable,
+        avgThumbs
     };
 }
 
@@ -178,7 +182,8 @@ const displayRestaurants = (restaurantObj) => {
         isMaskRequired,
         isReducedSeatings,
         isDistancedTables,
-        isSanitizingAvailable
+        isSanitizingAvailable,
+        avgThumbs
     } = restaurantObj;
 
     let restaurantCard = $(`
@@ -193,6 +198,7 @@ const displayRestaurants = (restaurantObj) => {
             </div>
             <div class="item__details card-body">
                 <h5 class="item__title card-title">${name}</h5>
+                ${displayThumbsMain(avgThumbs)}
                 <div class="item__ratings">
                     ${displayRatings(avgRating)}
                     ${displayRatingsCost(avgCost)}
@@ -358,6 +364,14 @@ const displayRatingsCost = (rating) => {
 
     return ratings[0].outerHTML;
 }
+
+const displayThumbsMain = (avgThumbs) => {
+    if (avgThumbs >= 50){
+      return `<div><small>Safe?</small><i class="fa fa-thumbs-up selectedThumbs"></i>` + avgThumbs + "%</div>";
+    } else {
+      return `<div><small>Safe?</small><i class="fa fa-thumbs-down selectedThumbs"></i>` + avgThumbs + "%</div>";
+    }
+  }
 
 /**
  * Adds restaurant phone number as an action if phone is available, else make it disabled

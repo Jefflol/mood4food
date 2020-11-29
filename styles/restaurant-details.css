@@ -276,6 +276,45 @@ p {
     opacity: 0.5;
 }
 
+.tab {
+    margin-left: 7%;
+}
+
+.fa-thumbs-up,
+.fa-thumbs-down {
+    margin: 5px;
+}
+
+.selectedThumbs {
+    color: #2EBDD1;
+}
+
+/*THUMBS UP THINGY*/
+.thumbs {
+    display: inline;
+    width: 80%;
+    margin-top: 5px;
+    padding-top: 5px;
+    text-align: center;
+  }
+  
+  .like,
+  .dislike {
+    display: inline;
+    cursor: pointer;
+  }
+  
+  .dislike:hover,
+  .like:hover {
+    color: #2EBDD1;
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+  }
+  
+  .active {
+    color: #2EBDD1;
+  }
+
 @media only screen and (min-width: 450px) {
     .restaurant__header {
         flex-direction: row;

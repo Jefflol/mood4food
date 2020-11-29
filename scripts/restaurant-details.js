@@ -25,6 +25,9 @@ const compileRestaurantData = (doc) => {
   let isDistancedTables = doc.data().isDistancedTables;
   let isSanitizingAvailable = doc.data().isSanitizingAvailable;
 
+  let avgThumbs = doc.data().average_thumbs;
+  avgThumbs = avgThumbs * 100;
+
   let image = doc.data().image;
 
   // Replace restaurant placeholder image once actual image has been downloaded
@@ -51,7 +54,8 @@ const compileRestaurantData = (doc) => {
     isMaskRequired,
     isReducedSeatings,
     isDistancedTables,
-    isSanitizingAvailable
+    isSanitizingAvailable,
+    avgThumbs
   };
 }
 
@@ -114,7 +118,8 @@ const displayRestaurantDetails = (restaurantObj) => {
     isMaskRequired,
     isReducedSeatings,
     isDistancedTables,
-    isSanitizingAvailable
+    isSanitizingAvailable,
+    avgThumbs
   } = restaurantObj;
 
   let restaurantDetails = $(`
@@ -139,6 +144,7 @@ const displayRestaurantDetails = (restaurantObj) => {
       <div class="restaurant__brief-details">
         <div class="brief-details__header">
           <h1 class="restaurant__name">${name}</h1>
+            ${displayThumbsMain(avgThumbs)}
             <div class="restaurant__favourite">
             </div>
         </div>
@@ -253,6 +259,7 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
   return safetyProtocols[0].outerHTML;
   
 }
+
 //--------------------------------------------------------------------------------
 //  This function read the collection of restaurants,
 //  Dynamically create a place to display each restaurant,
@@ -398,5 +405,13 @@ const displayWebsite = (url) => {
             <p class="card-text action__text">Website</p>
         </a>
     `;
+  }
+}
+
+const displayThumbsMain = (avgThumbs) => {
+  if (avgThumbs >= 50){
+    return `<div><small>Safe?</small><i class="fa fa-thumbs-up fa-2x selectedThumbs"></i>` + avgThumbs + "%</div>";
+  } else {
+    return `<div><small>Safe?</small><i class="fa fa-thumbs-down fa-2x selectedThumbs"></i>` + avgThumbs + "%</div>";
   }
 }

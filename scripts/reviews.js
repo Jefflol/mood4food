@@ -16,6 +16,7 @@ $(document).ready(function () {
             var time = doc.data().reviewtime;
             var text = doc.data().reviewtext;
             var cost = doc.data().reviewcost;
+            var thumbs = doc.data().reviewthumbs;
 
             var reviewObj = {
               stars,
@@ -23,6 +24,7 @@ $(document).ready(function () {
               time,
               text,
               cost,
+              thumbs,
               reviewnum
             }
             reviewnum = reviewnum + 1;
@@ -115,7 +117,8 @@ $(document).ready(function () {
         reviewtext: document.getElementById("reviewform").value,
         reviewtime: d.toISOString(),
         reviewstars: userStarRating,
-        reviewcost: userCostRating
+        reviewcost: userCostRating,
+        reviewthumbs: userThumbs
       })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
@@ -133,17 +136,32 @@ $(document).ready(function () {
 
 });
 
+//Thumbs
+var userThumbs = 0.5;
+$('.like').on('click', function() {
+  event.preventDefault();
+  $('.dislike').removeClass('active');
+  $('.like').addClass('active');
+  userThumbs = 1;
+});
 
+$('.dislike').on('click', function() {
+  event.preventDefault();
+  $('.like').removeClass('active');
+  $('.dislike').addClass('active');
+  userThumbs = 0;
+});
 
 const displayReview = (reviewObj) => {
   let {
-    stars, name, time, text, cost, reviewnum
+    stars, name, time, text, cost, thumbs, reviewnum
   } = reviewObj;
   var reviewCard = $(`
       <!--Other reviews-->
       <div class="reviews__other" data-toggle="modal" data-target="#reviewModal${reviewnum}">
       <div class="other-header__name">${name}</div>
         <div class="reviews__other-header">
+          ${displayThumbs(thumbs)}
           ${displayRatings(stars)}
           ${displayRatingsCost(cost)}
           <div class="other-header__date"><small>${jQuery.timeago(time)}</small></div>
@@ -160,6 +178,7 @@ const displayReview = (reviewObj) => {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="reviewModalLabel${reviewnum}">
+                ${displayThumbs(thumbs)}
                 ${displayRatings(stars)}
                 ${displayRatingsCost(cost)}
               </h5>
@@ -187,13 +206,13 @@ const displayReview = (reviewObj) => {
       <br/>
   `);
 
-  $("#allReviews").append(reviewCard);
+  $("#allReviews").prepend(reviewCard);
 }
 
 /**
  * Displays the approriate number of stars given a rating.
  * --Taken from Jeff Chen's code-- 
- * @param   {Number} rating The average rating for a restaurant
+ * @param   {Number} rating The rating for a restaurant
  * @return  {HTMLElement}   The HTML element of star ratings
  */
 const displayRatings = (rating) => {
@@ -314,6 +333,26 @@ c0-7.152,5.232-12.657,18.71-13.755v29.719C90.856,81.439,86.999,77.305,86.999,70.
     </g>
   </svg>
     `);
+  }
+
+  return ratings[0].outerHTML;
+}
+
+/**
+ * Displays thumbs up or down
+ * @param   {Number} thumbs 1 for thumbs up, 0 for thumbs down
+ * @return  {HTMLElement}   The HTML element of thumbs
+ */
+const displayThumbs = (thumbs) => {
+
+  let ratings = $("<div class='other-header__ratings'></div>");
+
+  if (thumbs == 1){
+    ratings.append(`<small>Safe?</small><i class="fa fa-thumbs-up selectedThumbs"></i><i class="fa fa-thumbs-down"></i>`);
+  } else if (thumbs == 0){
+    ratings.append(`<small>Safe?</small><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-down selectedThumbs"></i>`);
+  } else {
+    ratings.append(`<small>Safe?</small><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-down"></i>`);
   }
 
   return ratings[0].outerHTML;

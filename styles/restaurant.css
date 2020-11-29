@@ -223,6 +223,10 @@
     opacity: 0.4;
 }
 
+.selectedThumbs {
+    color: #2EBDD1;
+}
+
 @media only screen and (min-width: 450px) {
     .item-layout__sort-btn {
         flex: 0;
