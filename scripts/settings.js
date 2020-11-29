@@ -2,6 +2,9 @@ $(document).ready(function() {
   //Get user ID
   var uid, verified;
 
+  let add = document.getElementById("addRestaurantModal");
+  add.style.display = "none";
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log("User logged on = true");
@@ -19,11 +22,21 @@ $(document).ready(function() {
             +"</svg>"
           +"</div>";
 
+        let add = document.getElementById("addRestaurantModal");
+
+        
+
+        let verifyUser = document.getElementById("verify");
+
+        
+
         if (verified) {
           console.log("User is Verified.");
           $(".user_name").after(
             $(verification).addClass("verification")
           );
+          verifyUser.style.display = "none";
+          add.style.display = "block";
         }
       });
     } else {

@@ -21,4 +21,32 @@
     margin: 0;
     margin-left: 5px;
     margin-right: -15px;
+}
+
+.verification-form-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    padding-top: 5%;
   }
+  
+.form-group-row {
+    display: flex;
+}
+
+.rest__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.uploadFile {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid grey;
+}
+ 

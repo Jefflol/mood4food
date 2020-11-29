@@ -12,9 +12,11 @@
 
     <!-- Optional styles and scripts of your own -->
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/verification.css">
+    
     <!-- <link rel="stylesheet" href="styles/palette-1.css"> -->
     <link rel="stylesheet" href="styles/palette-2.css">
+
+    <link rel="stylesheet" href="styles/verification.css">
 </head>
 
 <body>
@@ -60,18 +62,21 @@
     <!-- Restaurant Form -->
     <div class="verification-form-page">
       <form id="verificationForm">
-        <div class="form-group">
-            <label for="verificationImageFileInput">Upload Verification Image</label>
-            <p>Please provide a picture, or document that proves proof of ownership. </p>
-            <input type="file" class="form-control-file" id="verificationImageFileInput">
+        <div class="form-group upload">
+            <label for="verificationImageFileInput"><h4>Upload Verification Image</h4></label>
+            <div class = uploadFile>
+              <h6>Please provide a picture, or document that proves proof of ownership.</h6>
+              <p>Verified users recieve a verified checkmark, and will have the option to <i>Add a Restaurant</i>
+              </br>(Replaces <i>Verification</i> setting in Account Page) upon checking "Claim Ownership".</p>
+              <input type="file" class="form-control-file flex" id="verificationImageFileInput">
+            </div>
         </div>
         <div class="form-group">
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id="claimRestaurant">
-            <label class="form-check-label" for="claimRestaurant">Claim ownership to restaurant</label>
+            <label class="form-check-label" for="claimRestaurant">Claim Ownership</label>
           </div>
         </div>
-        
         <div class="rest__buttons">
           <button id="submitVerification" type="submit" class="btn btn-secondary">Send Verification Request</button>
           <button id="cancelVerification" type="button" class="btn btn-outline-secondary">Cancel</button>

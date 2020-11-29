@@ -165,8 +165,8 @@ a:active {
 /* Verification */
 .verification {
     position: absolute;
-    margin-top: 18em;
-    margin-left: 13em;
+    margin-top: 5em;
+    margin-left: 14em;
     font-size: 12px;
     color: white;
     height: 27px;
@@ -191,6 +191,23 @@ a:active {
     margin-top: 20px;
 }
 
+/* Adding Restaurant */
+.addRestaurantModal > h5{
+    display: inline;
+}
+
+.addRest {
+    float: right;
+}
+
+.logout {
+    height: 50px;
+}
+
+body {
+    margin-bottom: 5%;
+}
+
 /*Media Queries*/
 @media only screen and (max-width: 1000px) {
     .singleSize {
@@ -208,7 +225,7 @@ a:active {
         padding-top: 5px;
     }
     .singleSize:nth-child(4) > h5,
-    .singleSize:nth-child(5) > h5 {
+    .singleSize:nth-child(6) > h5 {
         text-align: left;
         display: inline-block;
     }
@@ -221,8 +238,12 @@ a:active {
         float: right;
     }
 
-    .addRest {
+    .addVeri {
         float: right;
+    }
+
+    .addRestaurantModal > h5 {
+        line-height: 70px;
     }
 
     .singleSize:nth-child(4) {
@@ -232,6 +253,10 @@ a:active {
     .settingsSection .btn-group {
         margin: auto;
         width: 50vw;
+    }
+
+    .history {
+        height: 70px;
     }
 
     .logout {
@@ -261,7 +286,7 @@ a:active {
         margin-top: 20px;
     }
 
-    .addRest {
+    .addVeri {
         float: none;
         display: block;
         margin: auto;
