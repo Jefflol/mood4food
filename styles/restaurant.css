@@ -118,10 +118,26 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 10px;
+    top: 130px;
     right: 10px;
     width: 50px;
     height: 50px;
+}
+
+.item__covid-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 130px;
+    right: 60px;
+    width: 50px;
+    height: 50px;
+}
+
+.item__covid-rating > .fa-thumbs-up,
+.item__covid-rating > .fa-thumbs-down {
+    font-size: 150%;
 }
 
 .item__image {
@@ -235,6 +251,11 @@
 
 /* @media only screen and (min-width: 414px) { */
 @media only screen and (min-width: 520px) {
+    .item__verified-badge,
+    .item__covid-rating {
+        top: 10px;
+    }
+    
     .item {
         display: flex;
         flex-direction: row;

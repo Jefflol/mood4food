@@ -277,7 +277,7 @@ p {
 }
 
 .tab {
-    margin-left: 7%;
+    /* margin-left: 7%; */
 }
 
 .fa-thumbs-up,
@@ -290,30 +290,50 @@ p {
 }
 
 /*THUMBS UP THINGY*/
+.reviews__thumbs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviews_thumbs > small {
+    display: block;
+    width: 200px;
+}
+
+.reviews_thumbs .fa-thumbs-up,
+.reviews_thumbs .fa-thumbs-down {
+    font-size: 80%;
+}
+
 .thumbs {
-    display: inline;
-    width: 80%;
-    margin-top: 5px;
-    padding-top: 5px;
+    display: flex;
+    /* margin-top: 5px;
+    padding-top: 5px; */
     text-align: center;
-  }
-  
-  .like,
-  .dislike {
+}
+
+.item__covid-rating>.fa-thumbs-up,
+.item__covid-rating>.fa-thumbs-down {
+    font-size: 150%;
+}
+
+.like,
+.dislike {
     display: inline;
     cursor: pointer;
-  }
-  
-  .dislike:hover,
-  .like:hover {
+}
+
+.dislike:hover,
+.like:hover {
     color: #2EBDD1;
     transition: all .2s ease-in-out;
     transform: scale(1.1);
-  }
-  
-  .active {
+}
+
+.active {
     color: #2EBDD1;
-  }
+}
 
 @media only screen and (min-width: 450px) {
     .restaurant__header {

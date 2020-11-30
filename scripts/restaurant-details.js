@@ -410,8 +410,20 @@ const displayWebsite = (url) => {
 
 const displayThumbsMain = (avgThumbs) => {
   if (avgThumbs >= 50){
-    return `<div><small>Safe?</small><i class="fa fa-thumbs-up fa-2x selectedThumbs"></i>` + avgThumbs + "%</div>";
+      return (`
+          <div class="item__covid-rating" data-toggle="tooltip" data-placement="top" title="Majority of users think this restaurant is COVID-friendly!">
+              <i class="fa fa-thumbs-up selectedThumbs"></i>
+              ${avgThumbs}%
+          </div>
+      `);
   } else {
-    return `<div><small>Safe?</small><i class="fa fa-thumbs-down fa-2x selectedThumbs"></i>` + avgThumbs + "%</div>";
+      return (`
+          <div class="item__covid-rating" data-toggle="tooltip" data-placement="top" title="Majority of users think this restaurant is not COVID-friendly!">
+              <i class="fa fa-thumbs-down selectedThumbs"></i>
+              ${avgThumbs}%
+          </div>
+      `);
   }
 }
+
+$("body").tooltip({ selector: '[data-toggle=tooltip]' });
