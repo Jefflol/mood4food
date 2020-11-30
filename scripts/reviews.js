@@ -131,7 +131,7 @@ $(document).ready(function () {
       });
 
       // Update review data in restaurant documents
-      updateReviews(userStarRating, userCostRating);
+      updateReviews(userStarRating, userCostRating, userThumbs);
   }
 
 });
@@ -381,19 +381,25 @@ const updateReviews = (userStarRating, userCostRating) => {
         // Holds total cost reviews
         let newTotalCostReview = doc.data().total_cost_review + userCostRating;
 
-        // Calculate to update restaurant average star and cost rating
+        // Holds total cost reviews
+        let newTotalThumbsReview = doc.data().total_thumbs_review + userThumbsRating;
+
+        // Calculate to update restaurant average star, cost, and thumbs rating
         let newAverageStarRating = newTotalStarReview / newReviewCount;
         let newAverageCostRating = newTotalCostReview / newReviewCount;
+        let newAverageThumbsRating = newTotalThumbsReview / newReviewCount;
 
-        // console.log(newReviewC÷åount, newTotalCostReview, newAverageStarRating);
+        // console.log(newReviewCount, newTotalCostReview, newAverageStarRating);
 
         // Update firestore
         transaction.update(docRef, {
           "review_count": newReviewCount,
           "total_star_review": newTotalStarReview,
           "total_cost_review": newTotalCostReview,
+          "total_thumbs_review": newTotalThumbsReview,
           "average_rating": newAverageStarRating,
-          "average_cost": newAverageCostRating
+          "average_cost": newAverageCostRating,
+          "average_thumbs": newAverageThumbsRating
         });
       });
   }).then(() => {
