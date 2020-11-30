@@ -214,7 +214,7 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
 
   if (isMaskRequired) {
     safetyProtocols.append(`
-      <div class="restaurant__feature--safety">
+      <div class="restaurant__feature--safety" style="color: #3AAFA9">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
         </svg>
@@ -225,7 +225,7 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
 
   if (isReducedSeatings) {
     safetyProtocols.append(`
-      <div class="restaurant__feature--safety">
+      <div class="restaurant__feature--safety" style="color: #3AAFA9">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
         </svg>
@@ -236,7 +236,7 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
 
   if (isDistancedTables) {
     safetyProtocols.append(`
-      <div class="restaurant__feature--safety">
+      <div class="restaurant__feature--safety" style="color: #3AAFA9">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
         </svg>
@@ -247,7 +247,7 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
 
   if (isSanitizingAvailable) {
     safetyProtocols.append(`
-      <div class="restaurant__feature--safety">
+      <div class="restaurant__feature--safety" style="color: #3AAFA9">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
         </svg>
@@ -259,75 +259,6 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
   return safetyProtocols[0].outerHTML;
   
 }
-
-//--------------------------------------------------------------------------------
-//  This function read the collection of restaurants,
-//  Dynamically create a place to display each restaurant,
-//  Put a "heart" (font-awesome icon) beside the name with "id" (document id of the restaurant)
-//  Then, add a listener to the heart.
-//  In the handler:  
-//      - toggle between the solid heart, and the outline heart
-//      - if the full heart is chosen, then add to faves array
-//      - otherwise, remove from faves array
-//-------------------------------------------------------------------------------
-function displayRestaurantsWithHeart() {
-  db.collection("restaurants")
-      .get()
-      .then(function (snap) {
-          snap.forEach(function (doc) {
-              var name = doc.data().name;
-              var id = doc.id;
-              if ($(".restaurant__name").text() == name){
-                //Display restaurant name, followed by a heart fontawesome icon
-                $(".restaurant__favourite")
-                    .append("<i id='" + id + "' class='fa heart fa-heart-o'> </i>"); //add heart class from fontawesome
-                
-                firebase.auth().onAuthStateChanged(function (user) {
-                  if (user) {
-                    var ref = db.collection("users").doc(user.uid);
-                    ref.get().then(function(doc){
-                      favesArray = doc.data().faves;
-                      for (x = 0; x < favesArray.length; x++){
-                        if(favesArray[x] == id){
-                          $("#" + id).toggleClass("fa-heart fa-heart-o");
-                        }
-                      }
-                    });
-                  }
-                });
-
-                // When the Heart is clicked
-                $("#" + id).click(function () { //add listener 
-
-                    // Toggle between the full-heart ("fa-heart"), and the empty-heart ("fa-heart-o", outline heart)
-                    $(this).toggleClass("fa-heart fa-heart-o");
-
-                    // If the "fa-heart" class is here, then add to faves, else remove from faves
-                    if ($("#" + id).hasClass('fa-heart')) {
-                        console.log("ON");
-                        // Save to database
-                        firebase.auth().onAuthStateChanged(function (user) {
-                            db.collection("users").doc(user.uid).update({
-                                faves: firebase.firestore.FieldValue.arrayUnion(id)
-                            })
-                        })
-                    } else {
-                        console.log("OFF");
-                        // Remove from database
-                        firebase.auth().onAuthStateChanged(function (user) {
-                            db.collection("users").doc(user.uid).update({
-                                faves: firebase.firestore.FieldValue.arrayRemove(id)
-                            })
-                        })
-                    }
-                });
-              };
-          })
-      })
-}
-
-
-displayRestaurantsWithHeart();
 
 /**
  * Displays the lists of features of a restaurant if it exists.
@@ -408,6 +339,10 @@ const displayWebsite = (url) => {
   }
 }
 
+/**
+ * Display thumbs up or down depending of if the restaurant is Covid-Friendly or not
+ * @param {Number} avgThumbs the average covid-friendly rating
+ */
 const displayThumbsMain = (avgThumbs) => {
   if (avgThumbs >= 50){
       return (`
@@ -426,4 +361,76 @@ const displayThumbsMain = (avgThumbs) => {
   }
 }
 
-$("body").tooltip({ selector: '[data-toggle=tooltip]' });
+//--------------------------------------------------------------------------------
+//  This function read the collection of restaurants,
+//  Dynamically create a place to display each restaurant,
+//  Put a "heart" (font-awesome icon) beside the name with "id" (document id of the restaurant)
+//  Then, add a listener to the heart.
+//  In the handler:  
+//      - toggle between the solid heart, and the outline heart
+//      - if the full heart is chosen, then add to faves array
+//      - otherwise, remove from faves array
+//-------------------------------------------------------------------------------
+function displayRestaurantsWithHeart() {
+  db.collection("restaurants")
+      .get()
+      .then(function (snap) {
+          snap.forEach(function (doc) {
+              var name = doc.data().name;
+              var id = doc.id;
+              if ($(".restaurant__name").text() == name){
+                //Display restaurant name, followed by a heart fontawesome icon
+                $(".restaurant__favourite")
+                    .append("<i id='" + id + "' class='fa heart fa-heart-o'> </i>"); //add heart class from fontawesome
+                
+                firebase.auth().onAuthStateChanged(function (user) {
+                  if (user) {
+                    var ref = db.collection("users").doc(user.uid);
+                    ref.get().then(function(doc){
+                      favesArray = doc.data().faves;
+                      for (x = 0; x < favesArray.length; x++){
+                        if(favesArray[x] == id){
+                          $("#" + id).toggleClass("fa-heart fa-heart-o");
+                        }
+                      }
+                    });
+                  }
+                });
+
+                // When the Heart is clicked
+                $("#" + id).click(function () { //add listener 
+
+                    // Toggle between the full-heart ("fa-heart"), and the empty-heart ("fa-heart-o", outline heart)
+                    $(this).toggleClass("fa-heart fa-heart-o");
+
+                    // If the "fa-heart" class is here, then add to faves, else remove from faves
+                    if ($("#" + id).hasClass('fa-heart')) {
+                        console.log("ON");
+                        // Save to database
+                        firebase.auth().onAuthStateChanged(function (user) {
+                            db.collection("users").doc(user.uid).update({
+                                faves: firebase.firestore.FieldValue.arrayUnion(id)
+                            })
+                        })
+                    } else {
+                        console.log("OFF");
+                        // Remove from database
+                        firebase.auth().onAuthStateChanged(function (user) {
+                            db.collection("users").doc(user.uid).update({
+                                faves: firebase.firestore.FieldValue.arrayRemove(id)
+                            })
+                        })
+                    }
+                });
+              };
+          })
+      })
+}
+
+const attachEventHandlers = () => {
+  // Display favourites
+  displayRestaurantsWithHeart();
+
+  // Enable tooltips
+  $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+}

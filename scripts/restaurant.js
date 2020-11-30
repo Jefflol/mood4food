@@ -726,6 +726,20 @@ const getRestaurantsByFilters = (filterOptions, sortByOption, desc = true) => {
 };
 
 /**
+ * Checks if filters have been selected or not
+ * @returns true if filters have been selected, else false
+ */
+const isFilterSelected = () => {
+    for (let property in filters) {
+        if (filters[property]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
  * Attaches event handlers within filter modal.
  */
 const attachEventHandlers = () => {
@@ -752,46 +766,12 @@ const attachEventHandlers = () => {
 
     // Tooltip for verified badge
     $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+
+    // Filter popover - Show
+    $("#openFilterModal").popover('show');
+    // Filter popover - Hide
+    $("#openFilterModal").on('click', () => {
+        $('#openFilterModal').popover('hide');
+    });
 }
 attachEventHandlers();
-
-/**
- * Checks if filters have been selected or not
- * @returns true if filters have been selected, else false
- */
-const isFilterSelected = () => {
-    for (let property in filters) {
-        if (filters[property]) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-/**
- * Shows filter popover.
- */
-const showFilterPopover = () => {
-    $("#openFilterModal").popover('show');
-}
-
-/**
- * Hides filter popover.
- */
-const hideFilterPopover = () => {
-    {
-        $("#openFilterModal").on('click', () => {
-            $('#openFilterModal').popover('hide');
-        });
-    }
-}
-
-/**
- * Attaches event handlers on load.
- */
-const attachEventHandlersOnLoad = () => {
-    showFilterPopover();
-    hideFilterPopover();
-}
-attachEventHandlersOnLoad();
