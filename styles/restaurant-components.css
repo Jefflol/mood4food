@@ -143,10 +143,6 @@
     .menuCanHide {
         display: none;
     }
-
-    .navbar-form {
-        transform: translateX(20px);
-    }
 }
 
 @media only screen and (max-width: 400px) {
@@ -164,12 +160,13 @@
 
     .navbar {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
     }
 
     .navbar-form {
-        transform: translateX(-20px);
+        position: static;
+        width: 70%;
     }
 
     .navbar>.format {
@@ -182,12 +179,10 @@
     }
 
     .navbar > .nav-link:first-of-type {
-        position: absolute;
-        left: 20px;
+        position: static;
     }
     
     .navbar > .nav-link:last-of-type {
-        position: absolute;
-        right: 20px;
+        position: static;
     }
 }

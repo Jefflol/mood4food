@@ -182,15 +182,6 @@ a:active {
     margin-bottom: 5px;
 }
 
-#favouritesbutton {
-    display: block;
-    width: 50vw;
-    height: 45px;
-    padding: 10px;
-    margin: auto;
-    margin-top: 20px;
-}
-
 /* Adding Restaurant */
 .addRestaurantModal > h5{
     display: inline;
@@ -319,10 +310,6 @@ body {
     }
 
     #submit-changes {
-        width: 75vw;
-    }
-
-    #favouritesbutton{
         width: 75vw;
     }
 }
