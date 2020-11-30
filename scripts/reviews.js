@@ -348,11 +348,11 @@ const displayThumbs = (thumbs) => {
   let ratings = $("<div class='other-header__ratings'></div>");
 
   if (thumbs == 1){
-    ratings.append(`<small>Safe?</small><i class="fa fa-thumbs-up selectedThumbs"></i><i class="fa fa-thumbs-down"></i>`);
+    ratings.append(`<small>Covid-Friendly?</small><i class="fa fa-thumbs-up selectedThumbs"></i><i class="fa fa-thumbs-down"></i>`);
   } else if (thumbs == 0){
-    ratings.append(`<small>Safe?</small><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-down selectedThumbs"></i>`);
+    ratings.append(`<small>Covid-Friendly?</small><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-down selectedThumbs"></i>`);
   } else {
-    ratings.append(`<small>Safe?</small><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-down"></i>`);
+    ratings.append(`<small>Covid-Friendly?</small><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-down"></i>`);
   }
 
   return ratings[0].outerHTML;
