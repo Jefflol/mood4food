@@ -54,7 +54,7 @@ It has the following subfolders and files:
     /display_user.js           # Displaying user names JavaScript
     /favourites.js             # Favourites page JavaScript
     /firebase_api_mood.js      # Firebase api JavaScript
-    /jquery.timeago.js         # Allows for review time stamps JavaScript
+    /jquery.timeago.js         # Allows for review time stamps JavaScript (attribution provided)
     /login.js                  # Login JavaScript
     /restaurant-components.js  # General restaurant components JavaScript
     /restaurant-details.js     # Restaurant details JavaScript
