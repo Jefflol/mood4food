@@ -11,256 +11,239 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- Optional styles and scripts of your own -->
-    <!-- <link rel="stylesheet" href="styles/style.css"> -->
-    <link rel="stylesheet" href="./styles/restaurant-components.css" />
-    <link rel="stylesheet" href="./styles/settings.css">
+    <link rel="stylesheet" href="styles/restaurant-components.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    
     <!-- <link rel="stylesheet" href="styles/palette-1.css"> -->
-    <link rel="stylesheet" href="./styles/palette-2.css">
+    <link rel="stylesheet" href="styles/palette-2.css">
 </head>
 
 <body>
+  <!-------------------------------------->
+  <!-- The following is HTML for layout -->
+  <!-------------------------------------->
 
-    <!-------------------------------------->
-    <!-- The following is HTML for layout -->
-    <!-------------------------------------->
+  <!-- Header Jumbotron Banner  -->
+  <div class="jumbotron jumbotron-fluid banner">
+    <a href="./restaurant.html">
+      <div class="container">
+          <h1 class="display-4 text-light titleinbanner">
+              Mood
+              <span class="mugiconcontainer">
+                  <img src="./images/MugIcon.png" alt="" class="mugicon">
+                  <span class="number4inmug">4</span>
+              </span>
+              Food
+          </h1>
+          <p class="lead text-light subtitleinbanner"><b>Check out the safety hub before you grab some grub!</b></p>
+      </div>
+    </a>
+  </div>
 
-    <!-- Header jumbotron banner thingy -->
-    <div class="jumbotron jumbotron-fluid banner">
-      <a href="./restaurant.html">
-        <div class="container">
-            <h1 class="display-4 text-light titleinbanner">
-                Mood
-                <span class="mugiconcontainer">
-                    <img src="images/MugIcon.png" alt="" class="mugicon">
-                    <span class="number4inmug">4</span>
-                </span>
-                Food
-            </h1>
-            <p class="lead text-light subtitleinbanner"><b>Check out the safety hub before you grab some grub!</b></p>
-        </div>
-      </a>
-    </div>
-
-    <!-- Header Navigation Bar -->
-    <nav class="navbar navbar-dark sticky-top bg-dark">
-      <a class="nav-link text-light" href="./restaurant.html">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm9.5 8.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
-        </svg>
-      </a>
-      <div class="add-title">Account Settings</div>
-      <a class="nav-link text-light" href="./restaurant.html">
-        <span class="menuCanHide"><b>Main Menu</b></span>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door-fill" fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z" />
-            <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
-        </svg>
+  <!-- Header Navigation Bar -->
+  <nav class="navbar navbar-dark sticky-top bg-dark">
+    <a class="nav-link text-light" href="./restaurant.html">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm9.5 8.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
+      </svg>
+    </a>
+    <div class="add-title">Account Settings</div>
+    <a class="nav-link text-light" href="./restaurant.html">
+      <span class="menuCanHide"><b>Main Menu</b></span>
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door-fill" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+              d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z" />
+          <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+      </svg>
     </a>
   </nav>
-    
-    <!--Account-->
-    <div class="accountProfile">
-      <!--Account Details-->
-        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-          <!-- <img class="rounded-circle mt-5 pic" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" width="90"> -->
-          <div class="rounded-circle mt-5 pic"> 
-            <img src="../images/avatar.jpg" alt="avatar" />
-          </div>
-          <span class="font-weight-bold user_name">First Last</span>
-          <span class="text-black-50 user_email">user@gmail.com</span>
+  
+  <!--Account-->
+  <div class="accountProfile">
+    <!--Account Details-->
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <!-- <img class="rounded-circle mt-5 pic" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" width="90"> -->
+        <div class="rounded-circle mt-5 pic"> 
+          <img src="../images/avatar.jpg" alt="avatar" />
         </div>
-        <br/>
-        <div class="input"><input id = "first" type="text" class="form-control" value="" placeholder="First Name"></div>
-        <div class="input"><input id = "last" type="text" class="form-control" value="" placeholder="Last Name"></div>
-        <div class="input"><input type="text" class="form-control" value="" placeholder="Username"></div>
-        <div class="input"><input type="text" class="form-control" value="" placeholder="Email"></div>
-        <div class="accordion" id="accordionExample">
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <h2 class="mb-0">
-                <p class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                  Change Password
-                </p>
-              </h2>
-            </div>
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-              <div class="card-body">
-                <p>Password must have at least 1 Uppercase, and 1 Special Symbol (!@#$%^&*)</p>
-                <div class="input"><input type="text" class="form-control" value="" placeholder="Current Password"></div>
-                <div class="input"><input type="text" class="form-control" value="" placeholder="New Password"></div>
-              </div>
+        <span class="font-weight-bold user_name">First Last</span>
+        <span class="text-black-50 user_email">user@gmail.com</span>
+      </div>
+      <br/>
+      <div class="input"><input id = "first" type="text" class="form-control" value="" placeholder="First Name"></div>
+      <div class="input"><input id = "last" type="text" class="form-control" value="" placeholder="Last Name"></div>
+      <div class="input"><input type="text" class="form-control" value="" placeholder="Username"></div>
+      <div class="input"><input type="text" class="form-control" value="" placeholder="Email"></div>
+      <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <p class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Change Password
+              </p>
+            </h2>
+          </div>
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <p>Password must have at least 1 Uppercase, and 1 Special Symbol (!@#$%^&*)</p>
+              <div class="input"><input type="text" class="form-control" value="" placeholder="Current Password"></div>
+              <div class="input"><input type="text" class="form-control" value="" placeholder="New Password"></div>
             </div>
           </div>
-          <!--Payment-->
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h2 class="mb-0">
-                <p class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Payment Method
-                </p>
-              </h2>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-              <div class="card-body">
-                <article class="credit card">
-                  <div class="p-5">
-                    <form role="form">
-                      <div class="form-group">
-                        <label for="username">Full name</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                          </div>
-                          <input type="text" class="form-control" name="username">
+        </div>
+        <!--Payment-->
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <p class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Payment Method
+              </p>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              <article class="credit card">
+                <div class="p-5">
+                  <form role="form">
+                    <div class="form-group">
+                      <label for="username">Full name</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa fa-user"></i></span>
                         </div>
+                        <input type="text" class="form-control" name="username">
                       </div>
-                  
-                      <div class="form-group">
-                        <label for="cardNumber">Card number</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
-                          </div>
-                          <input type="text" class="form-control" name="cardNumber">
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="cardNumber">Card number</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
                         </div>
+                        <input type="text" class="form-control" name="cardNumber">
                       </div>
-                  
-                      <div class="row">
-                        <div class="col-sm-8">
-                          <div class="form-group">
-                            <label><span class="hidden-xs">Expiration</span></label>
-                            <div class="form-inline">
-                              <select class="form-control" style="width:45%">
-                                <option>MM</option>
-                                <option>01 - January</option>
-                                <option>02 - February</option>
-                                <option>03 - March</option>
-                                <option>04 - April</option>
-                                <option>05 - May</option>
-                                <option>06 - June</option>
-                                <option>07 - July</option>
-                                <option>08 - August</option>
-                                <option>09 - September</option>
-                                <option>10 - October</option>
-                                <option>11 - November</option>
-                                <option>12 - December</option>
-                              </select>
-                              <span style="width:10%; text-align: center"> / </span>
-                              <select class="form-control" style="width:45%">
-                                <option>YY</option>
-                                <option>2020</option>
-                                <option>2021</option>
-                                <option>2022</option>
-                                <option>2023</option>
-                                <option>2024</option>
-                                <option>2025</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="form-group">
-                            <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-                            <input class="form-control" required="" type="text">
+                    </div>
+                
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <div class="form-group">
+                          <label><span class="hidden-xs">Expiration</span></label>
+                          <div class="form-inline">
+                            <select class="form-control" style="width:45%">
+                              <option>MM</option>
+                              <option>01 - January</option>
+                              <option>02 - February</option>
+                              <option>03 - March</option>
+                              <option>04 - April</option>
+                              <option>05 - May</option>
+                              <option>06 - June</option>
+                              <option>07 - July</option>
+                              <option>08 - August</option>
+                              <option>09 - September</option>
+                              <option>10 - October</option>
+                              <option>11 - November</option>
+                              <option>12 - December</option>
+                            </select>
+                            <span style="width:10%; text-align: center"> / </span>
+                            <select class="form-control" style="width:45%">
+                              <option>YY</option>
+                              <option>2020</option>
+                              <option>2021</option>
+                              <option>2022</option>
+                              <option>2023</option>
+                              <option>2024</option>
+                              <option>2025</option>
+                            </select>
                           </div>
                         </div>
                       </div>
-                      <button class="btn btn-primary btn-block" type="button"> Save Details </button>
-                    </form>
-                  </div>
-                </article>
-              </div>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+                          <input class="form-control" required="" type="text">
+                        </div>
+                      </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" type="button"> Save Details </button>
+                  </form>
+                </div>
+              </article>
             </div>
           </div>
-          <!--
-          <div class="card">
-            <div class="card-header" id="headingThree">
-              <h2 class="mb-0">
-                <p class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  ?
-                </p>
-              </h2>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
-          </div>-->
+        </div>
+    </div>
+  </div>
+
+  <!--Settings div section-->
+  <div class="settingsSection">
+    <!--Location-->
+    <div class="singleSize">
+      <h5>Location</h5>
+      <div class="input-group">
+        <input type="text" class="form-control textbox" placeholder="Address" aria-label="Input group example" aria-describedby="btnGroupAddon">
+        <div class="input-group-prepend">
+          <div class="input-group-text" id="btnGroupAddon">
+            <svg width="1.5em" height="1.5em" type="button" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
-    <!--Settings div section-->
-    <div class="settingsSection">
-      <!--Location-->
-      <div class="singleSize">
-        <h5>Location</h5>
-        <div class="input-group">
-          <input type="text" class="form-control textbox" placeholder="Address" aria-label="Input group example" aria-describedby="btnGroupAddon">
-          <div class="input-group-prepend">
-            <div class="input-group-text" id="btnGroupAddon">
-              <svg width="1.5em" height="1.5em" type="button" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
-              </svg>
-            </div>
+    <!--Location-->
+    <div class="singleSize">
+      <h5>Seach Proximity</h5>
+      <div class="input-group">
+        <input type="text" class="form-control textbox" placeholder="Search Distance" aria-label="Input group example" aria-describedby="btnGroupAddon">
+        <div class="input-group-prepend">
+          <div class="input-group-text" id="btnGroupAddon">
+            <svg width="1.5em" height="1.5em" type="button" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+            </svg>
           </div>
         </div>
       </div>
-      <!--Location-->
-      <div class="singleSize">
-        <h5>Seach Proximity</h5>
-        <div class="input-group">
-          <input type="text" class="form-control textbox" placeholder="Search Distance" aria-label="Input group example" aria-describedby="btnGroupAddon">
-          <div class="input-group-prepend">
-            <div class="input-group-text" id="btnGroupAddon">
-              <svg width="1.5em" height="1.5em" type="button" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--Distance Units-->
-      <div class="singleSize">
-        <h5>Distance Units</h5>
-        <div class="btn-group btn-group-toggle btn-option" data-toggle="buttons">
-          <label class="btn btn-secondary active btn-toggle-option">
-            <input type="radio" name="options" id="option1" autocomplete="off" checked> Automatic
-          </label>
-          <label class="btn btn-secondary btn-toggle-option">
-            <input type="radio" name="options" id="option2" autocomplete="off"> Kilometres
-          </label>
-          <label class="btn btn-secondary">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Miles
-          </label>
-        </div>
-      </div>
-      <div class="singleSize" id = "verify">
-        <h5>Owner Verification</h5>
-        <a class="btn btn-secondary addVeri" href="verification.html">Verify</a>
-      </div>
-      <!-- <button id="openModal" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addRestaurantModal">Add a Restaurant</button> -->
-      <!-- Add a Restaurant -->
-      <div class="singleSize addRestaurantModal" id = "addRestaurantModal">
-        <h5>New Restaurant</h5>
-        <a class="btn btn-secondary addRest" href="restaurant-form.html">Add a Restaurant</a>
-      </div>
-      <!--Recent Search-->
-      <div class="singleSize history">
-        <h5>Save Search History</h5>
-        <div class="toggle"><input type="checkbox" checked data-toggle="toggle" data-onstyle="secondary"></div>
-      </div>
-      
-      <!--Logout-->
-      <div id="logoutBtn" class="singleSize logout">
-        <a href="#" class="btn btn-info btn-lg">
-          <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
-        </a>
-      </div>
-      <button class="btn btn-secondary btn-block" id="submit-changes" type="button"> <p>Save Profile</p> </button>
     </div>
-    <!-- TEST - END -->
+    <!--Distance Units-->
+    <div class="singleSize">
+      <h5>Distance Units</h5>
+      <div class="btn-group btn-group-toggle btn-option" data-toggle="buttons">
+        <label class="btn btn-secondary active btn-toggle-option">
+          <input type="radio" name="options" id="option1" autocomplete="off" checked> Automatic
+        </label>
+        <label class="btn btn-secondary btn-toggle-option">
+          <input type="radio" name="options" id="option2" autocomplete="off"> Kilometres
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="option3" autocomplete="off"> Miles
+        </label>
+      </div>
+    </div>
+    <div class="singleSize" id = "verify">
+      <h5>Owner Verification</h5>
+      <a class="btn btn-secondary addVeri" href="verification.html">Verify</a>
+    </div>
+    <!-- <button id="openModal" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addRestaurantModal">Add a Restaurant</button> -->
+    <!-- Add a Restaurant -->
+    <div class="singleSize addRestaurantModal" id = "addRestaurantModal">
+      <h5>New Restaurant</h5>
+      <a class="btn btn-secondary addRest" href="restaurant-form.html">Add a Restaurant</a>
+    </div>
+    <!--Recent Search-->
+    <div class="singleSize history">
+      <h5>Save Search History</h5>
+      <div class="toggle"><input type="checkbox" checked data-toggle="toggle" data-onstyle="secondary"></div>
+    </div>
+    <!--Logout-->
+    <div id="logoutBtn" class="singleSize logout">
+      <a href="#" class="btn btn-info btn-lg">
+        <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
+      </a>
+    </div>
+    <button class="btn btn-secondary btn-block" id="submit-changes" type="button"> <p>Save Profile</p> </button>
+  </div>
   
   <!----------------------------------------------->
   <!-- JS: Boostrap, Firebase, API related       -->
@@ -304,3 +287,5 @@
   <script src="scripts/display_user.js"></script>
   <script src="scripts/settings.js"></script>
 </body>
+
+</html>

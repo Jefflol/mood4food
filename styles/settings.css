@@ -158,10 +158,6 @@ a:active {
     margin-top: 20px;
 }
 
-.logout {
-    border: none;
-}
-
 /* Verification */
 .verification {
     position: absolute;
@@ -177,7 +173,6 @@ a:active {
 }
 
 .bi-check {
-    /* position: relative; */
     margin: auto;
     margin-bottom: 5px;
 }
@@ -193,6 +188,7 @@ a:active {
 
 .logout {
     height: 50px;
+    border: none;
 }
 
 body {
@@ -313,23 +309,3 @@ body {
         width: 75vw;
     }
 }
-
-/*
-other parts
-
-.board {
-    margin: auto;
-    width: 50vw;
-    height: 70px;
-    border-bottom: 1px solid grey;
-}
-
-.board > h5 {
-    line-height: 70px;
-}
-
-.toggle {
-    float: right;
-    margin-top: 15px;
-}
-*/
