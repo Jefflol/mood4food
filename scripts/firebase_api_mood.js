@@ -8,7 +8,7 @@ var firebaseConfig = {
     storageBucket: "mood4food-a276a.appspot.com",
     messagingSenderId: "874144676555",
     appId: "1:874144676555:web:c8acd832296b23df2ef94e"
-  };
+};
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 

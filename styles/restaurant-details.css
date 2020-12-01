@@ -72,7 +72,6 @@ p {
 
 /* .restaurant__ratings>.other-header__ratings>svg { */
 .restaurant__ratings>.item__rating>svg {
-/* .restaurant__ratings>.other-header__ratings>svg { */
     width: 1.25em;
     height: 1.25em;
     margin: 5px;
@@ -84,7 +83,7 @@ p {
     margin-top: 20px;
 }
 
-/* RESTAURANT HEADER -- SAFETY PROTOCOLS, FEATURES, ACTIOSN */
+/* RESTAURANT HEADER -- SAFETY PROTOCOLS, FEATURES, ACTIONS */
 .restaurant__feature-group {
     display: flex;
     flex-wrap: wrap;
@@ -92,34 +91,6 @@ p {
     width: 100%;
     margin: 10px 0;
 }
-
-/* .restaurant__feature--safety,
-.restaurant__feature--other {
-    display: flex;
-    align-items: center;
-    margin: 5px 5px 5px 0;
-}
-
-.restaurant__feature--safety>svg,
-.restaurant__feature--other>svg {
-    margin-right: 10px;
-} */
-
-/* .restaurant__action-group {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    margin: 10px 0;
-}
-
-.restaurant__action {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-} */
 
 /* RESTAURANT REVIEWS */
 .restaurant__reviews {
@@ -187,7 +158,7 @@ p {
 /* FAVOURITE */
 .heart {
     font-size: 25px;
-    color:rgb(245, 106, 106);
+    color: rgb(245, 106, 106);
 }
 
 .other-header__name {
@@ -219,7 +190,7 @@ p {
     align-items: center;
 }
 
-.reviews_thumbs > small {
+.reviews_thumbs>small {
     display: block;
     width: 200px;
 }
@@ -233,6 +204,7 @@ p {
     display: flex;
     text-align: center;
 }
+
 /* 
 .item__covid-rating>.fa-thumbs-up,
 .item__covid-rating>.fa-thumbs-down {

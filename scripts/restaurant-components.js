@@ -122,7 +122,6 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
       isDistancedTables,
       isSanitizingAvailable
     } = safetyProtocolList;
-    // let safetyProtocols = $("<div class='restaurant__feature-group'></div>");
     let safetyProtocols = $("<div></div>");
   
     if (!Object.values(safetyProtocolList).includes(true)) {
@@ -173,7 +172,6 @@ const displaySafetyProtocolsAsList = (safetyProtocolList) => {
       `);
     }
     
-    // return safetyProtocols[0].outerHTML;
     return safetyProtocols[0].innerHTML;  
 }
 
@@ -188,7 +186,6 @@ const displayFeaturesAsList = (featureList) => {
       isTakeoutAvailable,
       isDeliveryAvailable
     } = featureList;
-    // let features = $("<div class='restaurant__feature-group'></div>");
     let features = $("<div></div>");
   
     if (!Object.values(featureList).includes(true)) {

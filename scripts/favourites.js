@@ -107,7 +107,7 @@ const displayRestaurants = (restaurantObj) => {
     // Append a custom restaurant card to restaurant page
     $("#restaurantCards").append(restaurantCard);
 
-    console.log(`${name} was read from database`);
+    // console.log(`${name} was read from database`);
 };
 
 /**

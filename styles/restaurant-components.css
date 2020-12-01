@@ -45,12 +45,12 @@
     align-items: center;
 }
 
-.navbar > .nav-link:first-of-type {
+.navbar>.nav-link:first-of-type {
     position: absolute;
     left: 20px;
 }
 
-.navbar > .nav-link:last-of-type {
+.navbar>.nav-link:last-of-type {
     position: absolute;
     right: 20px;
 }
@@ -115,8 +115,8 @@
 }
 
 /* RATING - THUMBS */
-.restaurant__covid-rating > .fa-thumbs-up,
-.restaurant__covid-rating > .fa-thumbs-down {
+.restaurant__covid-rating>.fa-thumbs-up,
+.restaurant__covid-rating>.fa-thumbs-down {
     font-size: 150%;
 }
 
@@ -140,7 +140,6 @@
 
 .ratings-group--star>label {
     color: rgba(0, 0, 0, 0.2);
-    /* color: #f6c02d; */
 }
 
 .ratings-group--star>label::before {
@@ -222,11 +221,11 @@
         padding-right: 3px;
     }
 
-    .navbar > .nav-link:first-of-type {
+    .navbar>.nav-link:first-of-type {
         position: static;
     }
-    
-    .navbar > .nav-link:last-of-type {
+
+    .navbar>.nav-link:last-of-type {
         position: static;
     }
 }

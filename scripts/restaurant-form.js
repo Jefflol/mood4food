@@ -91,7 +91,6 @@ const returnToRestaurantPage = () => {
  */
 const updateRestaurantImage = event => {
     restaurantImgFile = event.target.files[0];
-    // console.log(restaurantImgFile);
 }
 
 /**

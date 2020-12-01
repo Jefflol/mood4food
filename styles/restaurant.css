@@ -83,11 +83,6 @@
     height: 50px;
 }
 
-/* .restaurant__covid-rating > .fa-thumbs-up,
-.restaurant__covid-rating > .fa-thumbs-down {
-    font-size: 150%;
-} */
-
 .item__image {
     display: flex;
     justify-content: center;
@@ -122,55 +117,11 @@
     font-weight: 500;
 }
 
-/* .item__safety-protocol {
-    display: flex;
-    align-items: center;
-}
-
-.item__safety-protocol>svg {
-    margin-right: 10px;
-} */
 
 /* RESTAURANT ITEM -- COLLAPSABLE*/
 .item__details--more {
     padding-top: 0;
 }
-
-.item__feature-group {
-    margin: 20px 0;
-}
-
-.item__feature-group:first-of-type {
-    margin-top: 0;
-}
-
-/* .item__feature--safety,
-.item__feature--other {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-}
-
-.item__feature--safety>svg,
-.item__feature--other>svg {
-    margin-right: 10px;
-} */
-
-/* .item__action-group {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    margin: 10px 0;
-}
-
-.item__action {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-} */
 
 .action__text {
     font-size: 10pt;
@@ -193,11 +144,12 @@
 
 /* @media only screen and (min-width: 414px) { */
 @media only screen and (min-width: 520px) {
+
     .item__verified-badge,
     .restaurant__covid-rating {
         top: 10px;
     }
-    
+
     .item {
         display: flex;
         flex-direction: row;

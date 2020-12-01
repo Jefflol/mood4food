@@ -1,15 +1,15 @@
 a:link {
     color: white;
-  }
+}
 
 a:visited {
     color: white;
-  }
+}
 
 a:hover {
     color: white;
 }
-  
+
 a:active {
     color: white;
 }
@@ -34,7 +34,7 @@ a:active {
 }
 
 /*Size of each heading in sections*/
-.singleSize > h5 {
+.singleSize>h5 {
     line-height: 70px;
 }
 
@@ -98,7 +98,7 @@ a:active {
     overflow: hidden;
 }
 
-.pic > img {
+.pic>img {
     background-image: url('../images/avatar.jpg');
     width: 100%;
     height: auto;
@@ -132,12 +132,13 @@ a:active {
     width: 50vw;
     margin: auto;
 }
-.card-body > p {
+
+.card-body>p {
     text-align: center;
     padding-bottom: 20px;
 }
 
-.card-body > .input {
+.card-body>.input {
     width: 40vw;
     padding: 10px;
 }
@@ -178,7 +179,7 @@ a:active {
 }
 
 /* Adding Restaurant */
-.addRestaurantModal > h5{
+.addRestaurantModal>h5 {
     display: inline;
 }
 
@@ -201,18 +202,19 @@ body {
         display: block;
         height: 120px;
     }
-    
-    .singleSize > h5 {
+
+    .singleSize>h5 {
         text-align: center;
         margin-top: 20px;
         line-height: 20px;
     }
 
-    .singleSize:nth-child(4) > h5 {
+    .singleSize:nth-child(4)>h5 {
         padding-top: 5px;
     }
-    .singleSize:nth-child(4) > h5,
-    .singleSize:nth-child(6) > h5 {
+
+    .singleSize:nth-child(4)>h5,
+    .singleSize:nth-child(6)>h5 {
         text-align: left;
         display: inline-block;
     }
@@ -221,7 +223,7 @@ body {
         height: 70px;
     }
 
-    #openModal{
+    #openModal {
         float: right;
     }
 
@@ -229,7 +231,7 @@ body {
         float: right;
     }
 
-    .addRestaurantModal > h5 {
+    .addRestaurantModal>h5 {
         line-height: 70px;
     }
 
@@ -259,14 +261,15 @@ body {
     .singleSize:nth-child(4) {
         height: 120px;
     }
-    .singleSize:nth-child(4) > h5 {
+
+    .singleSize:nth-child(4)>h5 {
         padding-top: 20px;
         text-align: center;
         margin: auto;
         display: block;
     }
 
-    #openModal{
+    #openModal {
         display: block;
         float: none;
         margin: auto;
@@ -285,7 +288,7 @@ body {
         width: inherit;
     }
 
-    .accountProfile > .input {
+    .accountProfile>.input {
         float: none;
         display: block;
         width: 75vw;

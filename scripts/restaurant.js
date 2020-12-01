@@ -29,7 +29,7 @@ button.addEventListener("click", function (event) {
     event.preventDefault();
     $("#restaurantCards").empty();
     var value = document.getElementById("search-bar").value;
-    console.log(value);
+    // console.log(value);
     db.collection("restaurants")
         .where("name", "==", value)
         .limit(NUM_REST_DISPLAY)
@@ -146,8 +146,7 @@ const displayRestaurants = (restaurantObj) => {
 
     // Append a custom restaurant card to restaurant page
     $("#restaurantCards").append(restaurantCard);
-
-    console.log(`${name} was read from database`);
+    // console.log(`${name} was read from database`);
 };
 
 /**
@@ -170,7 +169,7 @@ const addFilter = (filterBy) => {
         // Attach functionality to remove filter
         $(`#${filterBy}FilterItem`).on("click", () => removeFilter(filterBy));
 
-        console.log("Added " + filterBy);
+        // console.log("Added " + filterBy);
     }
 }
 
@@ -186,7 +185,7 @@ const removeFilter = (filterBy) => {
     if ($(`#${filterBy}FilterItem`).length == 1) {
         $(`#${filterBy}FilterItem`).remove();
 
-        console.log("Removed " + filterBy);
+        // console.log("Removed " + filterBy);
     }
 }
 
@@ -248,7 +247,7 @@ const getRestaurantsByFilters = (filterOptions, sortByOption, desc = true) => {
 
                     // Display restaurant only if it met filter requirements
                     if (hasFilters) {
-                        console.log("display: " + restaurantObj.name);
+                        // console.log("display: " + restaurantObj.name);
                         // Attach a restaurant card.
                         displayRestaurants(restaurantObj);
                         cardCount++;
@@ -284,7 +283,9 @@ const attachEventHandlers = () => {
     });
 
     // Tooltip for verified badge
-    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+    $("body").tooltip({
+        selector: '[data-toggle=tooltip]'
+    });
 
     // Filter popover - Show
     $("#openFilterModal").popover('show');
