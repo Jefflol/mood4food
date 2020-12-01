@@ -168,7 +168,7 @@ function displayRestaurantsWithHeart() {
 }
 
 /**
- * Attaches event handlers within filter modal.
+ * Attaches event handlers, done this way so that the restaurant details is loaded first.
  */
 const attachEventHandlers = () => {
   // Display favourites

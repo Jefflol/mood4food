@@ -77,6 +77,15 @@
 }
 
 /* LISTS - SAFETY PROTOCOLS & OTHERS */
+.restaurant__safety-protocol {
+    display: flex;
+    align-items: center;
+}
+
+.restaurant__safety-protocol>svg {
+    margin-right: 10px;
+}
+
 .restaurant__feature--safety,
 .restaurant__feature--other {
     display: flex;

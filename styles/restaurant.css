@@ -122,14 +122,14 @@
     font-weight: 500;
 }
 
-.item__safety-protocol {
+/* .item__safety-protocol {
     display: flex;
     align-items: center;
 }
 
 .item__safety-protocol>svg {
     margin-right: 10px;
-}
+} */
 
 /* RESTAURANT ITEM -- COLLAPSABLE*/
 .item__details--more {

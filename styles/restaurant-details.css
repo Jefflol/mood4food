@@ -70,7 +70,9 @@ p {
     margin: 10px 0;
 }
 
-.restaurant__ratings>.other-header__ratings>svg {
+/* .restaurant__ratings>.other-header__ratings>svg { */
+.restaurant__ratings>.item__rating>svg {
+/* .restaurant__ratings>.other-header__ratings>svg { */
     width: 1.25em;
     height: 1.25em;
     margin: 5px;
