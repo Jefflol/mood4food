@@ -49,6 +49,9 @@ const compileRestaurantData = (doc) => {
     let isDistancedTables = doc.data().isDistancedTables;
     let isSanitizingAvailable = doc.data().isSanitizingAvailable;
 
+    let avgThumbs = doc.data().average_thumbs;
+    avgThumbs = avgThumbs * 100;
+
     let image = doc.data().image;
 
     // Replace restaurant placeholder image once actual image has been downloaded
@@ -75,65 +78,15 @@ const compileRestaurantData = (doc) => {
         isMaskRequired,
         isReducedSeatings,
         isDistancedTables,
-        isSanitizingAvailable
+        isSanitizingAvailable,
+        avgThumbs
     };
 }
 
 /**
- * Attach attachSortingMethods method to sort by select.
+ * Retrieves favourite restaurants from database and displays onto restaurant page.
  */
-const attachSortingMethods = () => {
-    let sortOption = $("#sortOptions").val();
-
-    if (sortOption == 1) {
-        $("#restaurantCards").empty();
-        getRestaurantsByFilters(filters, "average_rating", true);
-    } else if (sortOption == 2) {
-        $("#restaurantCards").empty();
-        getRestaurantsByFilters(filters, "average_rating", false);
-    } else if (sortOption == 3) {
-        $("#restaurantCards").empty();
-        getRestaurantsByFilters(filters, "average_cost", true);
-    } else if (sortOption == 4) {
-        $("#restaurantCards").empty();
-        getRestaurantsByFilters(filters, "average_cost", false);
-    }
-}
-$("#sortOptions").on("change", attachSortingMethods);
-
-/**
- * Search Bar to find restaurants.
- */
-var button;
-button = document.getElementById("search-button");
-button.addEventListener("click", function (event) {
-    event.preventDefault();
-    $("#restaurantCards").empty();
-    var value = document.getElementById("search-bar").value;
-    console.log(value);
-    db.collection("restaurants")
-        .where("name", "==", value)
-        .limit(NUM_REST_DISPLAY)
-        .get()
-        .then(function (snap) {
-            if (!(value == "")) {
-                snap.forEach(function (doc) {
-                    let restaurantObj = compileRestaurantData(doc);
-                    // Attach a restaurant card.
-                    displayRestaurants(restaurantObj);
-                });
-            }
-            // If user searches for nothing then display every restaurants.
-            else {
-                getRestaurants();
-            }
-        });
-});
-
-/**
- * Retrieves restaurants from database and displays onto restaurant page.
- */
-const getRestaurants = () => {
+const getFavouriteRestaurants = () => {
     db.collection("restaurants")
         .limit(NUM_REST_DISPLAY)
         .get()
@@ -161,10 +114,11 @@ const getRestaurants = () => {
 /**
  * Automatically loads restaurants onto restaurant page from database.
  */
-const getRestaurantsOnLoad = () => {
-    $(document).ready(getRestaurants);
+const getFavouriteRestaurantsOnLoad = () => {
+    $(document).ready(getFavouriteRestaurants);
 }
-getRestaurantsOnLoad();
+getFavouriteRestaurantsOnLoad();
+
 
 /**
  * Displays a restaurant as a card on restaurant page.
@@ -189,7 +143,8 @@ const displayRestaurants = (restaurantObj) => {
         isMaskRequired,
         isReducedSeatings,
         isDistancedTables,
-        isSanitizingAvailable
+        isSanitizingAvailable,
+        avgThumbs
     } = restaurantObj;
 
     let restaurantCard = $(`
@@ -204,6 +159,7 @@ const displayRestaurants = (restaurantObj) => {
             </div>
             <div class="item__details card-body">
                 <h5 class="item__title card-title">${name}</h5>
+                ${displayThumbsMain(avgThumbs)}
                 <div class="item__ratings">
                     ${displayRatings(avgRating)}
                     ${displayRatingsCost(avgCost)}
@@ -368,6 +324,24 @@ const displayRatingsCost = (rating) => {
     }
 
     return ratings[0].outerHTML;
+}
+
+const displayThumbsMain = (avgThumbs) => {
+    if (avgThumbs >= 50){
+        return (`
+            <div class="item__covid-rating" data-toggle="tooltip" data-placement="top" title="Majority of users think this restaurant is COVID-friendly!">
+                <i class="fa fa-thumbs-up selectedThumbs"></i>
+                ${avgThumbs}%
+            </div>
+        `);
+    } else {
+        return (`
+            <div class="item__covid-rating" data-toggle="tooltip" data-placement="top" title="Majority of users think this restaurant is not COVID-friendly!">
+                <i class="fa fa-thumbs-down selectedThumbs"></i>
+                ${avgThumbs}%
+            </div>
+        `);
+    }
 }
 
 /**
@@ -614,171 +588,3 @@ const displayFeaturesAsList = (featureList) => {
 
     return features[0].outerHTML;
 }
-
-
-/** FILTER METHODS **/
-
-/**
- * Add filter to fitler modal and updates filters.
- * @param {String} filterBy filter key 
- */
-const addFilter = (filterBy) => {
-    // Update filters for getRestaurants methods
-    filters[filterBy] = true;
-
-    // Add filter if it has not already been added
-    if ($(`#${filterBy}FilterItem`).length == 0) {
-        $("#appliedFilters").append(`
-            <div id="${filterBy}FilterItem" class="filter-item">
-                ${FILTER_NAMES[filterBy]}
-                <span>&times;</span>
-            </div>
-        `);
-
-        // Attach functionality to remove filter
-        $(`#${filterBy}FilterItem`).on("click", () => removeFilter(filterBy));
-
-        console.log("Added " + filterBy);
-    }
-}
-
-/**
- * Remove filter from filter modal and updates filters.
- * @param {String} filterBy filter key
- */
-const removeFilter = (filterBy) => {
-    // Update filters for getRestaurants methods
-    filters[filterBy] = false;
-
-    // Remove filter if it has not already been removed
-    if ($(`#${filterBy}FilterItem`).length == 1) {
-        $(`#${filterBy}FilterItem`).remove();
-
-        console.log("Removed " + filterBy);
-    }
-}
-
-/**
- * Clears all filters from fitler modal and updates filters.
- */
-const clearFilters = () => {
-    for (let property in filters) {
-        filters[property] = false;
-    }
-
-    $("#appliedFilters").empty();
-}
-
-/**
- * Gets restaurants given filters and sorting option.
- * @param {Object} filterOptions  An object of filter options
- * @param {String} sortByOption   Sorting option
- * @param {boolean} desc          Boolean value to sort by descending or ascending
- */
-const getRestaurantsByFilters = (filterOptions, sortByOption, desc = true) => {
-    db.collection("restaurants")
-        .orderBy(sortByOption, desc ? "desc" : "asc")
-        // .limit(NUM_REST_DISPLAY)
-        .get()
-        .then(function (snap) {
-            // Empty cards
-            $("#restaurantCards").empty();
-
-            let cardCount = 0;
-            snap.forEach(function (doc) {
-                // Acts as .limit() after filters have been applied
-                if (cardCount <= NUM_REST_DISPLAY) {
-                    let restaurantObj = compileRestaurantData(doc);
-                    let hasFilters = true;
-
-                    // Check if restaurant meets filter requirements
-                    for (const property in filterOptions) {
-                        if (filterOptions[property] == true && restaurantObj[property] == false) {
-                            // console.log(restaurantObj.name + "||" + filterOptions[property] + ", " + restaurantObj[property]);
-                            hasFilters = false;
-                            break;
-                        }
-                    }
-
-                    // Display restaurant only if it met filter requirements
-                    if (hasFilters) {
-                        console.log("display: " + restaurantObj.name);
-                        // Attach a restaurant card.
-                        displayRestaurants(restaurantObj);
-                        cardCount++;
-                    }
-                }
-            });
-        });
-};
-
-/**
- * Attaches event handlers within filter modal.
- */
-const attachEventHandlers = () => {
-    $("#maskRequiredFilter").on("click", () => addFilter("isMaskRequired"));
-    $("#reducedSeatingsFilter").on("click", () => addFilter("isReducedSeatings"));
-    $("#distancedTablesFilter").on("click", () => addFilter("isDistancedTables"));
-    $("#sanitizingAvailableFilter").on("click", () => addFilter("isSanitizingAvailable"));
-
-    $("#clearFiltersBtn").on("click", () => clearFilters());
-    $("#applyFilterBtn").on("click", () => {
-        // Apply filters
-        getRestaurantsByFilters(filters, "average_rating");
-
-        // Update filter button html text
-        if (isFilterSelected()) {
-            $("#openFilterModalBtn").html("Filter (Applied)");
-        } else {
-            $("#openFilterModalBtn").html("Filter");
-        }
-
-        // Hide filter modal
-        $("#filterModal").modal('hide');
-    });
-
-    // Tooltip for verified badge
-    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-}
-attachEventHandlers();
-
-/**
- * Checks if filters have been selected or not
- * @returns true if filters have been selected, else false
- */
-const isFilterSelected = () => {
-    for (let property in filters) {
-        if (filters[property]) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-/**
- * Shows filter popover.
- */
-const showFilterPopover = () => {
-    $("#openFilterModal").popover('show');
-}
-
-/**
- * Hides filter popover.
- */
-const hideFilterPopover = () => {
-    {
-        $("#openFilterModal").on('click', () => {
-            $('#openFilterModal').popover('hide');
-        });
-    }
-}
-
-/**
- * Attaches event handlers on load.
- */
-const attachEventHandlersOnLoad = () => {
-    showFilterPopover();
-    hideFilterPopover();
-}
-attachEventHandlersOnLoad();

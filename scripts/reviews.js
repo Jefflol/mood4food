@@ -1,7 +1,10 @@
+//The restaurant's id
 var currentrestaurantid;
+//Review number so that we can have multiple reviews shown
 var reviewnum = 1;
 
 $(document).ready(function () {
+  //Getting the restaurant id from the address
   currentrestaurantid = window.location.href.slice(-20)
   db.collection("restaurants").doc(currentrestaurantid)
     .get()
@@ -57,6 +60,9 @@ $(document).ready(function () {
     }
   });
 
+  /**
+   * Adding listener for the star ratings
+   */
   var userStarRating;
   document.getElementById("ratingstars").addEventListener("click", function () {
     var radios = document.getElementsByName("rating");
@@ -78,6 +84,9 @@ $(document).ready(function () {
     }
   });
 
+  /**
+   * Adding listener for the cost ratings
+   */
   var userCostRating;
   document.getElementById("ratingcosts").addEventListener("click", function () {
     var radios = document.getElementsByName("ratingcost");
@@ -99,6 +108,9 @@ $(document).ready(function () {
     }
   });
 
+  /**
+   * Adding listener for posting review
+   */
   document.getElementById("postreview").addEventListener("click", function () {
     if (loggedon == true) {
       submituserreview();
@@ -107,6 +119,9 @@ $(document).ready(function () {
     }
   });
 
+  /**
+   * Function that submits user review
+   */
   function submituserreview() {
     var d = new Date();
     db.collection("reviews").add({
@@ -131,12 +146,14 @@ $(document).ready(function () {
       });
 
       // Update review data in restaurant documents
-      updateReviews(userStarRating, userCostRating);
+      updateReviews(userStarRating, userCostRating, userThumbs);
   }
 
 });
 
-//Thumbs
+/**
+ * Event listeners for thumbs up/down
+ */
 var userThumbs = 0.5;
 $('.like').on('click', function() {
   event.preventDefault();
@@ -152,6 +169,10 @@ $('.dislike').on('click', function() {
   userThumbs = 0;
 });
 
+/**
+ * Function that displays the review given a review object from database
+ * @param reviewObj the object that holds the review information
+ */
 const displayReview = (reviewObj) => {
   let {
     stars, name, time, text, cost, thumbs, reviewnum
@@ -348,11 +369,11 @@ const displayThumbs = (thumbs) => {
   let ratings = $("<div class='other-header__ratings'></div>");
 
   if (thumbs == 1){
-    ratings.append(`<small>Safe?</small><i class="fa fa-thumbs-up selectedThumbs"></i><i class="fa fa-thumbs-down"></i>`);
+    ratings.append(`<small>Covid-Friendly?</small><i class="fa fa-thumbs-up selectedThumbs"></i><i class="fa fa-thumbs-down"></i>`);
   } else if (thumbs == 0){
-    ratings.append(`<small>Safe?</small><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-down selectedThumbs"></i>`);
+    ratings.append(`<small>Covid-Friendly?</small><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-down selectedThumbs"></i>`);
   } else {
-    ratings.append(`<small>Safe?</small><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-down"></i>`);
+    ratings.append(`<small>Covid-Friendly?</small><i class="fa fa-thumbs-up"></i><i class="fa fa-thumbs-down"></i>`);
   }
 
   return ratings[0].outerHTML;
@@ -381,19 +402,25 @@ const updateReviews = (userStarRating, userCostRating) => {
         // Holds total cost reviews
         let newTotalCostReview = doc.data().total_cost_review + userCostRating;
 
-        // Calculate to update restaurant average star and cost rating
+        // Holds total cost reviews
+        let newTotalThumbsReview = doc.data().total_thumbs_review + userThumbsRating;
+
+        // Calculate to update restaurant average star, cost, and thumbs rating
         let newAverageStarRating = newTotalStarReview / newReviewCount;
         let newAverageCostRating = newTotalCostReview / newReviewCount;
+        let newAverageThumbsRating = newTotalThumbsReview / newReviewCount;
 
-        // console.log(newReviewC÷åount, newTotalCostReview, newAverageStarRating);
+        // console.log(newReviewCount, newTotalCostReview, newAverageStarRating);
 
         // Update firestore
         transaction.update(docRef, {
           "review_count": newReviewCount,
           "total_star_review": newTotalStarReview,
           "total_cost_review": newTotalCostReview,
+          "total_thumbs_review": newTotalThumbsReview,
           "average_rating": newAverageStarRating,
-          "average_cost": newAverageCostRating
+          "average_cost": newAverageCostRating,
+          "average_thumbs": newAverageThumbsRating
         });
       });
   }).then(() => {

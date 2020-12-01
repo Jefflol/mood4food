@@ -46,58 +46,6 @@
     cursor: pointer;
 }
 
-/* MODAL - Ratings */
-.ratings-group {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-}
-
-.ratings-group>input {
-    display: none;
-}
-
-.ratings-group>label {
-    position: relative;
-    width: 1.5em;
-    color: rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-}
-
-.ratings-group--star>label {
-    color: rgba(0, 0, 0, 0.2);
-}
-
-.ratings-group--star>label::before {
-    content: url(../images/star_filled.svg);
-}
-
-.ratings-group--cost>label {
-    color: #86cf5b;
-}
-
-.ratings-group--cost>label::before {
-    content: url(../images/dollar_filled.svg);
-}
-
-.ratings-group>label::before {
-    position: absolute;
-    opacity: 0;
-}
-
-.ratings-group>label:hover:before,
-.ratings-group>label:hover~label:before {
-    opacity: 1;
-}
-
-.ratings-group>input:checked~label:before {
-    opacity: 1;
-}
-
-.ratings-group:hover>input:checked~label:before {
-    opacity: 0.7;
-}
-
 /* RESTAURANT CARDS */
 .restaurant-cards {
     display: flex;
@@ -118,10 +66,26 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 10px;
+    top: 130px;
     right: 10px;
     width: 50px;
     height: 50px;
+}
+
+.item__covid-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 130px;
+    right: 60px;
+    width: 50px;
+    height: 50px;
+}
+
+.item__covid-rating > .fa-thumbs-up,
+.item__covid-rating > .fa-thumbs-down {
+    font-size: 150%;
 }
 
 .item__image {
@@ -172,22 +136,14 @@
     padding-top: 0;
 }
 
-.item__feature--safety {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-}
-
-.item__feature--safety>svg {
-    margin-right: 10px;
-}
-
+.item__feature--safety,
 .item__feature--other {
     display: flex;
     align-items: center;
     margin: 5px 0;
 }
 
+.item__feature--safety>svg,
 .item__feature--other>svg {
     margin-right: 10px;
 }
@@ -235,6 +191,11 @@
 
 /* @media only screen and (min-width: 414px) { */
 @media only screen and (min-width: 520px) {
+    .item__verified-badge,
+    .item__covid-rating {
+        top: 10px;
+    }
+    
     .item {
         display: flex;
         flex-direction: row;
@@ -250,6 +211,10 @@
         max-width: 200px;
         max-height: 200px;
         margin: 1.25rem 0 1.25rem 1.25rem;
+    }
+
+    .item__details {
+        width: 50%;
     }
 
     .item__details--more {

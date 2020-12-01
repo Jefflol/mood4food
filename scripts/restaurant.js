@@ -367,11 +367,21 @@ const displayRatingsCost = (rating) => {
 
 const displayThumbsMain = (avgThumbs) => {
     if (avgThumbs >= 50){
-      return `<div><small>Safe?</small><i class="fa fa-thumbs-up selectedThumbs"></i>` + avgThumbs + "%</div>";
+        return (`
+            <div class="item__covid-rating" data-toggle="tooltip" data-placement="top" title="Majority of users think this restaurant is COVID-friendly!">
+                <i class="fa fa-thumbs-up selectedThumbs"></i>
+                ${avgThumbs}%
+            </div>
+        `);
     } else {
-      return `<div><small>Safe?</small><i class="fa fa-thumbs-down selectedThumbs"></i>` + avgThumbs + "%</div>";
+        return (`
+            <div class="item__covid-rating" data-toggle="tooltip" data-placement="top" title="Majority of users think this restaurant is not COVID-friendly!">
+                <i class="fa fa-thumbs-down selectedThumbs"></i>
+                ${avgThumbs}%
+            </div>
+        `);
     }
-  }
+}
 
 /**
  * Adds restaurant phone number as an action if phone is available, else make it disabled
@@ -716,6 +726,20 @@ const getRestaurantsByFilters = (filterOptions, sortByOption, desc = true) => {
 };
 
 /**
+ * Checks if filters have been selected or not
+ * @returns true if filters have been selected, else false
+ */
+const isFilterSelected = () => {
+    for (let property in filters) {
+        if (filters[property]) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
  * Attaches event handlers within filter modal.
  */
 const attachEventHandlers = () => {
@@ -742,46 +766,12 @@ const attachEventHandlers = () => {
 
     // Tooltip for verified badge
     $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+
+    // Filter popover - Show
+    $("#openFilterModal").popover('show');
+    // Filter popover - Hide
+    $("#openFilterModal").on('click', () => {
+        $('#openFilterModal').popover('hide');
+    });
 }
 attachEventHandlers();
-
-/**
- * Checks if filters have been selected or not
- * @returns true if filters have been selected, else false
- */
-const isFilterSelected = () => {
-    for (let property in filters) {
-        if (filters[property]) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-/**
- * Shows filter popover.
- */
-const showFilterPopover = () => {
-    $("#openFilterModal").popover('show');
-}
-
-/**
- * Hides filter popover.
- */
-const hideFilterPopover = () => {
-    {
-        $("#openFilterModal").on('click', () => {
-            $('#openFilterModal').popover('hide');
-        });
-    }
-}
-
-/**
- * Attaches event handlers on load.
- */
-const attachEventHandlersOnLoad = () => {
-    showFilterPopover();
-    hideFilterPopover();
-}
-attachEventHandlersOnLoad();
