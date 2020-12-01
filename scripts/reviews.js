@@ -1,7 +1,10 @@
+//The restaurant's id
 var currentrestaurantid;
+//Review number so that we can have multiple reviews shown
 var reviewnum = 1;
 
 $(document).ready(function () {
+  //Getting the restaurant id from the address
   currentrestaurantid = window.location.href.slice(-20)
   db.collection("restaurants").doc(currentrestaurantid)
     .get()
@@ -57,6 +60,9 @@ $(document).ready(function () {
     }
   });
 
+  /**
+   * Adding listener for the star ratings
+   */
   var userStarRating;
   document.getElementById("ratingstars").addEventListener("click", function () {
     var radios = document.getElementsByName("rating");
@@ -78,6 +84,9 @@ $(document).ready(function () {
     }
   });
 
+  /**
+   * Adding listener for the cost ratings
+   */
   var userCostRating;
   document.getElementById("ratingcosts").addEventListener("click", function () {
     var radios = document.getElementsByName("ratingcost");
@@ -99,6 +108,9 @@ $(document).ready(function () {
     }
   });
 
+  /**
+   * Adding listener for posting review
+   */
   document.getElementById("postreview").addEventListener("click", function () {
     if (loggedon == true) {
       submituserreview();
@@ -107,6 +119,9 @@ $(document).ready(function () {
     }
   });
 
+  /**
+   * Function that submits user review
+   */
   function submituserreview() {
     var d = new Date();
     db.collection("reviews").add({
@@ -136,7 +151,9 @@ $(document).ready(function () {
 
 });
 
-//Thumbs
+/**
+ * Event listeners for thumbs up/down
+ */
 var userThumbs = 0.5;
 $('.like').on('click', function() {
   event.preventDefault();
@@ -152,6 +169,10 @@ $('.dislike').on('click', function() {
   userThumbs = 0;
 });
 
+/**
+ * Function that displays the review given a review object from database
+ * @param reviewObj the object that holds the review information
+ */
 const displayReview = (reviewObj) => {
   let {
     stars, name, time, text, cost, thumbs, reviewnum

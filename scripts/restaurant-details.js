@@ -415,6 +415,9 @@ function displayRestaurantsWithHeart() {
       })
 }
 
+/**
+ * Attaches event handlers, done this way so that the restaurant details is loaded first.
+ */
 const attachEventHandlers = () => {
   // Display favourites
   displayRestaurantsWithHeart();
