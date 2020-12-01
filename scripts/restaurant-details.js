@@ -422,3 +422,5 @@ const attachEventHandlers = () => {
   // Enable tooltips
   $("body").tooltip({ selector: '[data-toggle=tooltip]' });
 }
+
+attachEventHandlers();
