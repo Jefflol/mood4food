@@ -76,6 +76,41 @@
     color: white;
 }
 
+/* LISTS - SAFETY PROTOCOLS & OTHERS */
+.restaurant__feature--safety,
+.restaurant__feature--other {
+    display: flex;
+    align-items: center;
+    margin: 5px 5px 5px 0;
+}
+
+.restaurant__feature--safety>svg,
+.restaurant__feature--other>svg {
+    margin-right: 10px;
+}
+
+.restaurant__action-group {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.restaurant__action {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+/* RATING - THUMBS */
+.restaurant__covid-rating > .fa-thumbs-up,
+.restaurant__covid-rating > .fa-thumbs-down {
+    font-size: 150%;
+}
+
 /* RATINGS - STAR & COST */
 .ratings-group {
     display: flex;

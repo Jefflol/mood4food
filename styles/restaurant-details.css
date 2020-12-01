@@ -91,22 +91,19 @@ p {
     margin: 10px 0;
 }
 
-.restaurant__feature--safety,
+/* .restaurant__feature--safety,
 .restaurant__feature--other {
     display: flex;
     align-items: center;
     margin: 5px 5px 5px 0;
 }
 
-.restaurant__feature--safety>svg {
-    margin-right: 10px;
-}
-
+.restaurant__feature--safety>svg,
 .restaurant__feature--other>svg {
     margin-right: 10px;
-}
+} */
 
-.restaurant__action-group {
+/* .restaurant__action-group {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -120,7 +117,7 @@ p {
     justify-content: center;
     align-items: center;
     margin: 10px;
-}
+} */
 
 /* RESTAURANT REVIEWS */
 .restaurant__reviews {
@@ -234,11 +231,11 @@ p {
     display: flex;
     text-align: center;
 }
-
+/* 
 .item__covid-rating>.fa-thumbs-up,
 .item__covid-rating>.fa-thumbs-down {
     font-size: 150%;
-}
+} */
 
 .like,
 .dislike {
