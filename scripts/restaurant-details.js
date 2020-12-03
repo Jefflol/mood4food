@@ -127,9 +127,11 @@ function displayRestaurantsWithHeart() {
                             var ref = db.collection("users").doc(user.uid);
                             ref.get().then(function (doc) {
                                 favesArray = doc.data().faves;
-                                for (x = 0; x < favesArray.length; x++) {
-                                    if (favesArray[x] == id) {
-                                        $("#" + id).toggleClass("fa-heart fa-heart-o");
+                                if (favesArray){
+                                    for (x = 0; x < favesArray.length; x++) {
+                                        if (favesArray[x] == id) {
+                                            $("#" + id).toggleClass("fa-heart fa-heart-o");
+                                        }
                                     }
                                 }
                             });

@@ -27,7 +27,7 @@ $(document).ready(function () {
             y[num].setAttribute("title", "Logged in as: " + userNameToShow)
         }
         var e = document.getElementsByClassName("user_email");
-        for (i = 0; i < x.length; i++) {
+        for (i = 0; i < e.length; i++) {
             e[i].innerHTML = emailToShow;
         }
         // console.log("Updated username");
