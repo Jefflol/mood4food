@@ -16,7 +16,6 @@ const getFavouriteRestaurants = () => {
                         favesArray = doc.data().faves;
                         for (x = 0; x < favesArray.length; x++){
                             if(favesArray[x] == restaurantObj.id){
-                                console.log(restaurantObj);
                                 displayRestaurants(restaurantObj);
                             }
                         }
