@@ -19,7 +19,8 @@ var uiConfig = {
                 db.collection("users").doc(user.uid).set({
                         name: user.displayName,
                         email: user.email
-                    }).update({
+                    })
+                db.collection("users").doc(user.uid).update({
                         faves: firebase.firestore.FieldValue.arrayUnion("test"),
                         faves: firebase.firestore.FieldValue.arrayRemove("test")
                     }).then(function () {
