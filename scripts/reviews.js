@@ -292,10 +292,10 @@ const updateReviews = (userStarRating, userCostRating, userThumbsRating) => {
                 "review_count": newReviewCount,
                 "total_star_review": newTotalStarReview,
                 "total_cost_review": newTotalCostReview,
-                "total_thumbs_review": newTotalThumbsReview.toFixed(1),
+                "total_thumbs_review": newTotalThumbsReview,
                 "average_rating": newAverageStarRating,
                 "average_cost": newAverageCostRating,
-                "average_thumbs": newAverageThumbsRating
+                "average_thumbs": newAverageThumbsRating.toFixed(1)
             });
         });
     }).then(() => {
