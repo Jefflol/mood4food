@@ -51,6 +51,7 @@ const addRestaurant = (e) => {
             "description": description,
             "average_rating": 0,
             "average_cost": 0,
+            "average_thumbs": 0,
             "address": address,
             "postal_code": postalCode,
             "city": city,
@@ -67,6 +68,7 @@ const addRestaurant = (e) => {
             "image": imgPath,
             "total_star_review": 0,
             "total_cost_review": 0,
+            "total_thumbs_review": 0,
             "review_count": 0
         })
         .then(() => {
