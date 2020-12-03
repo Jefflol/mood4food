@@ -285,7 +285,7 @@ const updateReviews = (userStarRating, userCostRating, userThumbsRating) => {
             // Calculate to update restaurant average star, cost, and thumbs rating
             let newAverageStarRating = newTotalStarReview / newReviewCount;
             let newAverageCostRating = newTotalCostReview / newReviewCount;
-            let newAverageThumbsRating = newTotalThumbsReview / newReviewCount;
+            let newAverageThumbsRating = Math.round(newTotalThumbsReview / newReviewCount * 10) / 10;
 
             // Update firestore
             transaction.update(docRef, {
@@ -295,7 +295,7 @@ const updateReviews = (userStarRating, userCostRating, userThumbsRating) => {
                 "total_thumbs_review": newTotalThumbsReview,
                 "average_rating": newAverageStarRating,
                 "average_cost": newAverageCostRating,
-                "average_thumbs": newAverageThumbsRating.toFixed(1)
+                "average_thumbs": newAverageThumbsRating
             });
         });
     }).then(() => {
