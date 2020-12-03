@@ -19,6 +19,9 @@ var uiConfig = {
                 db.collection("users").doc(user.uid).set({
                         name: user.displayName,
                         email: user.email
+                    }).update({
+                        faves: firebase.firestore.FieldValue.arrayUnion("test"),
+                        faves: firebase.firestore.FieldValue.arrayRemove("test")
                     }).then(function () {
                         console.log("New user added to firestore");
                         window.location.assign("restaurant.html");
