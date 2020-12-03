@@ -76,4 +76,8 @@ It has the following subfolders and files:
     /verification.css          # Verification page Stylesheet
 
 Firebase hosting files: 
-├── .firebaserc...
+├── .firebaserc                # Firebase project configurations
+├── firebase.json              # Firebase configuration file
+├── firebase.indexes.json      # Firebase index configuration
+├── firestore.rules            # Firestore rules for access privileges
+├── storage.rules              # Storage rules for access privileges
