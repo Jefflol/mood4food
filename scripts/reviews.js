@@ -261,7 +261,7 @@ const displayThumbs = (thumbs) => {
  * @param {Number} userStarRating 
  * @param {Number} userCostRating 
  */
-const updateReviews = (userStarRating, userCostRating) => {
+const updateReviews = (userStarRating, userCostRating, userThumbsRating) => {
     let docRef = db.collection("restaurants").doc(currentrestaurantid);
 
     return db.runTransaction(transaction => {
@@ -292,7 +292,7 @@ const updateReviews = (userStarRating, userCostRating) => {
                 "review_count": newReviewCount,
                 "total_star_review": newTotalStarReview,
                 "total_cost_review": newTotalCostReview,
-                "total_thumbs_review": newTotalThumbsReview,
+                "total_thumbs_review": newTotalThumbsReview.toFixed(1),
                 "average_rating": newAverageStarRating,
                 "average_cost": newAverageCostRating,
                 "average_thumbs": newAverageThumbsRating

@@ -38,7 +38,7 @@ const compileRestaurantData = (doc) => {
   let city = doc.data().city;
   let province = doc.data().province;
   let phone_number = doc.data().phone_number;
-  let url = doc.data().website_url;
+  let url = doc.data().url;
 
   let isDineInAvailable = doc.data().isDineInAvailable;
   let isTakeoutAvailable = doc.data().isTakeoutAvailable;
@@ -403,7 +403,7 @@ const displayGoogleMapAction = (address, postal_code, city, province) => {
   }
 
   if (postal_code) {
-      formattedAddress += (postal_code + ", Canada");
+      formattedAddress += (", " + postal_code + ", Canada");
   }
 
   if (!formattedAddress) {
