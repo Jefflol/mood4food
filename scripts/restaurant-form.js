@@ -32,10 +32,11 @@ const addRestaurant = (e) => {
     if (restaurantImgFile === undefined) {
         imgPath = "restaurantImages/default.jpg";
     } else {
-        imgPath = "restaurantImages/" + name + "_" + restaurantImgFile.name;
+        let formattedName = name.replace(" ", "-");
+        imgPath = "restaurantImages/" + formattedName + "_" + restaurantImgFile.name;
 
         let storageRef = firebase.storage().ref();
-        imgRef = storageRef.child('restaurantImages/' + name + '_' + restaurantImgFile.name);
+        imgRef = storageRef.child('restaurantImages/' + formattedName + '_' + restaurantImgFile.name);
 
         // Add restaurant image to storage at imgRef path
         imgRef.put(restaurantImgFile)
